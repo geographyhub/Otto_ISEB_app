@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Otto's climb: 11+ and ISEB</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⛰️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{--night:#142A3E;--snow:#F5F8FA;--glacier:#CFE3EE;--rope:#E8551C;--flag:#F4B400;--vr:#E8551C;--nvr:#0E8A9A;--en:#A3305E;--ma:#23634A;--vocab:#9A6A00;--line:#C9D6DF;
+--disp:'Bricolage Grotesque','Trebuchet MS',system-ui,sans-serif;--body:'Atkinson Hyperlegible',Verdana,system-ui,sans-serif}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--snow);color:var(--night);font:400 20px/1.55 var(--body);padding-bottom:env(safe-area-inset-bottom)}
+body.locked{overflow:hidden}
+h1,h2,h3{font-family:var(--disp);line-height:1.12;margin:0}
+h1{font-size:clamp(40px,7vw,68px);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(28px,4vw,36px);font-weight:800;margin:48px 0 18px}
+h3{font-size:24px;font-weight:600}
+a{color:var(--night);text-decoration-thickness:2px;text-underline-offset:4px}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--flag);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px 40px}
+.lede{font-size:23px;max-width:40ch;margin:14px 0 0}
+
+/* header and tabs */
+header{position:sticky;top:0;z-index:20;background:var(--night);padding-top:env(safe-area-inset-top)}
+#tabs{display:flex;gap:6px;overflow-x:auto;max-width:1040px;margin:0 auto;padding:10px 16px;scrollbar-width:none}
+#tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;border:0;background:transparent;color:#DCE7EE;font:600 19px var(--disp);padding:10px 16px;border-radius:999px}
+.tab[aria-current=true]{background:#fff;color:var(--night)}
+.tab-vr[aria-current=true]{box-shadow:inset 0 -4px 0 var(--vr)}.tab-nvr[aria-current=true]{box-shadow:inset 0 -4px 0 var(--nvr)}.tab-en[aria-current=true]{box-shadow:inset 0 -4px 0 var(--en)}.tab-ma[aria-current=true]{box-shadow:inset 0 -4px 0 var(--ma)}.tab-vocab[aria-current=true]{box-shadow:inset 0 -4px 0 var(--flag)}
+
+/* hero */
+.hero{position:relative;background:#1B3A55;color:#fff;min-height:440px;overflow:hidden}
+#mtn{position:absolute;inset:0;width:100%;height:100%}
+.hero-text{position:relative;max-width:1040px;margin:0 auto;padding:40px 22px 0}
+.hero-text .lede{color:#E6EEF3}
+.camplabel{font:800 22px var(--disp);fill:#fff;stroke:#142A3E;stroke-width:5px;paint-order:stroke;stroke-linejoin:round}
+.camp{opacity:0;transform-box:fill-box;animation:plant .5s cubic-bezier(.3,1.6,.5,1) forwards}
+@keyframes plant{from{opacity:0;translate:0 14px}to{opacity:1;translate:0 0}}
+
+/* route */
+.route{list-style:none;margin:0;padding:0;border-left:4px dashed var(--rope);margin-left:10px}
+.route li{display:grid;grid-template-columns:170px 1fr;gap:18px;padding:14px 0 14px 22px;position:relative}
+.route li::before{content:"";position:absolute;left:-13px;top:22px;width:18px;height:18px;border-radius:50%;background:#fff;border:4px solid var(--rope)}
+.route li.small{opacity:.85}.route li.small h3{font-size:21px}
+.route li.done{opacity:.5}
+.when b{display:block;font-family:var(--disp);font-size:22px}.when span{font-size:18px;color:#4C6476}
+.what p{margin:4px 0 0}
+.star{display:inline-block;font:600 15px var(--body);background:var(--flag);border-radius:999px;padding:2px 10px;vertical-align:middle}
+.pretest{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:18px 0 0 34px;font-weight:700}
+input,select,textarea{font:inherit;color:var(--night);border:2px solid var(--line);border-radius:12px;padding:10px 14px;background:#fff}
+
+/* progress */
+.prog{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}
+.pcard{border:0;border-radius:18px;padding:18px;text-align:left;color:#fff;display:flex;flex-direction:column}
+.pcard b.none{font-size:30px;margin-top:12px}.pcard span{font:600 20px var(--disp)}.pcard b{font:800 42px var(--disp);margin-top:6px}.pcard small{font-size:17px;opacity:.9}
+.p-vr{background:var(--vr)}.p-nvr{background:var(--nvr)}.p-en{background:var(--en)}.p-ma{background:var(--ma)}.p-vocab{background:var(--flag);color:var(--night)}
+
+/* schools */
+.schools{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.school{background:#fff;border:2px solid var(--line);border-radius:18px;overflow:hidden;padding:0 0 6px}
+.school img{display:block;width:100%;height:170px;object-fit:cover}
+.school h3{padding:18px 20px 0}
+.school ul{margin:10px 0 12px;padding:0 20px 0 42px}.school li{margin:6px 0}
+.s-sevenoaks{border-color:var(--flag);border-width:3px}
+.rules{background:var(--night);color:#fff;border-radius:22px;padding:6px 28px 22px;margin-top:40px}
+.rules h2{margin-top:24px}.rules li{margin:10px 0}
+details.tutor{margin-top:40px;border-top:2px solid var(--line);padding-top:16px}
+details summary{cursor:pointer;font:600 22px var(--disp)}
+.backup{display:grid;gap:10px;grid-template-columns:auto auto 1fr;align-items:start}
+.backup textarea{grid-column:1/-1;font-size:15px}
+
+/* subject band */
+.band{color:#fff;padding:34px 0 30px}
+.band-vr{background:var(--vr)}main:has(.band-vr){--accent:var(--vr)}main:has(.band-nvr){--accent:var(--nvr)}main:has(.band-en){--accent:var(--en)}main:has(.band-ma){--accent:var(--ma)}.band-nvr{background:var(--nvr)}.band-en{background:var(--en)}.band-ma{background:var(--ma)}.band-vocab{background:var(--flag);color:var(--night)}
+.bandin{display:flex;align-items:center;gap:26px;padding-bottom:0}
+.band .lede{color:inherit}
+.art{width:200px;flex:none;background:#fff;border-radius:22px;padding:10px}
+.testcard{display:flex;align-items:center;justify-content:space-between;gap:18px;background:#fff;border:2px solid var(--line);border-radius:18px;padding:18px 22px;margin-bottom:12px}
+.testcard p{margin:4px 0 0}
+.testcard.summit{border:3px solid var(--night);box-shadow:0 6px 0 var(--night)}
+.poem{line-height:1.8;font-size:22px}.byline{color:#4C6476;margin:4px 0 0}
+.btn{border:0;background:var(--night);color:#fff;font:600 21px var(--disp);padding:14px 26px;border-radius:999px;flex:none}
+.btn.ghost{background:#fff;color:var(--night);box-shadow:inset 0 0 0 3px var(--night)}
+.btn:disabled{opacity:.5}
+.where{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.where>div{background:#fff;border-radius:16px;padding:16px 18px;border-top:6px solid var(--night)}
+.where p{margin:6px 0 0}
+.methods{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.method{background:#fff;border-radius:16px;padding:16px 20px;border-left:8px solid var(--accent,var(--night))}
+.method h3{font-size:22px}.method p{margin:8px 0 0}
+.links li{margin:8px 0}
+.writes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.wcard{text-align:left;background:#fff;border:2px solid var(--line);border-left:8px solid var(--en);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:6px}
+.wcard b{font:600 21px var(--disp)}.wcard small{color:#4C6476}
+
+/* overlay */
+#overlay{position:fixed;inset:0;z-index:50;background:rgba(20,42,62,.55);overflow-y:auto;padding:max(16px,env(safe-area-inset-top)) 12px 40px}
+.sheet{position:relative;max-width:900px;margin:0 auto;background:var(--snow);border-radius:24px;padding:26px 26px 30px;min-height:60vh}
+.x{position:absolute;right:14px;top:12px;border:0;background:#fff;width:48px;height:48px;border-radius:50%;font-size:30px;line-height:1;z-index:2}
+.modes{display:grid;gap:14px;margin-top:22px}
+.mode{text-align:left;background:#fff;border:3px solid var(--night);border-radius:18px;padding:20px 22px;display:flex;flex-direction:column;gap:6px}
+.mode b{font:800 26px var(--disp)}
+.qtop{display:flex;align-items:center;gap:14px;padding-right:56px}
+.bar{flex:1;height:12px;background:var(--glacier);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--rope);border-radius:99px;transition:width .4s}
+.bar.big{height:18px;margin-top:14px}
+.qn{font-weight:700;white-space:nowrap}
+.clockbtn{border:2px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font-weight:700}
+.qtype{display:inline-block;margin-top:18px;font:600 18px var(--disp);background:var(--night);color:#fff;border-radius:999px;padding:4px 14px}
+.qtext{font-size:24px;margin:16px 0 20px}
+.words{display:block;margin-top:12px;font:600 26px var(--disp);background:#fff;border-radius:12px;padding:12px 16px}
+.opts{display:grid;gap:10px}
+.opts.figs{grid-template-columns:repeat(5,1fr)}
+.opt{display:flex;align-items:center;gap:14px;text-align:left;background:#fff;border:3px solid var(--line);border-radius:14px;padding:12px 16px;min-height:60px}
+.figs .opt{flex-direction:column;padding:10px 6px}
+.opt .let{flex:none;width:36px;height:36px;border-radius:50%;background:var(--glacier);display:grid;place-items:center;font:800 19px var(--disp)}
+.opt.picked{border-color:var(--night);background:#EAF2F7}.opt.picked .let{background:var(--night);color:#fff}
+.opt.right{border-color:var(--ma);background:#E5F3EC}.opt.right .let{background:var(--ma);color:#fff}
+.opt.wrong{border-color:var(--rope);background:#FDECE4}
+.opt:disabled{cursor:default;color:inherit}
+.fig{width:100%;max-width:120px;height:auto;display:block}
+.stem{margin-top:16px}
+.figrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.figrow .fig{width:96px;background:#fff;border-radius:10px}
+.stem>.fig{max-width:300px;background:#fff;border-radius:12px}
+.qbox{width:96px;height:96px;display:grid;place-items:center;border:3px dashed var(--night);border-radius:10px;font:800 40px var(--disp)}
+.arrow{font:600 18px var(--body);color:#4C6476}
+.mirror{width:6px;height:96px;background:repeating-linear-gradient(var(--nvr) 0 8px,transparent 8px 14px)}
+.codetile{display:flex;flex-direction:column;align-items:center;gap:4px}.codetile .fig{width:86px}.codetile b{font:800 24px var(--disp)}
+.grid3{display:grid;grid-template-columns:repeat(3,96px);gap:8px}.grid3 .fig,.grid3 .qbox{width:96px;background:#fff;border-radius:10px}
+.passage{background:#fff;border:2px solid var(--line);border-radius:16px;padding:14px 20px;margin-top:16px}
+.passage[open]{max-height:52vh;overflow:auto}
+.passage p{max-width:65ch;line-height:1.7}.ptitle{margin:14px 0 0}
+.written{display:flex;gap:10px;flex-wrap:wrap}.written input{font-size:26px;width:min(320px,100%)}
+.hint{color:#4C6476;font-size:18px}
+.fb{margin-top:18px;border-radius:14px;padding:14px 18px;animation:rise .3s ease-out}
+.fb.ok{background:#E5F3EC;border-left:8px solid var(--ma)}.fb.no{background:#FDECE4;border-left:8px solid var(--rope)}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}}
+.next{display:flex;justify-content:flex-end;margin-top:20px}
+.result{display:flex;align-items:center;gap:26px;flex-wrap:wrap;margin-top:10px}
+.ring{--p:0;width:150px;height:150px;border-radius:50%;background:conic-gradient(var(--rope) calc(var(--p)*1%),var(--glacier) 0);display:grid;place-items:center;animation:pop .6s cubic-bezier(.3,1.6,.5,1)}
+.ring b{width:112px;height:112px;border-radius:50%;background:var(--snow);display:grid;place-items:center;font:800 34px var(--disp)}
+@keyframes pop{from{transform:scale(.4)}}
+.result+h3,.sheet h3{margin-top:26px}.chips span{display:inline-block;background:#fff;border:2px solid var(--rope);border-radius:999px;padding:4px 14px;margin:0 8px 8px 0;font-weight:700}
+.review{padding-left:30px}.review li{margin:0 0 18px;padding:12px 16px;background:#fff;border-radius:14px;border-left:8px solid var(--ma)}
+.review li.no{border-left-color:var(--rope)}.review .rq .words{font-size:20px}.review p{margin:6px 0}.review .ex{color:#33495B}
+.wprompt{font-size:30px;margin-top:12px}
+.wtools{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin:14px 0}
+.wclock{font:800 34px var(--disp)}
+#wtext{width:100%;min-height:46vh;line-height:1.7}
+.check{margin-top:14px}
+
+/* vocab */
+.vscore{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}
+.vscore div{background:#fff;border-radius:18px;padding:16px 18px;border:2px solid var(--line)}
+.vscore div:first-child{background:var(--night);color:#fff;border-color:var(--night)}
+.vscore b{display:block;font:800 52px var(--disp);line-height:1}.vscore span{font-size:18px}
+.decks{display:flex;flex-wrap:wrap;gap:12px}
+.vtools{display:flex;gap:12px;flex-wrap:wrap}.vtools input{flex:1;min-width:220px}
+.alpha{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0}
+.alpha button{border:2px solid var(--line);background:#fff;border-radius:10px;min-width:44px;height:44px;font:600 19px var(--disp)}
+.alpha button.on{background:var(--night);color:#fff;border-color:var(--night)}
+.vlist{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.vlist li{display:flex;justify-content:space-between;align-items:center;gap:14px;background:#fff;border-radius:14px;padding:12px 16px;border-left:8px solid var(--line)}
+.vlist li.st1{border-left-color:var(--flag)}.vlist li.st2{border-left-color:var(--ma)}
+.vlist b{font:600 24px var(--disp)}.vlist i{color:#4C6476}.vlist p{margin:2px 0 0}.vlist p span{color:#4C6476}
+.pill{flex:none;border:2px solid var(--night);background:#fff;border-radius:999px;padding:6px 14px;font-weight:700;font-size:17px}
+.pill.done{background:var(--ma);color:#fff;border-color:var(--ma)}
+.empty{font-size:22px}
+.fhead{display:flex;flex-wrap:wrap;gap:18px;align-items:center;padding-right:56px;font-size:19px}
+.rev{display:flex;align-items:center;gap:8px}.rev input{width:24px;height:24px}
+.flash{display:block;width:100%;max-width:620px;margin:26px auto 0;height:340px;border:0;background:transparent;perspective:1200px;position:relative;padding:0}
+.face{position:absolute;inset:0;border-radius:26px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:24px;backface-visibility:hidden;transition:transform .55s cubic-bezier(.4,.2,.2,1);text-align:center}
+.front{background:#fff;border:4px solid var(--night);box-shadow:0 10px 0 var(--night)}
+.back{background:var(--flag);border:4px solid var(--night);box-shadow:0 10px 0 var(--night);transform:rotateY(180deg)}
+.flash.flipped .front{transform:rotateY(-180deg)}.flash.flipped .back{transform:rotateY(0)}
+.fw{font:800 clamp(40px,8vw,62px) var(--disp);letter-spacing:-.01em}
+.def{font-size:26px;margin:0;max-width:24ch}.syn{margin:0;font-size:22px}
+.front small{font-size:18px;color:#4C6476}
+.stagedots{display:flex;justify-content:center;gap:10px;margin-top:22px}.stagedots i{width:16px;height:16px;border-radius:50%;border:3px solid var(--night)}.stagedots i.on{background:var(--ma);border-color:var(--ma)}
+.fbtns{display:flex;justify-content:center;gap:14px;margin-top:20px}
+.fbtns .btn{min-width:160px}
+
+/* delight */
+.spark{position:fixed;width:12px;height:12px;border-radius:3px;z-index:99;pointer-events:none;animation:spark .8s ease-out forwards}
+@keyframes spark{to{transform:translate(var(--dx),var(--dy)) rotate(200deg);opacity:0}}
+.conf{position:fixed;top:-20px;width:12px;height:18px;z-index:99;pointer-events:none;animation:fall 2.2s ease-in forwards}
+@keyframes fall{to{top:105vh;rotate:540deg}}
+#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--night);color:#fff;padding:14px 22px;border-radius:999px;z-index:100;font-weight:700;max-width:90vw;text-align:center}
+
+@media (max-width:700px){
+  .schools{grid-template-columns:1fr}
+  body{font-size:19px}
+  .route li{grid-template-columns:1fr;gap:4px}
+  .bandin{flex-direction:column;align-items:flex-start}.art{width:150px}
+  .opts.figs{grid-template-columns:repeat(3,1fr)}
+  .testcard{flex-direction:column;align-items:flex-start}
+  .vscore b{font-size:40px}
+  .sheet{padding:22px 16px 26px}
+  .hero{min-height:0;display:flex;flex-direction:column}#mtn{position:static;display:block;height:auto;margin-top:8px;order:2}.hero-text{padding-top:28px}.camplabel{font-size:46px;stroke-width:8px}
+  .figrow .fig,.qbox{width:78px;height:auto}.qbox{height:78px}
+  .grid3{grid-template-columns:repeat(3,80px)}.grid3 .fig,.grid3 .qbox{width:80px;height:80px}
+  .flash{height:300px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.camp{opacity:1}}
+</style>
+</head>
+<body>
+<header><nav id="tabs" aria-label="Sections"></nav></header>
+<main id="main"></main>
+<div id="overlay" hidden></div>
+<div id="toast" hidden role="status"></div>
+<script>
+const VOCAB_RAW = `abandon|v|leave behind for good|desert
+abolish|v|officially put an end to|scrap
+abrupt|adj|sudden and unexpected|sharp
+absurd|adj|silly and unreasonable|ridiculous
+abundant|adj|existing in large amounts|plentiful
+accelerate|v|speed up|quicken
+accommodate|v|provide room or space for|house
+accumulate|v|gather or pile up over time|collect
+accurate|adj|correct in every detail|exact
+acquire|v|get or gain something|obtain
+adamant|adj|refusing to change your mind|determined
+adequate|adj|good enough for what is needed|sufficient
+adjacent|adj|next to or beside|neighbouring
+admire|v|look at or think of with respect|respect
+adversary|n|an opponent or enemy|rival
+affluent|adj|having a lot of money|wealthy
+aggressive|adj|ready to attack or argue|hostile
+agile|adj|able to move quickly and easily|nimble
+alert|adj|watchful and quick to notice|attentive
+alter|v|change something|modify
+ambiguous|adj|having more than one possible meaning|unclear
+amiable|adj|friendly and pleasant|genial
+ample|adj|more than enough|plenty
+ancient|adj|very old|antique
+anguish|n|great pain or suffering of the mind|torment
+animosity|n|strong dislike between people|hostility
+anticipate|v|expect or look forward to|foresee
+anxious|adj|worried and uneasy|nervous
+apathetic|adj|showing no interest or enthusiasm|indifferent
+apparent|adj|clearly seen or understood|obvious
+appease|v|calm someone by giving them what they want|pacify
+apprehensive|adj|anxious that something bad will happen|uneasy
+arduous|adj|needing a lot of effort; very hard|gruelling
+arid|adj|very dry, with little rain|parched
+arrogant|adj|thinking you are better than others|conceited
+ascend|v|go up or climb|rise
+astonish|v|surprise greatly|amaze
+astute|adj|clever at understanding situations|shrewd
+audacious|adj|bold and willing to take risks|daring
+authentic|adj|real and genuine|genuine
+avid|adj|very keen and enthusiastic|eager
+banish|v|send away as a punishment|exile
+barren|adj|unable to grow plants or produce anything|bare
+belligerent|adj|eager to fight or argue|combative
+benevolent|adj|kind and wanting to help|charitable
+benign|adj|gentle and harmless|kindly
+bewildered|adj|very confused|baffled
+bizarre|adj|very strange|weird
+bleak|adj|cold, empty and miserable|dreary
+blunder|n|a careless mistake|error
+boisterous|adj|noisy, lively and full of energy|rowdy
+brittle|adj|hard but easily broken|fragile
+brusque|adj|rudely short in speech|curt
+buoyant|adj|able to float; cheerful|cheerful
+cacophony|n|a harsh mix of loud sounds|din
+callous|adj|cruel and uncaring about others' feelings|heartless
+candid|adj|honest and direct|frank
+cantankerous|adj|bad-tempered and argumentative|grumpy
+capable|adj|able to do something well|competent
+capricious|adj|changing mood suddenly|fickle
+captivate|v|hold someone's attention completely|enchant
+cautious|adj|careful to avoid danger|wary
+cease|v|stop|halt
+celebrated|adj|famous and admired|renowned
+charismatic|adj|having a charm that attracts others|magnetic
+cherish|v|love and care for deeply|treasure
+chronic|adj|lasting a long time|persistent
+clamber|v|climb awkwardly using hands and feet|scramble
+clarify|v|make clearer|explain
+coax|v|gently persuade|cajole
+coherent|adj|clear and logical|logical
+collaborate|v|work together|cooperate
+colossal|adj|extremely large|enormous
+commence|v|begin|start
+compassion|n|sympathy and care for others|kindness
+compel|v|force someone to do something|oblige
+competent|adj|having enough skill to do something|able
+comply|v|do what you are asked or told|obey
+comprehend|v|understand fully|grasp
+conceal|v|hide|disguise
+concise|adj|short and clear|brief
+condemn|v|say strongly that something is wrong|denounce
+confide|v|tell someone a secret|disclose
+conscientious|adj|careful to do things thoroughly and well|diligent
+consecutive|adj|following one after another|successive
+consequence|n|a result of an action|outcome
+conspicuous|adj|easy to notice|noticeable
+contempt|n|a feeling that something is worthless|scorn
+contented|adj|happy and satisfied|satisfied
+contradict|v|say the opposite of|deny
+convey|v|carry or communicate|transmit
+courteous|adj|polite and respectful|polite
+covet|v|strongly want something belonging to someone else|crave
+cower|v|crouch down in fear|cringe
+credible|adj|able to be believed|believable
+cryptic|adj|mysterious and hard to understand|puzzling
+cumbersome|adj|large, heavy and awkward to carry|bulky
+curt|adj|rudely brief|abrupt
+dauntless|adj|fearless and determined|intrepid
+dawdle|v|move slowly and waste time|linger
+debris|n|scattered broken pieces|rubble
+deceive|v|make someone believe something untrue|trick
+decipher|v|work out the meaning of|decode
+defiant|adj|openly refusing to obey|rebellious
+deft|adj|quick and skilful|dexterous
+dejected|adj|sad and low in spirits|downcast
+deliberate|adj|done on purpose|intentional
+delicate|adj|easily damaged; fine|fragile
+demolish|v|knock down completely|destroy
+dense|adj|closely packed together|thick
+deplete|v|use up|exhaust
+derelict|adj|left to fall into ruin|abandoned
+descend|v|go down|drop
+desolate|adj|empty, bleak and lonely|forlorn
+despair|n|complete loss of hope|hopelessness
+destitute|adj|extremely poor with nothing to live on|penniless
+deter|v|discourage someone from doing something|discourage
+devious|adj|sly and dishonest|sneaky
+devour|v|eat hungrily|gobble
+diligent|adj|hard-working and careful|industrious
+diminish|v|become smaller or less|dwindle
+dismal|adj|gloomy and depressing|dreary
+dispute|n|an argument or disagreement|quarrel
+distraught|adj|very upset and worried|frantic
+diverse|adj|varied and different|assorted
+docile|adj|calm and easy to control|tame
+dormant|adj|asleep or inactive for now|inactive
+dubious|adj|doubtful; not to be trusted|suspicious
+durable|adj|long-lasting and hard-wearing|sturdy
+dwindle|v|gradually become smaller|shrink
+eccentric|adj|unusual and a bit odd|quirky
+elated|adj|extremely happy|overjoyed
+eloquent|adj|speaking or writing fluently and persuasively|articulate
+elude|v|escape from or avoid|evade
+emerge|v|come out into view|appear
+eminent|adj|famous and respected|distinguished
+emphasise|v|give special importance to|stress
+endeavour|n|a serious attempt|effort
+endure|v|put up with something difficult|bear
+enigma|n|a mystery or puzzle|riddle
+enormous|adj|very large|huge
+enthral|v|fascinate completely|captivate
+envious|adj|wanting what someone else has|jealous
+ephemeral|adj|lasting only a very short time|fleeting
+erratic|adj|unpredictable and irregular|inconsistent
+erroneous|adj|wrong; incorrect|mistaken
+essential|adj|absolutely necessary|vital
+evade|v|escape or avoid|dodge
+evident|adj|clear and obvious|plain
+exasperated|adj|extremely annoyed|infuriated
+exceptional|adj|unusually good|outstanding
+exhausted|adj|completely tired out|drained
+exhilarating|adj|very exciting and thrilling|thrilling
+expand|v|get bigger|enlarge
+expel|v|force out|eject
+exquisite|adj|extremely beautiful and delicate|beautiful
+extravagant|adj|spending or using too much|lavish
+fabricate|v|invent or make up|concoct
+famished|adj|extremely hungry|starving
+fatigue|n|extreme tiredness|weariness
+feasible|adj|possible to do|achievable
+feeble|adj|weak|frail
+ferocious|adj|fierce and violent|savage
+fervent|adj|showing strong feeling|passionate
+fickle|adj|changing your mind often|changeable
+flourish|v|grow strongly and healthily|thrive
+fluctuate|v|rise and fall irregularly|vary
+foe|n|an enemy|opponent
+forlorn|adj|sad and lonely|wretched
+formidable|adj|frightening because powerful or large|daunting
+fortunate|adj|having good luck|lucky
+fragile|adj|easily broken|delicate
+fragrant|adj|having a sweet smell|scented
+frail|adj|weak and delicate|feeble
+frantic|adj|wild with worry or fear|frenzied
+frivolous|adj|silly and not serious|trivial
+frugal|adj|careful not to waste money|thrifty
+furious|adj|extremely angry|livid
+futile|adj|pointless because it cannot succeed|useless
+gallant|adj|brave and honourable|valiant
+gaunt|adj|thin and bony, especially from illness|haggard
+generous|adj|happy to give|giving
+genuine|adj|real; sincere|authentic
+ghastly|adj|horrible and frightening|dreadful
+gingerly|adv|very carefully and cautiously|cautiously
+gleam|v|shine softly|glint
+glimpse|n|a quick look|glance
+gloomy|adj|dark or sad|dismal
+gratitude|n|the feeling of being thankful|thankfulness
+grimace|n|a twisted face showing pain or disgust|scowl
+grotesque|adj|ugly in a strange or frightening way|monstrous
+gruelling|adj|extremely tiring and demanding|exhausting
+gullible|adj|easily tricked|naive
+haggard|adj|looking tired and worried|gaunt
+harmonious|adj|peaceful and friendly; pleasant together|agreeable
+haughty|adj|proud and looking down on others|arrogant
+hazardous|adj|dangerous|risky
+heed|v|pay attention to|mind
+hesitate|v|pause before doing something|falter
+hilarious|adj|extremely funny|comical
+hinder|v|get in the way of|obstruct
+hostile|adj|unfriendly and aggressive|antagonistic
+humble|adj|modest; not proud|modest
+humid|adj|warm and damp|muggy
+hypothesis|n|an idea to be tested|theory
+idle|adj|lazy or not working|inactive
+ignite|v|set on fire|kindle
+illuminate|v|light up|brighten
+illustrious|adj|famous because of great achievements|celebrated
+immaculate|adj|perfectly clean and tidy|spotless
+immense|adj|extremely large|vast
+imminent|adj|about to happen|impending
+impartial|adj|fair, not taking sides|neutral
+impeccable|adj|perfect, without fault|flawless
+impetuous|adj|acting quickly without thinking|rash
+implore|v|beg desperately|plead
+impudent|adj|cheeky and disrespectful|insolent
+inaudible|adj|too quiet to be heard|faint
+incessant|adj|never stopping|constant
+incredulous|adj|unable to believe something|disbelieving
+indifferent|adj|not caring either way|uninterested
+indignant|adj|angry at something unfair|resentful
+inevitable|adj|certain to happen|unavoidable
+infamous|adj|famous for something bad|notorious
+inferior|adj|lower in quality or rank|lesser
+infuriate|v|make extremely angry|enrage
+ingenious|adj|very clever and original|inventive
+inhabit|v|live in|occupy
+innocent|adj|not guilty|blameless
+inquisitive|adj|curious and keen to learn|curious
+insolent|adj|rude and disrespectful|impudent
+inspect|v|look at closely|examine
+intrepid|adj|fearless and adventurous|bold
+intricate|adj|very detailed and complicated|elaborate
+intrigue|v|make curious|fascinate
+inundate|v|flood or overwhelm|swamp
+irate|adj|very angry|furious
+jeopardy|n|danger of loss or harm|peril
+jovial|adj|cheerful and friendly|jolly
+jubilant|adj|joyful because of success|triumphant
+keen|adj|eager; sharp|enthusiastic
+kindle|v|light a fire; stir up a feeling|ignite
+lament|v|express sorrow|mourn
+languid|adj|slow and relaxed, lacking energy|listless
+lavish|adj|rich and expensive|luxurious
+legible|adj|clear enough to read|readable
+lenient|adj|not strict|merciful
+lethargic|adj|sleepy and lacking energy|sluggish
+liberate|v|set free|release
+linger|v|stay longer than needed|loiter
+loathe|v|hate|detest
+lofty|adj|very tall; proud|towering
+lucid|adj|clear and easy to understand|clear
+lucrative|adj|making a lot of money|profitable
+luminous|adj|giving off light|glowing
+lustrous|adj|shining|glossy
+majestic|adj|grand and impressive|regal
+malicious|adj|meaning to cause harm|spiteful
+meagre|adj|small in amount; not enough|scanty
+melancholy|adj|deeply sad|sorrowful
+meticulous|adj|very careful about every detail|thorough
+mimic|v|copy someone's actions or voice|imitate
+miniature|adj|a very small version of something|tiny
+mischievous|adj|playfully naughty|impish
+miserly|adj|unwilling to spend money|stingy
+modest|adj|not boasting; small|humble
+monotonous|adj|dull and never changing|tedious
+morose|adj|sulky and gloomy|sullen
+mournful|adj|very sad|sorrowful
+mundane|adj|ordinary and dull|everyday
+murky|adj|dark and dirty or gloomy|cloudy
+mutter|v|speak quietly and unclearly|mumble
+naive|adj|lacking experience; too trusting|innocent
+negligent|adj|failing to take proper care|careless
+nimble|adj|quick and light in movement|agile
+nocturnal|adj|active at night|nightly
+nonchalant|adj|calm and casual, not worried|unconcerned
+notorious|adj|famous for something bad|infamous
+novice|n|a beginner|learner
+nurture|v|care for and help grow|foster
+oblivious|adj|not aware of what is happening|unaware
+obscure|adj|not well known; hard to see|unclear
+obsolete|adj|out of date; no longer used|outdated
+obstinate|adj|stubbornly refusing to change|stubborn
+ominous|adj|suggesting something bad will happen|threatening
+opaque|adj|not see-through|cloudy
+optimistic|adj|hopeful about the future|positive
+opulent|adj|rich and luxurious|lavish
+ordeal|n|a very unpleasant experience|trial
+outrageous|adj|shocking and unacceptable|scandalous
+overwhelm|v|be too much for|overpower
+pandemonium|n|wild noise and confusion|chaos
+peculiar|adj|strange or unusual|odd
+peril|n|serious danger|danger
+perish|v|die|expire
+perplexed|adj|puzzled|baffled
+persevere|v|keep going despite difficulty|persist
+persuade|v|convince someone to do something|convince
+pessimistic|adj|expecting the worst|gloomy
+petrified|adj|extremely frightened|terrified
+placid|adj|calm and peaceful|tranquil
+plausible|adj|seeming reasonable or likely|believable
+plummet|v|fall steeply|plunge
+poignant|adj|deeply moving and sad|touching
+precarious|adj|unsafe and likely to fall|unstable
+precise|adj|exact|accurate
+predicament|n|a difficult situation|plight
+prestigious|adj|admired and respected|esteemed
+prevent|v|stop something happening|avert
+proficient|adj|skilled and experienced|expert
+profound|adj|very deep or intense|deep
+prohibit|v|forbid by law or rule|ban
+prominent|adj|important or easy to see|notable
+prosper|v|be successful|thrive
+prudent|adj|sensible and careful|wise
+pungent|adj|having a strong sharp smell|acrid
+quaint|adj|attractively old-fashioned|charming
+quarrel|n|an angry argument|row
+quench|v|satisfy thirst; put out a fire|satisfy
+radiant|adj|shining brightly; glowing with happiness|beaming
+ramshackle|adj|badly made and falling apart|rickety
+rancid|adj|smelling or tasting of old, rotting food|rotten
+ravenous|adj|extremely hungry|famished
+reckless|adj|careless about danger|rash
+reclusive|adj|avoiding other people|solitary
+reconcile|v|become friends again|make up
+redundant|adj|no longer needed|unnecessary
+reluctant|adj|unwilling|hesitant
+remorse|n|deep regret for doing wrong|regret
+replenish|v|fill up again|restock
+resilient|adj|able to recover quickly from difficulty|tough
+resolute|adj|determined and firm|steadfast
+retaliate|v|attack back|hit back
+reverent|adj|showing deep respect|respectful
+rigid|adj|stiff; unable to bend|inflexible
+robust|adj|strong and sturdy|sturdy
+rudimentary|adj|basic and simple|elementary
+ruthless|adj|cruel and without pity|merciless
+sacred|adj|connected with God or religion|holy
+sagacious|adj|showing good judgement|wise
+scarce|adj|in short supply|rare
+scrutinise|v|examine closely|inspect
+secluded|adj|private and hidden away|isolated
+serene|adj|calm and peaceful|tranquil
+sever|v|cut off|cut
+shrewd|adj|clever and good at judging|astute
+shroud|v|cover or hide|veil
+significant|adj|important|notable
+sinister|adj|seeming evil or threatening|menacing
+sluggish|adj|slow-moving|lethargic
+solemn|adj|serious and formal|grave
+solitary|adj|alone|lone
+sombre|adj|dark and serious|gloomy
+spontaneous|adj|done without planning|impulsive
+sporadic|adj|happening now and then|occasional
+squander|v|waste|fritter
+stagnant|adj|not flowing; stale|still
+stealthy|adj|quiet and secret|furtive
+strenuous|adj|needing great effort|arduous
+subdued|adj|quiet and low in mood|muted
+submerge|v|put or go under water|immerse
+succulent|adj|juicy and tasty|juicy
+sullen|adj|silent and bad-tempered|sulky
+superficial|adj|on the surface only|shallow
+superior|adj|higher in quality or rank|better
+supple|adj|bending easily|flexible
+surplus|n|an amount left over|excess
+susceptible|adj|easily affected|vulnerable
+tactful|adj|careful not to upset people|diplomatic
+tedious|adj|long and boring|monotonous
+tenacious|adj|holding on firmly; not giving up|determined
+tentative|adj|uncertain and hesitant|hesitant
+terminate|v|bring to an end|end
+thrive|v|grow or do well|flourish
+timid|adj|shy and easily frightened|shy
+tranquil|adj|calm and quiet|peaceful
+transparent|adj|see-through|clear
+treacherous|adj|dangerous; disloyal|perilous
+tremendous|adj|very great|enormous
+tremulous|adj|shaking slightly|quivering
+trivial|adj|unimportant|minor
+turbulent|adj|wild and stormy|stormy
+ubiquitous|adj|found everywhere|everywhere
+unanimous|adj|agreed by everyone|united
+unkempt|adj|untidy|scruffy
+upbraid|v|tell off|scold
+vacant|adj|not occupied|empty
+vague|adj|unclear|hazy
+valiant|adj|very brave|courageous
+vanish|v|disappear suddenly|disappear
+vast|adj|very large|immense
+venerable|adj|respected because of age or wisdom|esteemed
+vibrant|adj|full of energy and colour|lively
+vicious|adj|cruel and violent|savage
+vigilant|adj|keeping careful watch|watchful
+vigorous|adj|strong and energetic|energetic
+vindictive|adj|wanting revenge|spiteful
+virtuous|adj|morally good|righteous
+vivid|adj|bright and clear|striking
+vociferous|adj|loud and forceful|noisy
+volatile|adj|likely to change suddenly|unstable
+voracious|adj|wanting a lot of something, especially food|insatiable
+vulnerable|adj|easily hurt|defenceless
+wary|adj|careful because of possible danger|cautious
+weary|adj|very tired|tired
+whimsical|adj|playful and unusual|fanciful
+wilt|v|become limp and droop|droop
+wistful|adj|sadly longing for something|yearning
+wither|v|shrivel and dry up|shrivel
+wrath|n|great anger|fury
+wretched|adj|very unhappy or poor|miserable
+yearn|v|long for|crave
+zealous|adj|very enthusiastic|passionate
+zenith|n|the highest point|peak`;
+const VOCAB = VOCAB_RAW.split('\n').map(l => { const [w,p,d,s] = l.split('|'); return {w,p,d,s}; });
+
+/* ---------- NVR drawing helpers (all native SVG, no images) ---------- */
+let _pid = 0;
+const INK = '#142A3E';
+function svgWrap(inner, w = 110, h = 110) {
+  const id = 'st' + (++_pid);
+  return `<svg viewBox="0 0 ${w} ${h}" class="fig" role="img" aria-label="figure"><defs><pattern id="${id}" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="7" height="7" fill="#fff"/><line x1="0" y1="0" x2="0" y2="7" stroke="${INK}" stroke-width="3"/></pattern></defs>${inner.replace(/__STRIPE__/g, `url(#${id})`)}</svg>`;
+}
+function fillOf(f) { return f === 'black' ? INK : f === 'stripe' ? '__STRIPE__' : '#fff'; }
+function polyPts(cx, cy, r, n, rotDeg = 0) {
+  const pts = [];
+  for (let i = 0; i < n; i++) {
+    const a = (rotDeg - 90 + i * 360 / n) * Math.PI / 180;
+    pts.push([cx + r * Math.cos(a), cy + r * Math.sin(a)]);
+  }
+  return pts;
+}
+function shape(kind, cx, cy, r, fill = 'white', rot = 0, dash = false) {
+  const f = fillOf(fill);
+  const st = `fill="${f}" stroke="${INK}" stroke-width="3" stroke-linejoin="round"${dash ? ' stroke-dasharray="7 5"' : ''}`;
+  if (kind === 'circle') return `<circle cx="${cx}" cy="${cy}" r="${r}" ${st}/>`;
+  const n = { triangle: 3, square: 4, pentagon: 5, hexagon: 6, heptagon: 7 }[kind];
+  const rr = kind === 'square' ? r * 1.15 : kind === 'triangle' ? r * 1.15 : r;
+  const pts = polyPts(cx, kind === 'triangle' && rot % 360 === 0 ? cy + r * 0.18 : cy, rr, n, kind === 'square' ? 45 + rot : rot);
+  return `<polygon points="${pts.map(p => p.map(v => v.toFixed(1)).join(',')).join(' ')}" ${st}/>`;
+}
+function dots(cx, cy, n, rad = 15, col = INK) {
+  if (n === 1) return `<circle cx="${cx}" cy="${cy}" r="5" fill="${col}"/>`;
+  return polyPts(cx, cy, rad, n, 0).map(([x, y]) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="5" fill="${col}"/>`).join('');
+}
+/* asymmetric flag figure used for reflection questions */
+function flagFig(transform) {
+  return svgWrap(`<g transform="${transform}"><path d="M35 88 L35 18 L78 34 L35 50" fill="none" stroke="${INK}" stroke-width="4" stroke-linejoin="round"/><circle cx="76" cy="80" r="8" fill="${INK}"/></g>`);
+}
+/* asymmetric F figure used for rotation questions */
+function fFig(transform) {
+  return svgWrap(`<g transform="${transform}"><path d="M35 20 H78 V34 H50 V48 H70 V62 H50 V90 H35 Z" fill="${INK}"/></g>`);
+}
+const T = {
+  id: 'translate(0,0)',
+  mx: 'translate(110,0) scale(-1,1)',
+  my: 'translate(0,110) scale(1,-1)',
+  r90: 'rotate(90 55 55)',
+  r180: 'rotate(180 55 55)',
+  r270: 'rotate(270 55 55)',
+  mxr90: 'rotate(90 55 55) translate(110,0) scale(-1,1)',
+  mxr270: 'rotate(270 55 55) translate(110,0) scale(-1,1)',
+  r90mx: 'translate(110,0) scale(-1,1) rotate(90 55 55)'
+};
+function rayFig(angle) {
+  const a = (angle - 90) * Math.PI / 180, x = 55 + 32 * Math.cos(a), y = 55 + 32 * Math.sin(a);
+  return svgWrap(`<rect x="12" y="12" width="86" height="86" fill="#fff" stroke="${INK}" stroke-width="3"/><line x1="55" y1="55" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="${INK}" stroke-width="4"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="7" fill="${INK}"/><circle cx="55" cy="55" r="3" fill="${INK}"/>`);
+}
+function nest(outer, inner, innerFill) {
+  return svgWrap(shape(outer, 55, 55, 42, 'white') + shape(inner, 55, 57, 15, innerFill));
+}
+function isoCubes(cubes) {
+  const W = 22, H = 12.7, V = 25;
+  const proj = (x, y, z) => [130 + (x - y) * W, 100 + (x + y) * H - z * V];
+  const sorted = [...cubes].sort((a, b) => (a[0] + a[1]) - (b[0] + b[1]) || a[2] - b[2]);
+  let s = '';
+  for (const [x, y, z] of sorted) {
+    const p = (dx, dy, dz) => proj(x + dx, y + dy, z + dz).map(v => v.toFixed(1)).join(',');
+    s += `<polygon points="${p(0,0,1)} ${p(1,0,1)} ${p(1,1,1)} ${p(0,1,1)}" fill="#fff" stroke="${INK}" stroke-width="2"/>`;
+    s += `<polygon points="${p(0,1,1)} ${p(1,1,1)} ${p(1,1,0)} ${p(0,1,0)}" fill="#BFD6E4" stroke="${INK}" stroke-width="2"/>`;
+    s += `<polygon points="${p(1,0,1)} ${p(1,1,1)} ${p(1,1,0)} ${p(1,0,0)}" fill="#7FA6BD" stroke="${INK}" stroke-width="2"/>`;
+  }
+  return svgWrap(s, 260, 175);
+}
+function netFig(cells) {
+  const s = 20, maxX = Math.max(...cells.map(c => c[0])), maxY = Math.max(...cells.map(c => c[1]));
+  const w = (maxX + 1) * s, h = (maxY + 1) * s, ox = (110 - w) / 2, oy = (110 - h) / 2;
+  return svgWrap(cells.map(([x, y]) => `<rect x="${ox + x * s}" y="${oy + y * s}" width="${s}" height="${s}" fill="#fff" stroke="${INK}" stroke-width="2.5"/>`).join(''));
+}
+function holeSheet(holes) {
+  return svgWrap(`<rect x="10" y="10" width="90" height="90" fill="#fff" stroke="${INK}" stroke-width="3"/>` + holes.map(([x, y]) => `<circle cx="${10 + x * .9}" cy="${10 + y * .9}" r="6" fill="${INK}"/>`).join(''));
+}
+function codeTile(kind, fill, code) {
+  return `<div class="codetile">${svgWrap(shape(kind, 55, 55, 34, fill))}<b>${code}</b></div>`;
+}
+function row(figs) { return `<div class="figrow">${figs.join('')}</div>`; }
+const QMARK = `<div class="qbox">?</div>`;
+
+/* ---------- VERBAL REASONING ---------- */
+const VR_QS = [
+  { t: 'Synonyms', q: 'Which word is closest in meaning to <b>reluctant</b>?', o: ['eager', 'unwilling', 'careless', 'silent', 'ashamed'], a: 1, x: 'Reluctant means not wanting to do something, so <b>unwilling</b> is closest. Eager is the opposite: a classic trap.' },
+  { t: 'Antonyms', q: 'Which word is most opposite in meaning to <b>generous</b>?', o: ['kind', 'wealthy', 'mean', 'honest', 'cheerful'], a: 2, x: 'Generous means happy to give. The opposite is <b>mean</b> (not wanting to share).' },
+  { t: 'Odd two out', q: 'Three words go together. Which <b>two</b> do not belong?<br><span class="words">rose &nbsp; tulip &nbsp; oak &nbsp; daisy &nbsp; elm</span>', o: ['rose and tulip', 'oak and elm', 'daisy and oak', 'tulip and elm', 'rose and daisy'], a: 1, x: 'Rose, tulip and daisy are flowers. <b>Oak and elm</b> are trees.' },
+  { t: 'Hidden words', q: 'A four-letter word is hidden across the end of one word and the start of the next. Find it.<br><span class="words">His last ripe apple fell.</span>', o: ['trip', 'slap', 'ripe', 'pale', 'rest'], a: 0, x: 'la<b>st</b> + <b>ri</b>pe hides <b>trip</b> (s-t-r-i-p: t from last, rip from ripe). Ripe is a whole word already, so it does not count.' },
+  { t: 'Missing three letters', q: 'Three letters next to each other are missing from the word in capitals. Which three?<br><span class="words">The farmer drove the T___TOR across the muddy field.</span>', o: ['RAC', 'ACT', 'CAR', 'RCT', 'ARC'], a: 0, x: 'T + <b>RAC</b> + TOR makes TRACTOR. Always read the whole sentence first so you know what the word should be.' },
+  { t: 'Compound words', q: 'Take one word from each group to make a new word.<br><span class="words">(cup &nbsp; run &nbsp; hat) &nbsp;&nbsp; (fish &nbsp; way &nbsp; ink)</span>', o: ['runway', 'cupfish', 'hatway', 'runink', 'cupway'], a: 0, x: 'Run + way = <b>runway</b>. Test each word from the first group against all three from the second.' },
+  { t: 'Letter series', q: 'Find the next letter in the series.<br><span class="words">B &nbsp; E &nbsp; H &nbsp; K &nbsp; ?</span>', o: ['L', 'M', 'N', 'O', 'P'], a: 2, x: 'Each step jumps forward 3 letters: B(+3)E(+3)H(+3)K(+3)<b>N</b>. Write the alphabet across the top of your rough paper.' },
+  { t: 'Letter analogies', q: '<b>AB</b> is to <b>CD</b> as <b>PQ</b> is to ?', o: ['QR', 'RS', 'ST', 'RQ', 'OP'], a: 1, x: 'Each letter moves forward 2: A to C, B to D. So P to R and Q to S: <b>RS</b>.' },
+  { t: 'Number codes', q: 'If the code for <b>SNOW</b> is <b>2468</b>, what is the code for <b>OWNS</b>?', o: ['6842', '8642', '6824', '4862', '6248'], a: 0, x: 'S = 2, N = 4, O = 6, W = 8. OWNS is O(6) W(8) N(4) S(2) = <b>6842</b>.' },
+  { t: 'Letter codes', q: 'If <b>CAT</b> is written as <b>DBU</b>, how would <b>DOG</b> be written?', o: ['EPH', 'ENH', 'CNF', 'EPG', 'FQI'], a: 0, x: 'Each letter moves forward one place: C to D, A to B, T to U. So D to E, O to P, G to H: <b>EPH</b>.' },
+  { t: 'Number series', q: 'Find the next number.<br><span class="words">3 &nbsp; 7 &nbsp; 15 &nbsp; 31 &nbsp; ?</span>', o: ['47', '62', '63', '64', '59'], a: 2, x: 'The gaps are 4, 8, 16 (doubling), so the next gap is 32: 31 + 32 = <b>63</b>. Another way: double and add one.' },
+  { t: 'Letters for numbers', q: 'A = 2, B = 3, C = 6, D = 12, E = 4.<br>What is <b>A × C ÷ B</b>? Give the answer as a letter.', o: ['A', 'B', 'C', 'D', 'E'], a: 4, x: '2 × 6 = 12, then 12 ÷ 3 = 4. The letter worth 4 is <b>E</b>.' },
+  { t: 'Word analogies', q: '<b>Bird</b> is to <b>nest</b> as <b>bee</b> is to ?', o: ['honey', 'hive', 'flower', 'wasp', 'sting'], a: 1, x: 'A nest is where a bird lives, so we need where a bee lives: <b>hive</b>. Say the link as a sentence before you choose.' },
+  { t: 'Move a letter', q: 'Move one letter from the first word into the second to make two new real words. Which letter?<br><span class="words">FLIGHT &nbsp;&nbsp; SOW</span>', o: ['L', 'F', 'I', 'G', 'H'], a: 0, x: 'Take L out of FLIGHT to leave FIGHT, and put it in SOW to make SLOW. F would leave LIGHT, but SOW cannot take an F.' },
+  { t: 'Logic', q: 'Amy is older than Ben. Ben is older than Cal. Dev is younger than Cal.<br>Who is the <b>second youngest</b>?', o: ['Amy', 'Ben', 'Cal', 'Dev', 'Cannot tell'], a: 2, x: 'Line them up oldest to youngest: Amy, Ben, Cal, Dev. Dev is youngest, so <b>Cal</b> is second youngest. Draw a line on your rough paper.' },
+  { t: 'Double meanings', q: 'Which word goes equally well with both pairs?<br><span class="words">(stone, pebble) &nbsp;&nbsp; (sway, wobble)</span>', o: ['rock', 'boulder', 'shake', 'gravel', 'tremble'], a: 0, x: '<b>Rock</b> is a stone, and to rock is to sway. The other options only fit one pair.' },
+  { t: 'Number relationships', q: 'The numbers in each bracket follow the same rule. Find the missing number.<br><span class="words">(4 [16] 8) &nbsp; (6 [18] 6) &nbsp; (5 [?] 10)</span>', o: ['15', '20', '25', '50', '30'], a: 2, x: 'Multiply the outside numbers and halve: 4 × 8 = 32, half is 16. 6 × 6 = 36, half is 18. 5 × 10 = 50, half is <b>25</b>.' },
+  { t: 'Word in front', q: 'Which word can go in front of all three words to make new words?<br><span class="words">ball &nbsp; print &nbsp; step</span>', o: ['hand', 'foot', 'finger', 'door', 'play'], a: 1, x: '<b>Foot</b>ball, <b>foot</b>print, <b>foot</b>step. Hand works for ball and print, but not step.' },
+  { t: 'Letter that links', q: 'Find the one letter that ends the first word and starts the second, in both pairs.<br><span class="words">BEA (?) EAR &nbsp;&nbsp; FAI (?) ICH</span>', o: ['T', 'D', 'R', 'L', 'S'], a: 2, x: 'BEAR and REAR, FAIR and RICH. T and D work for the first pair only.' },
+  { t: 'Synonyms', q: 'Which word is closest in meaning to <b>meticulous</b>?', o: ['careful', 'lazy', 'quick', 'tiny', 'brave'], a: 0, x: 'Meticulous means paying great attention to detail: <b>careful</b>. It is on the vocabulary list.' }
+];
+
+/* ---------- NON-VERBAL REASONING ---------- */
+const FIGS = [
+  ['triangle', 3], ['square', 4], ['pentagon', 5], ['hexagon', 5], ['triangle', 3]
+];
+const NVR_QS = [
+  { t: 'Odd one out', q: 'Which figure is the odd one out?', o: FIGS.map(([k, n], i) => svgWrap(shape(k, 55, 55, 42, 'white', i === 4 ? 180 : 0) + dots(55, 57, n, 14))), a: 3, x: 'In every other figure the number of dots matches the number of sides. The hexagon has 6 sides but only 5 dots. Turning a shape (the upside-down triangle) is a distraction.' },
+  { t: 'Series', q: 'Which figure comes next in the series?<div class="stem">' + row([rayFig(0), rayFig(45), rayFig(90), rayFig(135), QMARK]) + '</div>', o: [rayFig(180), rayFig(225), rayFig(135), rayFig(0), rayFig(270)], a: 0, x: 'The line turns 45° clockwise each time (an eighth of a turn). After pointing down-right it points straight down.' },
+  { t: 'Analogies', q: 'The first pair is linked in a certain way. Which figure completes the second pair in the same way?<div class="stem">' + row([nest('square', 'circle', 'black'), '<div class="arrow">is to</div>', nest('circle', 'square', 'black'), '<div class="arrow">as</div>', nest('triangle', 'pentagon', 'black'), '<div class="arrow">is to</div>', QMARK]) + '</div>', o: [nest('pentagon', 'triangle', 'white'), nest('triangle', 'pentagon', 'black'), nest('pentagon', 'triangle', 'black'), nest('pentagon', 'square', 'black'), nest('hexagon', 'triangle', 'black')], a: 2, x: 'The outer and inner shapes swap places, and the inner shape stays black. So the pentagon goes outside and a small black triangle goes inside.' },
+  { t: 'Reflection', q: 'Which figure shows the first shape reflected in a mirror placed down its right-hand side?<div class="stem">' + row([flagFig(T.id), '<div class="mirror"></div>']) + '</div>', o: [flagFig(T.r180), flagFig(T.my), flagFig(T.mx), flagFig(T.id), flagFig(T.r90)], a: 2, x: 'A mirror on the side flips left and right but keeps top and bottom. The flag now points left and the dot stays at the bottom.' },
+  { t: 'Rotation', q: 'Which figure is the shape below <b>turned</b>, not flipped?<div class="stem">' + row([fFig(T.id)]) + '</div>', o: [fFig(T.mx), fFig(T.my), fFig(T.r90), fFig(T.mxr90), fFig(T.mxr270)], a: 2, x: 'Only the third figure is the F turned a quarter turn clockwise. The others are mirror images. Trick: trace the F with your finger and check which way the arms point.' },
+  { t: 'How many cubes', q: 'How many cubes are in this stack? Every cube is needed to hold up the ones above it.<div class="stem">' + isoCubes([[0,0,0],[1,0,0],[0,1,0],[1,1,0],[0,0,1],[1,0,1],[0,0,2]]) + '</div>', o: ['5', '6', '7', '8', '9'], a: 2, x: 'Count in layers. Bottom layer: 4 (one is hidden at the back, but it must be there to support the tower). Middle: 2. Top: 1. Total <b>7</b>.' },
+  { t: 'Codes', q: 'Each figure has a code. Work out the code for the last figure.<div class="stem">' + `<div class="figrow">${codeTile('circle', 'black', 'PM')}${codeTile('square', 'white', 'QL')}${codeTile('triangle', 'stripe', 'RN')}${codeTile('circle', 'white', 'PL')}<div class="codetile">${svgWrap(shape('triangle', 55, 55, 34, 'black'))}<b>?</b></div></div>` + '</div>', o: ['RM', 'MR', 'RL', 'PM', 'QN'], a: 0, x: 'First letter = shape (P circle, Q square, R triangle). Second letter = shading (L white, M black, N striped). A black triangle is <b>RM</b>.' },
+  { t: 'Cube nets', q: 'Which of these will <b>not</b> fold up to make a cube?', o: [netFig([[1,0],[0,1],[1,1],[2,1],[3,1],[1,2]]), netFig([[0,0],[0,1],[1,1],[2,1],[3,1],[3,2]]), netFig([[0,0],[1,0],[2,0],[3,0],[4,0],[2,1]]), netFig([[0,0],[1,0],[1,1],[2,1],[2,2],[3,2]]), netFig([[0,0],[1,0],[2,0],[2,1],[3,1],[4,1]])], a: 2, x: 'Five squares in a straight line can never fold into a cube: the first and fifth would land on top of each other. The other four are real cube nets.' },
+  { t: 'Complete the grid', q: 'Which figure completes the grid?<div class="stem"><div class="grid3">' + [['circle','white'],['circle','stripe'],['circle','black'],['square','white'],['square','stripe'],['square','black'],['triangle','white'],['triangle','stripe']].map(([k,f]) => svgWrap(shape(k,55,55,30,f))).join('') + QMARK + '</div></div>', o: [svgWrap(shape('triangle',55,55,30,'black')), svgWrap(shape('triangle',55,55,30,'stripe')), svgWrap(shape('square',55,55,30,'black')), svgWrap(shape('triangle',55,55,30,'white')), svgWrap(shape('circle',55,55,30,'black'))], a: 0, x: 'Each row keeps the same shape. Each column keeps the same shading (white, striped, black). Bottom row, last column: a black triangle.' },
+  { t: 'Fold and punch', q: 'A square of paper is folded in half from left to right, then a hole is punched through both layers. What does it look like unfolded?<div class="stem"><div class="figrow">' + svgWrap(`<rect x="10" y="10" width="90" height="90" fill="#fff" stroke="${INK}" stroke-width="3"/><line x1="55" y1="6" x2="55" y2="104" stroke="${INK}" stroke-width="2" stroke-dasharray="5 4"/><path d="M28 40 Q55 18 82 40" fill="none" stroke="#E8551C" stroke-width="3"/><path d="M82 40 l-9 -1 l5 -7" fill="#E8551C"/>`) + svgWrap(`<rect x="55" y="10" width="45" height="90" fill="#fff" stroke="${INK}" stroke-width="3"/><circle cx="68.5" cy="37" r="6" fill="${INK}"/>`) + '</div></div>', o: [holeSheet([[65,30]]), holeSheet([[65,30],[35,30]]), holeSheet([[65,30],[35,70]]), holeSheet([[65,30],[65,70]]), holeSheet([[85,30],[15,30]])], a: 1, x: 'The hole goes through both layers, so you get two holes that mirror each other across the fold line, at the same height.' },
+  { t: 'Series', q: 'Which figure comes next?<div class="stem">' + row([svgWrap(shape('triangle',55,55,34,'white')), svgWrap(shape('square',55,55,34,'black')), svgWrap(shape('pentagon',55,55,34,'white')), QMARK]) + '</div>', o: [svgWrap(shape('hexagon',55,55,34,'white')), svgWrap(shape('hexagon',55,55,34,'black')), svgWrap(shape('pentagon',55,55,34,'black')), svgWrap(shape('heptagon',55,55,34,'black')), svgWrap(shape('square',55,55,34,'white'))], a: 1, x: 'Two rules at once: one more side each time (3, 4, 5, so 6 next) and the shading alternates white, black, white, so black next. A black hexagon.' },
+  { t: 'Odd one out', q: 'Four figures are the same shape turned around. Which one is different?', o: [fFig(T.id), fFig(T.r90), fFig(T.mx), fFig(T.r180), fFig(T.r270)], a: 2, x: 'The third F is a mirror image (it has been flipped). You can turn the others to match each other, but no amount of turning makes a reflection.' }
+];
+
+/* ---------- ENGLISH ---------- */
+const PASSAGE = `<h3 class="ptitle">The Causeway</h3>
+<p>Mara had been warned about the causeway. At low tide it was a ribbon of wet stone joining the village to the old lighthouse; at high tide it simply vanished, swallowed whole by the grey Atlantic. Twice a day, the sea took it back.</p>
+<p>She checked her grandfather's battered watch for the third time. Forty minutes. Plenty, she told herself, although her legs did not seem to agree. They carried her forward in short, reluctant steps, as if they had heard the stories too.</p>
+<p>Halfway across, the wind found her. It came in hard, salty gusts that tugged at her hood and stung her eyes until the lighthouse blurred into a pale smudge. Seaweed slicked the stones, and twice she slid, catching herself on a rusted iron post that someone, long ago, had hammered into the rock for exactly this purpose. She was not the first person to be frightened here. Somehow that helped.</p>
+<p>The door at the top of the steps was smaller than she had imagined, and bluer. Its paint had blistered and peeled in the sun, so that it looked less like a door than a map of some forgotten coastline. Mara pressed her palm flat against it. Her grandfather had kept this light burning for thirty-one winters, and in all that time, he had told her, the sea had never once beaten him.</p>
+<p>"Not once," she whispered, and pushed.</p>
+<p>Inside, the air was still and smelled of oil and old rope. A spiral staircase coiled upwards into the dark like the inside of a shell. Somewhere above her, very faintly, something was ticking.</p>
+<p>Behind her, the tide had already begun to turn.</p>`;
+const EN_QS = [
+  { t: 'Retrieval', passage: true, q: 'How often does the sea cover the causeway?', o: ['once a day', 'twice a day', 'only in winter', 'every forty minutes', 'never'], a: 1, x: 'The first paragraph says: "Twice a day, the sea took it back." Retrieval answers are always in the text, so find the line before you click.' },
+  { t: 'Inference', passage: true, q: 'Why did Mara\'s legs "not seem to agree"?', o: ['She had hurt her leg.', 'She was nervous even though she told herself there was time.', 'Her legs were cold from the sea.', 'She wanted to run instead of walk.', 'Her grandfather told her to walk slowly.'], a: 1, x: 'She tells herself forty minutes is plenty, but her body is scared: the steps are short and "reluctant". The writer shows fear without saying "she was scared".' },
+  { t: 'Word meaning', passage: true, q: 'In paragraph 2, the word <b>reluctant</b> is closest in meaning to:', o: ['quick', 'unwilling', 'heavy', 'careful', 'tired'], a: 1, x: 'Reluctant means not wanting to do something: <b>unwilling</b>. Try each option in the sentence and see which keeps the meaning.' },
+  { t: 'Language', passage: true, q: '"A spiral staircase coiled upwards into the dark like the inside of a shell." This is an example of:', o: ['a metaphor', 'a simile', 'alliteration', 'onomatopoeia', 'a rhetorical question'], a: 1, x: 'It compares two things using <b>like</b>, so it is a simile. A metaphor would say the staircase <i>was</i> a shell.' },
+  { t: 'Language', passage: true, q: 'Which phrase from the passage is an example of personification?', o: ['a ribbon of wet stone', 'the wind found her', 'like the inside of a shell', 'hard, salty gusts', 'thirty-one winters'], a: 1, x: 'Personification gives human actions to something that is not human. The wind cannot really "find" someone; people find things.' },
+  { t: 'Inference', passage: true, q: 'Why did the rusted iron post make Mara feel better?', o: ['It was painted blue like the door.', 'It showed that other frightened people had crossed safely before her.', 'Her grandfather had put it there for her.', 'It meant she was nearly at the lighthouse.', 'It stopped the wind.'], a: 1, x: 'The writer says "She was not the first person to be frightened here. Somehow that helped." The post proves others needed help too and still made it.' },
+  { t: 'Structure', passage: true, q: 'What does the final sentence suggest?', o: ['Mara is safe now.', 'Time is running out and Mara may be cut off.', 'Her grandfather is coming to meet her.', 'The weather is about to improve.', 'The lighthouse is broken.'], a: 1, x: 'The tide turning means the causeway will soon disappear. Ending on it leaves the reader worried: a cliffhanger.' },
+  { t: 'Word class', passage: true, q: 'In "Seaweed <b>slicked</b> the stones", the word <b>slicked</b> is:', o: ['a noun', 'an adjective', 'a verb', 'an adverb', 'a preposition'], a: 2, x: 'It is what the seaweed <i>did</i> to the stones, so it is a <b>verb</b>.' },
+  { t: 'Missing word', q: 'Choose the word that best completes the sentence.<br><span class="words">Neither of the boys ____ brought a coat.</span>', o: ['have', 'has', 'were', 'are', 'having'], a: 1, x: '"Neither" means not one, so it is singular: neither of them <b>has</b>.' },
+  { t: 'Missing word', q: 'Choose the correct word.<br><span class="words">The team celebrated ____ victory loudly.</span>', o: ['there', 'their', 'they\'re', 'theirs', 'there\'s'], a: 1, x: '<b>Their</b> shows the victory belongs to the team. There = a place; they\'re = they are.' },
+  { t: 'Spot the mistake', q: 'Which section has a <b>spelling</b> mistake?', o: ['The library was', 'unusualy quiet', 'that Wednesday', 'afternoon, so we', 'No mistake'], a: 1, x: '<b>Unusually</b> has a double L: unusual + ly.' },
+  { t: 'Spot the mistake', q: 'Which section has a mistake?', o: ['Tom asked', 'if we could', 'come to his party', 'on saturday', 'No mistake'], a: 3, x: 'Days of the week always need a capital letter: <b>Saturday</b>.' },
+  { t: 'Spot the mistake', q: 'Which section has a <b>spelling</b> mistake?', o: ['The scientist', 'made a remarkable', 'discovery about', 'the enviroment', 'No mistake'], a: 3, x: '<b>Environment</b> has an N before the M. Say it slowly: en-vi-ron-ment.' },
+  { t: 'Jumbled sentence', q: 'Rearrange the words into a sentence. Which word comes <b>fifth</b>?<br><span class="words">quietly &nbsp; the &nbsp; fox &nbsp; garden &nbsp; crept &nbsp; through &nbsp; the</span>', o: ['quietly', 'through', 'garden', 'crept', 'fox'], a: 1, x: '"The fox crept quietly through the garden." The fifth word is <b>through</b>. Write the sentence out first, then count.' },
+  { t: 'Punctuation', q: 'Which sentence uses the apostrophe correctly?', o: ['The dog\'s were barking.', 'The childrens\' coats were wet.', 'The dogs\' bowls were all empty.', 'The cat licked it\'s paw.', 'Its\' tail wagged.'], a: 2, x: 'Several dogs own the bowls, so the apostrophe goes after the s: <b>dogs\'</b>. "Children" is already plural, so it would be children\'s. "It\'s" only ever means it is.' },
+  { t: 'Prefixes', q: 'Which prefix makes the opposite of <b>responsible</b>?', o: ['un', 'dis', 'ir', 'im', 'in'], a: 2, x: '<b>Irresponsible</b>. Words starting with r often take ir: irregular, irrelevant.' }
+];
+const WRITING = [
+  { id: 'w-alleyns', school: "Alleyn's style", mins: 20, prompt: 'Continue the story of Mara from the moment the door closes behind her. What is ticking at the top of the lighthouse?', tip: 'Alleyn\'s asks you to continue the reading passage. Keep Mara, the setting and the tense the same as the original.' },
+  { id: 'w-latymer', school: 'Latymer Upper style', mins: 45, prompt: 'Describe a busy market as the sun goes down.', tip: 'Latymer Upper sets a descriptive piece. You do not need a plot: zoom in on details, sounds, smells and how the light changes.' },
+  { id: 'w-sevenoaks', school: 'Sevenoaks style', mins: 25, prompt: 'Choose one: <b>(a)</b> The Door Nobody Opened <b>(b)</b> Write about a day when the weather changed everything.', tip: 'Sevenoaks gives two prompts and about 25 minutes, including planning. Choose quickly and spend 4 minutes planning.' }
+];
+
+/* ---------- MATHS ---------- */
+const MA_QS = [
+  { t: 'Addition', q: '4306 + 2795 = ?', o: ['6091', '7101', '7001', '6101', '7091'], a: 1, x: 'Line up the columns: 6 + 5 = 11 (carry 1), 0 + 9 + 1 = 10 (carry 1), 3 + 7 + 1 = 11 (carry 1), 4 + 2 + 1 = 7. Answer <b>7101</b>.' },
+  { t: 'Decimals', q: '7.2 − 3.85 = ?', o: ['4.45', '3.45', '3.35', '4.35', '3.53'], a: 2, x: 'Write 7.2 as 7.20 so both have two decimal places. 7.20 − 3.85 = <b>3.35</b>.' },
+  { t: 'Multiplication', q: '36 × 25 = ?', o: ['800', '850', '900', '950', '720'], a: 2, x: 'Shortcut: × 25 is the same as × 100 ÷ 4. 3600 ÷ 4 = <b>900</b>.' },
+  { t: 'Place value', q: 'Which of these numbers is the largest?', o: ['0.6', '0.65', '0.606', '0.066', '0.56'], a: 1, x: 'Give them all three decimal places: 0.600, 0.650, 0.606, 0.066, 0.560. The biggest is <b>0.65</b>.' },
+  { t: 'Fractions', q: 'What is <sup>3</sup>&frasl;<sub>4</sub> of 56?', o: ['14', '42', '28', '48', '36'], a: 1, x: 'Divide by the bottom, times by the top: 56 ÷ 4 = 14, 14 × 3 = <b>42</b>.' },
+  { t: 'Percentages', q: 'What is 15% of 360?', o: ['36', '45', '54', '60', '24'], a: 2, x: '10% of 360 = 36. 5% is half of that = 18. 36 + 18 = <b>54</b>.' },
+  { t: 'Order of operations', q: '50 − 6 × 7 + 3 = ?', o: ['311', '11', '5', '17', '35'], a: 1, x: 'Multiply first: 6 × 7 = 42. Then left to right: 50 − 42 = 8, 8 + 3 = <b>11</b>.' },
+  { t: 'Angles', q: 'An isosceles triangle has one angle of 40°. Which of these could <b>not</b> be one of its other angles?', o: ['40°', '70°', '100°', '80°', 'They are all possible'], a: 3, x: 'If 40° is the odd angle, the other two are (180 − 40) ÷ 2 = 70° each. If 40° is one of the pair, the third is 100°. So <b>80°</b> is impossible.' },
+  { t: 'Area', q: 'A rectangle has a perimeter of 30 cm and a length of 9 cm. What is its area?', o: ['54 cm²', '45 cm²', '63 cm²', '36 cm²', '270 cm²'], a: 0, x: 'Length + width = half the perimeter = 15, so width = 6 cm. Area = 9 × 6 = <b>54 cm²</b>.' },
+  { t: 'Sequences', q: 'What is the next number? 2, 5, 11, 23, ?', o: ['35', '46', '47', '45', '41'], a: 2, x: 'Double and add one: 23 × 2 + 1 = <b>47</b>.' },
+  { t: 'Ratio', q: '45 sweets are shared between Ali and Bea in the ratio 2 : 7. How many does Bea get?', o: ['10', '35', '27', '18', '30'], a: 1, x: '2 + 7 = 9 parts. 45 ÷ 9 = 5 sweets per part. Bea has 7 parts: 7 × 5 = <b>35</b>.' },
+  { t: 'Time', q: 'A train leaves at 09:47 and arrives at 11:22. How long is the journey?', o: ['1 h 25 min', '1 h 35 min', '1 h 75 min', '2 h 35 min', '1 h 45 min'], a: 1, x: 'Count up: 09:47 to 10:00 is 13 min, 10:00 to 11:00 is 60 min, 11:00 to 11:22 is 22 min. 13 + 60 + 22 = 95 min = <b>1 h 35 min</b>.' },
+  { t: 'Fractions', q: '2<sup>1</sup>&frasl;<sub>3</sub> + 1<sup>3</sup>&frasl;<sub>4</sub> = ?', o: ['3 <sup>4</sup>&frasl;<sub>7</sub>', '4 <sup>1</sup>&frasl;<sub>12</sub>', '3 <sup>1</sup>&frasl;<sub>12</sub>', '4 <sup>4</sup>&frasl;<sub>7</sub>', '3 <sup>13</sup>&frasl;<sub>12</sub>'], a: 1, x: 'Whole numbers: 2 + 1 = 3. Fractions: 4/12 + 9/12 = 13/12 = 1 1/12. Total <b>4 1/12</b>. Never add the bottoms!' },
+  { t: 'Measures', q: '2.4 kg − 650 g = ?', o: ['1.75 kg', '1.85 kg', '175 g', '2.35 kg', '1.65 kg'], a: 0, x: 'Make the units match: 2400 g − 650 g = 1750 g = <b>1.75 kg</b>.' },
+  { t: 'Statistics', q: 'A pie chart shows 60 children\'s favourite sports. Football takes up 90°. How many children chose football?', o: ['9', '15', '30', '20', '90'], a: 1, x: '90° is a quarter of 360°. A quarter of 60 = <b>15</b>.' },
+  { t: 'Negative numbers', q: 'At 6 am it was −6 °C. By noon it had risen by 11 degrees. What was the temperature at noon?', o: ['−17 °C', '5 °C', '−5 °C', '17 °C', '6 °C'], a: 1, x: 'From −6, go up 6 to reach 0, then 5 more: <b>5 °C</b>. A number line helps.' }
+];
+/* school-paper style: typed answers, show working on paper */
+const MA_WRITTEN = [
+  { t: 'Arithmetic', q: 'Work out 864 ÷ 6', ans: ['144'], x: 'Short division: 8 ÷ 6 = 1 r2, 26 ÷ 6 = 4 r2, 24 ÷ 6 = 4. Answer <b>144</b>.' },
+  { t: 'Arithmetic', q: 'Work out 48 × 27', ans: ['1296'], x: '48 × 20 = 960 and 48 × 7 = 336. 960 + 336 = <b>1296</b>.' },
+  { t: 'Fractions', q: 'Write <sup>18</sup>&frasl;<sub>24</sub> in its simplest form. (Type it like 2/3)', ans: ['3/4'], x: 'The highest common factor of 18 and 24 is 6. 18 ÷ 6 = 3 and 24 ÷ 6 = 4: <b>3/4</b>.' },
+  { t: 'Averages', q: 'Find the mean of 4, 9, 7, 12 and 8.', ans: ['8'], x: 'Add them: 4 + 9 + 7 + 12 + 8 = 40. Divide by how many: 40 ÷ 5 = <b>8</b>.' },
+  { t: 'Averages', q: 'Another number is added to 4, 9, 7, 12, 8 and the mean of all six becomes 9. What number was added?', ans: ['14'], x: 'Six numbers with a mean of 9 add up to 54. The first five add to 40, so the new one is 54 − 40 = <b>14</b>.' },
+  { t: 'Algebra', q: 'Solve 3n + 7 = 31. What is n?', ans: ['8', 'n=8'], x: 'Take 7 from both sides: 3n = 24. Divide by 3: <b>n = 8</b>.' },
+  { t: 'Problem solving', q: 'I think of a number, multiply it by 4, then subtract 9. My answer is 35. What was my number?', ans: ['11'], x: 'Work backwards with inverses: 35 + 9 = 44, then 44 ÷ 4 = <b>11</b>.' },
+  { t: 'Volume', q: 'A cuboid measures 5 cm by 4 cm by 3 cm. What is its volume in cm³?', ans: ['60', '60cm3', '60cm³'], x: 'Volume = length × width × height = 5 × 4 × 3 = <b>60 cm³</b>.' },
+  { t: 'Speed', q: 'A coach travels 150 km in 2½ hours. What is its average speed in km/h?', ans: ['60', '60km/h'], x: 'Speed = distance ÷ time = 150 ÷ 2.5 = <b>60 km/h</b>. Or: 150 km in 5 half-hours is 30 km per half-hour, so 60 per hour.' },
+  { t: 'Extension', q: 'When 200 is divided by a whole number between 20 and 30, the remainder is 8. What is the number?', ans: ['24'], x: 'If the remainder is 8, then 200 − 8 = 192 divides exactly. Which number from 21 to 29 goes into 192? 192 ÷ 24 = 8. So <b>24</b>.' }
+];
+
+const TESTS = {
+  vr: { id: 'vr', title: 'Verbal reasoning mixed test', mins: 18, qs: VR_QS },
+  nvr: { id: 'nvr', title: 'Non-verbal reasoning mixed test', mins: 14, qs: NVR_QS },
+  en: { id: 'en', title: 'English: comprehension and SPaG', mins: 25, qs: EN_QS, passage: PASSAGE },
+  ma: { id: 'ma', title: 'Maths: ISEB-style multiple choice', mins: 25, qs: MA_QS },
+  maw: { id: 'maw', title: 'Maths: school-paper style', mins: 20, qs: MA_WRITTEN, written: true }
+};
+
+/* ================= SUMMIT SETS (exam standard) ================= */
+
+/* ---- extra NVR drawing helpers ---- */
+function dotArrow(corner, ang) {
+  const c = [[26, 26], [84, 26], [84, 84], [26, 84]][corner];
+  return svgWrap(`<rect x="10" y="10" width="90" height="90" fill="#fff" stroke="${INK}" stroke-width="3"/><circle cx="${c[0]}" cy="${c[1]}" r="8" fill="${INK}"/><g transform="rotate(${ang} 55 55)"><line x1="55" y1="72" x2="55" y2="42" stroke="${INK}" stroke-width="4"/><path d="M45 46 L55 32 L65 46 Z" fill="${INK}"/></g>`);
+}
+function rotDots(kind, rot, fill, n) {
+  return svgWrap(shape(kind, 55, 55, 42, fill, rot) + dots(55, 55, n, 13, fill === 'black' ? '#fff' : INK));
+}
+function inner(outer, innerK, innerFill, innerRot = 0) {
+  return svgWrap(shape(outer, 55, 55, 44, 'white') + shape(innerK, 55, 56, 20, innerFill, innerRot));
+}
+const FACE = {
+  black: `<rect width="100" height="100" fill="${INK}"/>`,
+  stripe: `<rect width="100" height="100" fill="__STRIPE__"/>`,
+  dot: `<circle cx="50" cy="50" r="16" fill="${INK}"/>`,
+  ring: `<circle cx="50" cy="50" r="26" fill="none" stroke="${INK}" stroke-width="9"/>`,
+  square: `<rect x="31" y="31" width="38" height="38" fill="${INK}"/>`,
+  plus: `<rect x="43" y="16" width="14" height="68" fill="${INK}"/><rect x="16" y="43" width="68" height="14" fill="${INK}"/>`
+};
+function faceG(sym, m) {
+  return `<g transform="matrix(${m.join(' ')})"><rect width="100" height="100" fill="#fff"/>${FACE[sym]}<rect width="100" height="100" fill="none" stroke="${INK}" stroke-width="3" vector-effect="non-scaling-stroke"/></g>`;
+}
+function cube3(top, left, right) {
+  const M = (p0, p1, p3) => [(p1[0] - p0[0]) / 100, (p1[1] - p0[1]) / 100, (p3[0] - p0[0]) / 100, (p3[1] - p0[1]) / 100, p0[0], p0[1]];
+  return svgWrap(faceG(top, M([20, 36], [55, 16], [55, 56])) + faceG(left, M([20, 36], [55, 56], [20, 82])) + faceG(right, M([55, 56], [90, 36], [55, 102])));
+}
+const NET = [['black', 1, 0], ['stripe', 0, 1], ['dot', 1, 1], ['ring', 2, 1], ['square', 3, 1], ['plus', 1, 2]];
+function netSym() {
+  const s = 25, ox = 5, oy = 17;
+  return svgWrap(NET.map(([sym, x, y]) => faceG(sym, [s / 100, 0, 0, s / 100, ox + x * s, oy + y * s])).join(''));
+}
+function mark3(kind, fill, ring) { return svgWrap(shape(kind, 55, 55, 36, fill) + (ring ? `<circle cx="55" cy="${kind === 'triangle' ? 64 : 57}" r="9" fill="#fff" stroke="${INK}" stroke-width="3"/>` : '')); }
+function codeTile3(kind, fill, ring, code) {
+  return `<div class="codetile">${mark3(kind, fill, ring)}<b>${code}</b></div>`;
+}
+
+/* ---- VR SUMMIT ---- */
+const VR_HARD = [
+  { t: 'Morph the word', q: 'Change one letter at a time to get from the first word to the last. Every step must be a real word. Which pair fills the gaps?<br><span class="words">COLD &nbsp; ? &nbsp; CARD &nbsp; ? &nbsp; WARM</span>', o: ['CORD and WARD', 'COLT and WARD', 'CORD and WORD', 'HOLD and WARD', 'CORD and CART'], a: 0, x: 'COLD → CORD (L to R) → CARD (O to A) → WARD (C to W) → WARM (D to M). Check each step changes exactly one letter: CORD to WORD would change one letter, but WORD to WARM changes two.' },
+  { t: 'Stolen words', q: 'Three letters that make a word have been taken out of the word in capitals. Which word was stolen?<br><span class="words">Her coats hung neatly in the WARD___E.</span>', o: ['ROB', 'ROD', 'RIB', 'ROW', 'RUB'], a: 0, x: 'WARD + <b>ROB</b> + E = WARDROBE. The stolen letters must make a real word on their own AND complete the word in the sentence.' },
+  { t: 'Find the calculation', q: 'The same rule links each set. Find the missing number.<br><span class="words">(36 [21] 6) &nbsp; (40 [15] 10) &nbsp; (63 [?] 7)</span>', o: ['27', '30', '33', '21', '70'], a: 1, x: 'Two steps: divide the outer numbers, then × 3 + 3. 36 ÷ 6 = 6, 6 × 3 + 3 = 21. 40 ÷ 10 = 4, 4 × 3 + 3 = 15. 63 ÷ 7 = 9, 9 × 3 + 3 = <b>30</b>. Always test your rule on BOTH examples.' },
+  { t: 'Find the calculation', q: 'Find the missing number.<br><span class="words">(5 [29] 2) &nbsp; (7 [53] 2) &nbsp; (6 [?] 3)</span>', o: ['45', '39', '27', '18', '81'], a: 0, x: 'Square both outer numbers and add: 25 + 4 = 29, 49 + 4 = 53, so 36 + 9 = <b>45</b>.' },
+  { t: 'Letter codes', q: 'In a code, <b>PLANET</b> is written <b>QNDRJZ</b>. Using the same code, how is <b>MOON</b> written?', o: ['NQRR', 'NPPO', 'NQQR', 'OQRR', 'NRRQ'], a: 0, x: 'The jump grows each time: P+1 = Q, L+2 = N, A+3 = D, N+4 = R, E+5 = J, T+6 = Z. So M+1 = N, O+2 = Q, O+3 = R, N+4 = R: <b>NQRR</b>. The two Os get different letters because their jumps differ.' },
+  { t: 'Mirror codes', q: 'In a code, each letter is swapped with its mirror in the alphabet (A with Z, B with Y, C with X and so on). What is the code for <b>HELP</b>?', o: ['SVOK', 'SVOL', 'TVOK', 'SUOK', 'RVOK'], a: 0, x: 'A letter and its mirror always add to 27 (A=1, Z=26). H = 8, so 27 − 8 = 19 = S. E (5) → 22 = V. L (12) → 15 = O. P (16) → 11 = K. <b>SVOK</b>.' },
+  { t: 'Letter pairs', q: '<b>DW</b> is to <b>EV</b> as <b>KP</b> is to ?', o: ['LO', 'LQ', 'JO', 'MO', 'LP'], a: 0, x: 'The first letter moves forward one (D to E) while the second moves back one (W to V). K to L, P to O: <b>LO</b>.' },
+  { t: 'Number sequences', q: 'Find the next number.<br><span class="words">2 &nbsp; 9 &nbsp; 4 &nbsp; 13 &nbsp; 8 &nbsp; 17 &nbsp; 16 &nbsp; ?</span>', o: ['21', '32', '20', '24', '19'], a: 0, x: 'Two sequences are woven together. Odd places: 2, 4, 8, 16 (doubling). Even places: 9, 13, 17, so next is <b>21</b> (+4). If a sequence jumps up and down, split it.' },
+  { t: 'Letter sequences', q: 'Find the next pair.<br><span class="words">AZ &nbsp; CX &nbsp; FU &nbsp; JQ &nbsp; ?</span>', o: ['OL', 'OM', 'NL', 'PL', 'OK'], a: 0, x: 'First letters jump +2, +3, +4, so +5: J to O. Second letters jump −2, −3, −4, so −5: Q to L. <b>OL</b>.' },
+  { t: 'Balance the equation', q: 'Find the number that makes both sides equal.<br><span class="words">12 × 4 ÷ 6 = 25 − ?</span>', o: ['17', '13', '8', '15', '33'], a: 0, x: 'Left side: 48 ÷ 6 = 8. So 25 − ? = 8, and ? = <b>17</b>.' },
+  { t: 'Substitution', q: 'a = 3, b = 5, c = 8, d = 15, e = 24.<br>What is <b>(e ÷ c) × b</b>? Answer as a letter.', o: ['a', 'b', 'c', 'd', 'e'], a: 3, x: '24 ÷ 8 = 3, then 3 × 5 = 15. The letter worth 15 is <b>d</b>.' },
+  { t: 'Word codes', q: 'Three of these words have codes below, but the codes are in a different order.<br><span class="words">TEAR &nbsp; RATE &nbsp; TART<br>4794 &nbsp; 9742 &nbsp; 4279</span>What is the code for <b>TREAT</b>?', o: ['49274', '49724', '47924', '42974', '94274'], a: 0, x: 'TART starts and ends with the same letter, and only 4794 does too. So T = 4, A = 7, R = 9. RATE must be 9742, so E = 2. TREAT = 4 9 2 7 4: <b>49274</b>. Start with the word that has a pattern.' },
+  { t: 'Homographs', q: 'Which word goes equally well with both pairs?<br><span class="words">(learner, scholar) &nbsp;&nbsp; (iris, eyeball)</span>', o: ['pupil', 'student', 'lens', 'retina', 'tutor'], a: 0, x: 'A <b>pupil</b> is a learner, and also the black centre of the eye. Student fits only the first pair; lens and retina only the second.' },
+  { t: 'Synonyms', q: 'Which word is closest in meaning to <b>ephemeral</b>?', o: ['fleeting', 'ethereal', 'eternal', 'delicate', 'airborne'], a: 0, x: 'Ephemeral means lasting a very short time: <b>fleeting</b>. Ethereal and eternal are traps that look similar. It is on the vocabulary list.' },
+  { t: 'Antonyms', q: 'Which word is most opposite in meaning to <b>frugal</b>?', o: ['extravagant', 'thrifty', 'generous', 'wealthy', 'hungry'], a: 0, x: 'Frugal means careful not to waste money. The opposite is <b>extravagant</b>. Thrifty means the same as frugal. Generous is about giving to others, which is a different idea.' },
+  { t: 'Odd two out', q: 'Three words go together. Which <b>two</b> do not?<br><span class="words">lament &nbsp; mourn &nbsp; rejoice &nbsp; grieve &nbsp; exult</span>', o: ['rejoice and exult', 'lament and mourn', 'mourn and grieve', 'lament and rejoice', 'grieve and exult'], a: 0, x: 'Lament, mourn and grieve all mean to feel sorrow. <b>Rejoice and exult</b> mean to feel great joy.' },
+  { t: 'Statement logic', q: 'All the children in chess club play an instrument. Some children who play an instrument are in the choir. Ruby is in chess club.<br>Which <b>must</b> be true?', o: ['Ruby is in the choir.', 'Ruby plays an instrument.', 'Everyone in the choir plays chess.', 'Ruby does not sing.', 'Some chess players are in the choir.'], a: 1, x: 'Only one thing follows for certain: chess club means an instrument, so Ruby <b>plays an instrument</b>. The others might be true, but nothing proves them. "Must" questions are about certainty, not likelihood.' },
+  { t: 'Seating logic', q: 'Five friends sit in a row. Dan sits in the middle. Ben has only one neighbour, and it is Cara. Asha is not next to Dan.<br>Who sits between Asha and Dan?', o: ['Ben', 'Cara', 'Eve', 'Nobody', 'Cannot tell'], a: 2, x: 'Ben has one neighbour, so he is on an end with Cara beside him. Dan is in the middle. Two seats are left at the other end. Asha cannot be next to Dan, so she takes the end seat and <b>Eve</b> sits between them. Draw five boxes.' },
+  { t: 'Number logic', q: 'In 4 years\' time, Mia will be twice as old as she was 4 years ago. How old is Mia now?', o: ['8', '10', '12', '16', '20'], a: 2, x: 'Try the options. If Mia is 12: in 4 years she is 16; 4 years ago she was 8; 16 is twice 8. So <b>12</b>. Testing options is a fast, legal method in multiple choice.' },
+  { t: 'Transfer a letter', q: 'Move one letter from the first word into the second to make two new words. The other letters must stay in order.<br><span class="words">CHAIR &nbsp;&nbsp; HOP</span>', o: ['C', 'H', 'A', 'I', 'R'], a: 0, x: 'Take C from CHAIR to leave HAIR. Put it in front of HOP to make CHOP. R would leave CHAI, but HOP cannot take an R.' }
+];
+
+/* ---- NVR SUMMIT ---- */
+const NVR_HARD = [
+  { t: 'Series: two rules', q: 'Which figure comes next?<div class="stem">' + row([dotArrow(0, 0), dotArrow(1, -90), dotArrow(2, -180), dotArrow(3, -270), QMARK]) + '</div>', o: [dotArrow(0, 180), dotArrow(3, 0), dotArrow(0, 0), dotArrow(1, 0), dotArrow(0, 90)], a: 2, x: 'Two things change. The dot moves one corner clockwise each time, so it returns to the top left. The arrow turns a quarter turn anticlockwise each time, so after four turns it points up again.' },
+  { t: 'Analogies: three changes', q: 'Which figure completes the second pair in the same way?<div class="stem">' + row([rotDots('triangle', 0, 'white', 1), '<div class="arrow">is to</div>', rotDots('triangle', 90, 'black', 2), '<div class="arrow">as</div>', rotDots('pentagon', 0, 'white', 3), '<div class="arrow">is to</div>', QMARK]) + '</div>', o: [rotDots('pentagon', 90, 'white', 4), rotDots('pentagon', 0, 'black', 4), rotDots('pentagon', 90, 'black', 3), rotDots('pentagon', 90, 'black', 4), rotDots('pentagon', 270, 'black', 4)], a: 3, x: 'Three changes happen at once: the shape turns a quarter turn clockwise (the point moves from top to right), the shading swaps to black, and there is one more dot. Each wrong answer gets just one of these wrong.' },
+  { t: 'Cube nets', q: 'Which cube can be made from this net?<div class="stem">' + netSym() + '</div>', o: [cube3('black', 'plus', 'dot'), cube3('black', 'dot', 'ring'), cube3('stripe', 'dot', 'ring'), cube3('dot', 'square', 'black'), cube3('plus', 'black', 'ring')], a: 1, x: 'Find the opposite pairs first: faces with one face between them in the net are opposite. Black is opposite plus, stripes opposite ring, dot opposite square. Opposite faces can never be seen together, which rules out every cube except the second.' },
+  { t: 'How many cubes', q: 'How many cubes are in this solid? Count the hidden ones that must be there to hold the others up.<div class="stem">' + isoCubes([[0,0,0],[1,0,0],[2,0,0],[0,1,0],[1,1,0],[2,1,0],[0,0,1],[1,0,1],[0,1,1],[0,0,2]]) + '</div>', o: ['8', '9', '10', '11', '12'], a: 2, x: 'Count layer by layer from the top. Top: 1. Middle: 3 (one is hidden behind the tower). Bottom: a 3 by 2 base = 6. Total <b>10</b>.' },
+  { t: 'Codes: three letters', q: 'Each figure has a three-letter code. Find the code for the last figure.<div class="stem"><div class="figrow">' + codeTile3('circle', 'white', false, 'FPM') + codeTile3('square', 'black', true, 'GQN') + codeTile3('triangle', 'stripe', false, 'HRM') + codeTile3('circle', 'black', true, 'FQN') + codeTile3('square', 'white', false, 'GPM') + `<div class="codetile">${mark3('circle', 'stripe', true)}<b>?</b></div></div></div>`, o: ['FRN', 'FRM', 'HRN', 'FQN', 'GRN'], a: 0, x: 'First letter = shape (F circle, G square, H triangle). Second = shading (P white, Q black, R striped). Third = the small ring in the middle (M no ring, N ring). A striped circle with a ring is <b>FRN</b>. Find two figures sharing a letter and ask what else they share.' },
+  { t: 'Complete the grid', q: 'Which figure completes the grid?<div class="stem"><div class="grid3">' + [['circle','white'],['square','stripe'],['triangle','black'],['square','black'],['triangle','white'],['circle','stripe'],['triangle','stripe'],['circle','black']].map(([k,f]) => svgWrap(shape(k,55,55,30,f))).join('') + QMARK + '</div></div>', o: [svgWrap(shape('square',55,55,30,'black')), svgWrap(shape('square',55,55,30,'stripe')), svgWrap(shape('square',55,55,30,'white')), svgWrap(shape('triangle',55,55,30,'white')), svgWrap(shape('circle',55,55,30,'white'))], a: 2, x: 'Every row and every column has one circle, one square and one triangle, AND one white, one striped and one black. The bottom row is missing a square, and the last column is missing white. A white square.' },
+  { t: 'Rotate, then reflect', q: 'The shape is turned a quarter turn clockwise, then reflected in a mirror down its side. Which figure shows the result?<div class="stem">' + row([fFig(T.id)]) + '</div>', o: [fFig(T.r90), fFig(T.mx), fFig(T.mxr90), fFig(T.r90mx), fFig(T.r270)], a: 3, x: 'Do it in two steps on rough paper. Turn first: the F lies on its back with its arms pointing down. Then flip left to right: the long bar moves to the other side. Doing the steps in the other order gives a different answer (the third figure), which is the trap.' },
+  { t: 'Fold twice and punch', q: 'A square is folded in half from left to right, then in half from bottom to top. One hole is punched through every layer. What does it look like unfolded?<div class="stem"><div class="figrow">' + svgWrap(`<rect x="10" y="10" width="90" height="90" fill="#fff" stroke="${INK}" stroke-width="3"/><line x1="55" y1="6" x2="55" y2="104" stroke="${INK}" stroke-width="2" stroke-dasharray="5 4"/><path d="M28 40 Q55 18 82 40" fill="none" stroke="#E8551C" stroke-width="3"/><path d="M82 40 l-9 -1 l5 -7" fill="#E8551C"/>`) + svgWrap(`<rect x="55" y="10" width="45" height="90" fill="#fff" stroke="${INK}" stroke-width="3"/><line x1="50" y1="55" x2="104" y2="55" stroke="${INK}" stroke-width="2" stroke-dasharray="5 4"/><path d="M70 85 Q92 55 70 28" fill="none" stroke="#E8551C" stroke-width="3"/><path d="M70 28 l1 9 l7 -5" fill="#E8551C"/>`) + svgWrap(`<rect x="55" y="10" width="45" height="45" fill="#fff" stroke="${INK}" stroke-width="3"/><circle cx="73" cy="32.5" r="6" fill="${INK}"/>`) + '</div></div>', o: [holeSheet([[70,25],[30,25]]), holeSheet([[70,25],[30,25],[70,75],[30,75]]), holeSheet([[70,25],[30,75]]), holeSheet([[85,15],[15,15],[85,85],[15,85]]), holeSheet([[70,25],[70,75]])], a: 1, x: 'Two folds make four layers, so one punch makes four holes. Unfold one fold at a time: the bottom fold mirrors the hole downwards, then the side fold mirrors both holes across. Each hole sits the same distance from the fold lines.' },
+  { t: 'Odd one out', q: 'Which figure is the odd one out?', o: [inner('pentagon', 'square', 'black'), inner('hexagon', 'pentagon', 'stripe'), inner('square', 'triangle', 'white', 180), inner('hexagon', 'square', 'black'), inner('heptagon', 'hexagon', 'white')], a: 3, x: 'In every other figure the inner shape has exactly one fewer side than the outer shape. The fourth has a hexagon (6) around a square (4). Shading and turning are both distractions here.' }
+];
+
+/* ---- ENGLISH SUMMIT ---- */
+const PASSAGE_ASCENT = `<h3 class="ptitle">The Ascent</h3>
+<p>For three days the expedition had crept upward through a silence so complete that even the scrape of a boot upon the ice seemed an impertinence. Hartley, who led, spoke seldom; when he did, it was in the clipped, economical manner of a man rationing his breath as carefully as his provisions. Below them the valley had long since dissolved into cloud, and with it every reassuring sign of human habitation: the scattered farms, the thin grey thread of the river, the church whose bell they had heard, faintly and for the last time, on the first morning.</p>
+<p>Wilson, the youngest, had begun the climb with an exuberance that Hartley had regarded with silent misgiving. Now that exuberance had curdled into something quieter and more watchful. He no longer sang. He had stopped, too, counting the steps between rests, as though he had realised that the mountain did not care how many there were.</p>
+<p>It was on the fourth morning that the weather turned. The sky, which had been a hard and polished blue, acquired a bruised and yellowish tinge along its western edge, and a wind sprang up that smelled, Wilson thought, of metal. Hartley studied the horizon for a long time without speaking. Then he unshouldered his pack, sat down upon it, and began, with infinite deliberation, to fill his pipe.</p>
+<p>"We shall go no further today," he said.</p>
+<p>Wilson opened his mouth to protest and found, to his own astonishment, that he was relieved.</p>`;
+const POEM_WINDY = `<h3 class="ptitle">Windy Nights</h3><p class="byline">Robert Louis Stevenson (1885)</p>
+<p class="poem">Whenever the moon and stars are set,<br>Whenever the wind is high,<br>All night long in the dark and wet,<br>A man goes riding by.<br>Late in the night when the fires are out,<br>Why does he gallop and gallop about?</p>
+<p class="poem">Whenever the trees are crying aloud,<br>And ships are tossed at sea,<br>By, on the highway, low and loud,<br>By at the gallop goes he.<br>By at the gallop he goes, and then<br>By he comes back at the gallop again.</p>`;
+const EN_HARD = [
+  { t: 'Word meaning', passage: 'ascent', q: 'The scrape of a boot "seemed an impertinence". This suggests the sound felt:', o: ['dangerous, because it might cause an avalanche', 'rude, as if it disturbed something that deserved respect', 'cheerful in the gloomy silence', 'unnecessary, because they could have walked more slowly', 'too loud for the climbers to hear each other'], a: 1, x: 'An impertinence is a rude or disrespectful act. The silence is so deep that even a small noise feels like bad manners. Option A is a sensible idea, but it is not what the word means.' },
+  { t: 'Inference', passage: 'ascent', q: '"Rationing his breath as carefully as his provisions" suggests that Hartley:', o: ['was unwell', 'had packed too little food', 'used words sparingly, saving his energy for the climb', 'was out of breath from talking', 'was unwilling to share his food'], a: 2, x: 'Rationing means using carefully so it lasts. He speaks as little as he eats: he saves every bit of energy. The comparison is about speech, not food.' },
+  { t: 'Writer\'s purpose', passage: 'ascent', q: 'Why does the writer mention the church bell heard "for the last time"?', o: ['to show that the climbers were religious', 'to show how completely they had left ordinary life behind', 'to suggest the church was later destroyed', 'to tell the reader what time it was', 'to show it was a Sunday'], a: 1, x: 'The list of farms, river and church are all "reassuring signs of human habitation" that have disappeared. The bell is the last link to the world below.' },
+  { t: 'Word meaning', passage: 'ascent', q: 'Hartley regarded Wilson\'s exuberance "with silent misgiving". This means Hartley:', o: ['envied Wilson\'s energy', 'privately doubted whether such excitement was wise', 'told Wilson off', 'shared Wilson\'s happiness', 'did not notice it'], a: 1, x: 'A misgiving is a feeling of doubt or worry. "Silent" tells you he kept it to himself.' },
+  { t: 'Language', passage: 'ascent', q: 'Wilson\'s exuberance "had curdled". The word <b>curdled</b> suggests the change was like:', o: ['an explosion: sudden and violent', 'milk going sour: something good slowly turning unpleasant', 'a flower opening: something growing', 'a mirror: something reversed', 'a dream: something imaginary'], a: 1, x: 'Milk curdles when it goes off. The writer suggests Wilson\'s bright, fresh mood has slowly soured into something heavier.' },
+  { t: 'Inference', passage: 'ascent', q: 'Why had Wilson stopped counting the steps between rests?', o: ['He had lost count.', 'He realised his effort meant nothing to the mountain.', 'Hartley had told him to stop.', 'He was too cold to count.', 'They had almost reached the top.'], a: 1, x: 'The text says "as though he had realised that the mountain did not care how many there were." Counting had been a way of feeling in control; he has given that up.' },
+  { t: 'Language', passage: 'ascent', q: 'The sky has "a bruised and yellowish tinge". What does this description suggest?', o: ['a beautiful sunset', 'that someone had been injured', 'a storm gathering, threatening and unhealthy-looking', 'that the sun was rising', 'that the weather was clearing'], a: 2, x: 'Bruises are purple and yellow and come from harm. Describing the sky this way makes the approaching weather feel menacing.' },
+  { t: 'Character', passage: 'ascent', q: 'What does Hartley filling his pipe "with infinite deliberation" show about him?', o: ['He is calm and unhurried because the decision is made.', 'He is panicking about the storm.', 'He is trying to keep his hands warm.', 'He wants to annoy Wilson.', 'He has not noticed the weather.'], a: 0, x: '"Deliberation" means slow, careful thought. Experienced leaders stay calm: he has judged the danger and settled on stopping, so there is no rush.' },
+  { t: 'Structure', passage: 'ascent', q: 'Why is the final sentence surprising?', o: ['Wilson finally argues with Hartley.', 'Wilson expects to feel annoyed but actually feels relieved.', 'It is the first time Hartley speaks.', 'The weather suddenly improves.', 'The expedition turns back for home.'], a: 1, x: 'He opens his mouth to protest, but discovers he is glad. "To his own astonishment" shows his fear was hidden even from himself.' },
+  { t: 'Summarising', passage: 'ascent', q: 'Which best describes how Wilson changes across the passage?', o: ['from nervous to brave', 'from lively and confident to quiet and wary', 'from silent to cheerful', 'he does not change', 'from angry to calm'], a: 1, x: 'He starts with exuberance and singing, then becomes "quieter and more watchful", and ends relieved to stop. Summary questions need evidence from the beginning AND the end.' },
+  { t: 'Poetry', passage: 'windy', q: 'In "Windy Nights", the line "the trees are crying aloud" is an example of:', o: ['a simile', 'personification', 'onomatopoeia', 'alliteration', 'a rhetorical question'], a: 1, x: 'Trees cannot cry: the poet gives them a human action. That is <b>personification</b>. It makes the wind sound wild and the night uneasy.' },
+  { t: 'Poetry', passage: 'windy', q: 'What is the main effect of repeating the word "gallop"?', o: ['It shows the poet could not think of other words.', 'It copies the rhythm of hooves, so we hear the rider pass and return.', 'It tells us the horse is tired.', 'It makes the poem sound peaceful.', 'It shows the man is in a race.'], a: 1, x: 'The repeated, bouncing word imitates the beat of a galloping horse. The last two lines even go "by" and come "back", like the sound passing and returning.' },
+  { t: 'Poetry', passage: 'windy', q: 'Which word best describes the mood of the poem?', o: ['cheerful', 'mysterious and restless', 'calm and sleepy', 'angry', 'sorrowful'], a: 1, x: 'The rider is never explained ("Why does he gallop?"), it is dark and wet, and the wind is high. Questions without answers create mystery; constant galloping creates restlessness.' },
+  { t: 'Grammar', q: 'Which section contains a mistake?', o: ['Each of the', 'competitors have', 'trained for', 'months beforehand.', 'No mistake'], a: 1, x: '"Each" is singular, so it should be "Each of the competitors <b>has</b> trained". Do not be fooled by the plural "competitors" next to the verb.' },
+  { t: 'Punctuation', q: 'Which sentence is punctuated correctly?', o: ['My brother, who lives in Leeds, is a doctor.', 'My brother who lives in Leeds, is a doctor.', 'My brother, who lives in Leeds is a doctor.', 'My brother who, lives in Leeds is a doctor.', 'My, brother who lives in Leeds is a doctor.'], a: 0, x: 'Extra information in the middle of a sentence needs a comma at BOTH ends, like brackets. Test: remove the part between the commas and the sentence still works.' },
+  { t: 'Missing word', q: 'Choose the word that completes the sentence correctly.<br><span class="words">Had she ____ the warning, she would have stayed indoors.</span>', o: ['heeded', 'heeding', 'heed', 'heeds', 'had heeded'], a: 0, x: '"Had she <b>heeded</b>" means "if she had paid attention to". It needs the past participle. "Heed" is on the vocabulary list.' },
+  { t: 'Word class', q: 'In "The children waited patiently <b>outside</b>", the word <b>outside</b> is:', o: ['a noun', 'a preposition', 'an adverb', 'an adjective', 'a verb'], a: 2, x: 'It tells you where they waited, and nothing comes after it. That makes it an <b>adverb</b>. In "outside the gate" it would be a preposition, because it is followed by a noun.' },
+  { t: 'Spelling', q: 'Which word is spelled correctly?', o: ['acommodation', 'accomodation', 'accommodation', 'acomodation', 'accommadation'], a: 2, x: '<b>Accommodation</b> has double C and double M. Memory trick: it is big enough to accommodate two Cs and two Ms.' },
+  { t: 'Missing word', q: 'Choose the correct word.<br><span class="words">The explorer, ____ boots were worn through, kept walking.</span>', o: ['whose', 'who\'s', 'whom', 'which', 'that'], a: 0, x: '<b>Whose</b> shows the boots belong to the explorer. Who\'s only ever means "who is" or "who has".' }
+];
+
+/* ---- MATHS SUMMIT ---- */
+const MA_HARD = [
+  { t: 'Order of operations', q: '48 ÷ (2 + 6) × 3 − 4² = ?', o: ['2', '34', '18', '−2', '10'], a: 0, x: 'Brackets: 2 + 6 = 8. Powers: 4² = 16. Then divide and multiply left to right: 48 ÷ 8 = 6, 6 × 3 = 18. Finally 18 − 16 = <b>2</b>.' },
+  { t: 'Ordering fractions', q: 'Which fraction is the largest?', o: ['<sup>5</sup>&frasl;<sub>8</sub>', '<sup>7</sup>&frasl;<sub>12</sub>', '<sup>2</sup>&frasl;<sub>3</sub>', '<sup>11</sup>&frasl;<sub>18</sub>', '<sup>3</sup>&frasl;<sub>5</sub>'], a: 2, x: 'As decimals: 0.625, 0.583, 0.667, 0.611, 0.6. The largest is <b>2/3</b>. Converting to decimals (or a common denominator) beats guessing.' },
+  { t: 'Dividing fractions', q: '<sup>3</sup>&frasl;<sub>4</sub> ÷ <sup>3</sup>&frasl;<sub>8</sub> = ?', o: ['2', '<sup>9</sup>&frasl;<sub>32</sub>', '<sup>1</sup>&frasl;<sub>2</sub>', '<sup>3</sup>&frasl;<sub>2</sub>', '6'], a: 0, x: 'How many 3/8s fit into 3/4? 3/4 = 6/8, and 6/8 ÷ 3/8 = <b>2</b>. Dividing by a fraction less than 1 makes the answer bigger.' },
+  { t: 'Percentage change', q: 'A coat costs £80. Its price rises by 25%. In a sale, the new price is then cut by 20%. What is the sale price?', o: ['£80', '£84', '£76', '£85', '£100'], a: 0, x: '25% of £80 = £20, so it rises to £100. 20% of £100 = £20, so it falls to <b>£80</b>. The trap is thinking +25% then −20% must leave it 5% higher.' },
+  { t: 'Substitution', q: 'If x = 4 and y = −2, what is 3x² − 2y?', o: ['52', '44', '140', '28', '40'], a: 0, x: 'x² = 16, so 3x² = 48. 2y = −4, and subtracting −4 means adding 4. 48 + 4 = <b>52</b>.' },
+  { t: 'Equations', q: 'Solve 5(n − 3) = 2n + 9', o: ['n = 8', 'n = 4', 'n = 6', 'n = 3', 'n = 12'], a: 0, x: 'Expand: 5n − 15 = 2n + 9. Take 2n from both sides: 3n − 15 = 9. Add 15: 3n = 24, so <b>n = 8</b>. Check: 5 × 5 = 25 and 16 + 9 = 25.' },
+  { t: 'Ratio', q: 'The ratio of boys to girls in a class is 3 : 5. There are 12 more girls than boys. How many children are in the class?', o: ['48', '32', '24', '40', '96'], a: 0, x: 'The difference is 5 − 3 = 2 parts, and 2 parts = 12, so 1 part = 6. Total = 8 parts = <b>48</b>.' },
+  { t: 'Compound area', q: 'A 4 cm by 3 cm rectangle is cut from one corner of a 10 cm by 8 cm rectangle. What is the area of the shape left?', o: ['68 cm²', '80 cm²', '92 cm²', '56 cm²', '36 cm²'], a: 0, x: 'Big rectangle 10 × 8 = 80. Cut-out 4 × 3 = 12. 80 − 12 = <b>68 cm²</b>.' },
+  { t: 'Perimeter', q: 'What is the perimeter of the same shape (10 cm by 8 cm with a 4 cm by 3 cm corner cut out)?', o: ['36 cm', '29 cm', '43 cm', '30 cm', '50 cm'], a: 0, x: 'Surprise: cutting a corner out does not change the perimeter. The two new edges (4 and 3) exactly replace the two lengths removed. Still 10 + 8 + 10 + 8 = <b>36 cm</b>. Sketch it to see.' },
+  { t: 'Polygons', q: 'What is the size of each interior angle in a regular hexagon?', o: ['120°', '108°', '135°', '60°', '720°'], a: 0, x: 'A hexagon splits into 4 triangles from one corner: 4 × 180 = 720°. Six equal angles: 720 ÷ 6 = <b>120°</b>.' },
+  { t: 'Speed', q: 'A cyclist rides at 18 km/h. How far does she travel in 40 minutes?', o: ['12 km', '7.2 km', '13.5 km', '720 km', '4.5 km'], a: 0, x: '40 minutes is 2/3 of an hour. 2/3 of 18 = <b>12 km</b>. Never multiply km/h by minutes.' },
+  { t: 'Averages', q: 'The mean of five numbers is 12. One number is removed and the mean of the other four is 10. Which number was removed?', o: ['20', '2', '12', '22', '10'], a: 0, x: 'Five numbers with mean 12 total 60. Four with mean 10 total 40. The missing number is 60 − 40 = <b>20</b>.' },
+  { t: 'Sequences', q: 'The sequence 7, 11, 15, 19 … continues. What is the 50th term?', o: ['203', '200', '207', '199', '243'], a: 0, x: 'It goes up in 4s, so the rule is 4n + 3 (check: 4 × 1 + 3 = 7). The 50th term is 4 × 50 + 3 = <b>203</b>.' },
+  { t: 'Multiples', q: 'What is the smallest number that is a multiple of 6, 8 and 15?', o: ['120', '720', '240', '60', '48'], a: 0, x: 'List multiples of the biggest, 15: 15, 30, 45, 60, 75, 90, 105, <b>120</b>. 120 is the first that 8 and 6 both divide.' },
+  { t: 'Probability', q: 'A bag holds 3 red, 5 blue and 4 green counters. One is picked at random. What is the probability it is <b>not</b> blue?', o: ['<sup>7</sup>&frasl;<sub>12</sub>', '<sup>5</sup>&frasl;<sub>12</sub>', '<sup>1</sup>&frasl;<sub>3</sub>', '<sup>7</sup>&frasl;<sub>5</sub>', '<sup>3</sup>&frasl;<sub>4</sub>'], a: 0, x: '12 counters in total, 7 are not blue (3 red + 4 green). Probability = <b>7/12</b>.' },
+  { t: 'Volume', q: 'How many 2 cm cubes fit exactly inside a box measuring 10 cm by 6 cm by 4 cm?', o: ['30', '240', '60', '120', '15'], a: 0, x: 'Count along each edge: 10 ÷ 2 = 5, 6 ÷ 2 = 3, 4 ÷ 2 = 2. 5 × 3 × 2 = <b>30</b>. Dividing 240 by 2 is the trap: each small cube is 8 cm³.' },
+  { t: 'Time', q: 'A film lasts 2 hours 47 minutes and finishes at 21:15. When did it start?', o: ['18:28', '18:32', '19:28', '18:68', '18:38'], a: 0, x: 'Go back 3 hours to 18:15, then forward the extra 13 minutes (3 h is 13 min too much): <b>18:28</b>.' },
+  { t: 'Number puzzles', q: 'Two whole numbers add to 23 and multiply to 132. What is their difference?', o: ['1', '2', '3', '11', '12'], a: 0, x: 'Try pairs that add to 23 near the middle: 11 + 12 = 23 and 11 × 12 = 132. Difference <b>1</b>.' },
+  { t: 'Roman numerals', q: 'What is MCMXLIV in ordinary numbers?', o: ['1944', '2144', '1964', '1946', '1494'], a: 0, x: 'M = 1000, CM = 900, XL = 40, IV = 4. Total <b>1944</b>. A smaller numeral before a bigger one means subtract.' },
+  { t: 'Proportion', q: '6 pencils cost £1.68. How much do 15 pencils cost?', o: ['£4.20', '£4.02', '£2.52', '£3.36', '£4.32'], a: 0, x: 'One pencil: £1.68 ÷ 6 = 28p. 15 × 28p = 420p = <b>£4.20</b>. Or: 15 pencils is 2½ lots of 6, and 2.5 × £1.68 = £4.20.' }
+];
+const MA_HARD_WRITTEN = [
+  { t: 'Place value', q: 'Using the digits 3, 5 and 8 once each, and a decimal point, write the largest number that is less than 10.', ans: ['8.53'], x: 'Only one digit can go before the point, and it should be the biggest: 8. Then the rest in descending order: <b>8.53</b>.' },
+  { t: 'Working backwards', q: 'A number is doubled, then 7 is subtracted, then the result is halved. The answer is 13.5. What was the number?', ans: ['17'], x: 'Undo in reverse order: 13.5 × 2 = 27, 27 + 7 = 34, 34 ÷ 2 = <b>17</b>.' },
+  { t: 'Sequences', q: 'The first term is 3. Each term after that is double the previous term, minus 1. What is the 6th term?', ans: ['65'], x: '3, 5, 9, 17, 33, <b>65</b>. Write each term down: it is easy to lose count.' },
+  { t: 'Area', q: 'A rectangle is 3 times as long as it is wide. Its perimeter is 64 cm. What is its area in cm²?', ans: ['192', '192cm2', '192cm²'], x: 'Width w, length 3w. Perimeter = 8w = 64, so w = 8 and length = 24. Area = 8 × 24 = <b>192 cm²</b>.' },
+  { t: 'Fractions of time', q: 'How many minutes are there in <sup>3</sup>&frasl;<sub>8</sub> of a day?', ans: ['540'], x: '3/8 of 24 hours = 9 hours. 9 × 60 = <b>540</b> minutes.' },
+  { t: 'Remainders', q: 'What is the smallest whole number bigger than 1 that leaves a remainder of 1 when divided by 2, 3, 4, 5 or 6?', ans: ['61'], x: 'The number minus 1 must be a common multiple of 2, 3, 4, 5 and 6. The smallest is 60. So the answer is <b>61</b>.' },
+  { t: 'Age problems', q: 'Tom is 3 times as old as his sister. In 6 years he will be twice as old as her. How old is Tom now?', ans: ['18'], x: 'Try sister = 6: Tom is 18. In 6 years: 24 and 12, and 24 is twice 12. Tom is <b>18</b>.' },
+  { t: 'Decimals', q: 'Work out 2.4 × 0.35', ans: ['0.84', '.84'], x: '24 × 35 = 840. There are three decimal places in the question (one in 2.4, two in 0.35), so 0.840 = <b>0.84</b>.' },
+  { t: 'Fractions', q: 'Work out <sup>7</sup>&frasl;<sub>8</sub> − <sup>2</sup>&frasl;<sub>3</sub>. Type your answer as a fraction, like 1/2.', ans: ['5/24'], x: 'Common denominator 24: 21/24 − 16/24 = <b>5/24</b>.' },
+  { t: 'Ratio and angles', q: 'The angles of a triangle are in the ratio 2 : 3 : 4. What is the largest angle in degrees?', ans: ['80', '80°'], x: '2 + 3 + 4 = 9 parts = 180°, so one part = 20°. The largest is 4 × 20 = <b>80°</b>.' }
+];
+
+/* ---- register tests: Summit first, the original sets become warm-ups ---- */
+TESTS.vr.title = 'Foothills: verbal reasoning warm-up';
+TESTS.nvr.title = 'Foothills: non-verbal warm-up';
+TESTS.en.title = 'Foothills: English warm-up';
+TESTS.ma.title = 'Foothills: maths warm-up';
+TESTS.maw.title = 'Foothills: written maths warm-up';
+TESTS.vr2 = { id: 'vr2', title: 'Summit: verbal reasoning at exam standard', mins: 25, qs: VR_HARD };
+TESTS.nvr2 = { id: 'nvr2', title: 'Summit: non-verbal reasoning at exam standard', mins: 15, qs: NVR_HARD };
+TESTS.en2 = { id: 'en2', title: 'Summit: English at exam standard (prose and poetry)', mins: 35, qs: EN_HARD, passages: { ascent: PASSAGE_ASCENT, windy: POEM_WINDY } };
+TESTS.ma2 = { id: 'ma2', title: 'Summit: maths at exam standard', mins: 40, qs: MA_HARD };
+TESTS.maw2 = { id: 'maw2', title: 'Summit: written maths, extension questions', mins: 30, qs: MA_HARD_WRITTEN, written: true };
+
+/* ================= STATE ================= */
+const KEY = 'ottoClimb_v1';
+let S = load();
+function load() {
+  try { const s = JSON.parse(localStorage.getItem(KEY)); if (s) return Object.assign({ tests: {}, vocab: {}, writing: {}, preTest: '' }, s); } catch (e) {}
+  return { tests: {}, vocab: {}, writing: {}, preTest: '' };
+}
+function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
+const $ = (s, el = document) => el.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ================= DATES ================= */
+const START = new Date('2026-10-12T00:00');
+function preTestDate() { return S.preTest ? new Date(S.preTest + 'T09:00') : null; }
+function events() {
+  const ev = [
+    { key: 'iseb', date: preTestDate() || new Date('2026-11-20T09:00'), tbc: !S.preTest, title: 'ISEB Pre-Test', where: 'At school, online', note: 'Must be done by Fri 27 November for Sevenoaks.', school: 'iseb' },
+    { key: 'lat', date: new Date('2026-12-02T09:00'), title: 'Latymer Upper entrance exam', where: 'Latymer Upper, Hammersmith', note: 'Wed 2 December. Morning and afternoon sessions: your session time comes in the confirmation.', school: 'latymer' },
+    { key: 'sev', date: new Date('2027-01-05T09:00'), title: 'Sevenoaks assessment day', where: 'Sevenoaks School', note: 'Tue 5 January. English, maths and a group discussion.', school: 'sevenoaks', star: true },
+    { key: 'latint', date: new Date('2027-01-06T09:00'), title: 'Latymer Upper interview day', where: 'Latymer Upper', note: 'Wed 6 January, if invited. You hear by 15 December.', school: 'latymer', small: true },
+    { key: 'all', date: new Date('2027-01-08T09:00'), title: "Alleyn's entrance exams", where: "Alleyn's, Dulwich", note: 'Fri 8 January. Reasoning, English and maths.', school: 'alleyns' },
+    { key: 'allint', date: new Date('2027-01-23T09:00'), title: "Alleyn's interview and group activity", where: "Alleyn's", note: 'Sat 23 January, for selected candidates.', school: 'alleyns', small: true }
+  ];
+  return ev.sort((a, b) => a.date - b.date);
+}
+const fmt = d => d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+const daysTo = d => Math.ceil((d - new Date()) / 86400000);
+
+/* ================= SCHOOL FACTS ================= */
+const SCHOOLS = {
+  iseb: { name: 'ISEB Pre-Test', img: 'img/iseb.jpg', lines: ['Online, multiple choice, adaptive: questions get harder as you get them right.', 'Four parts: maths, English (comprehension and SPaG), verbal and non-verbal reasoning.', 'No going back. The Next button only appears once you choose an answer.', 'Pencil and paper allowed for working. You can hide the timer.'] },
+  sevenoaks: { name: 'Sevenoaks', img: 'img/sevenoaks.jpg', lines: ['Stage 1: the ISEB Pre-Test, done by 27 November.', 'Stage 2, 5 January: English paper (about 1 hour plus 5 minutes reading: comprehension, then creative writing from a choice of two).', 'Maths paper (about 1 hour), written answers. Show working: method earns marks.', '40-minute group discussion. No formal interview. Results 12 February.'] },
+  latymer: { name: 'Latymer Upper', img: 'img/latymer.jpg', lines: ['Does not use the ISEB. Sets its own papers on 2 December.', 'Maths: one paper, 60 minutes.', 'English: comprehension and multiple choice (35 minutes) plus descriptive writing (45 minutes).', 'No reasoning paper. Interview day 6 January if invited.'] },
+  alleyns: { name: "Alleyn's", img: 'img/alleyns.jpg', lines: ['Does not use the ISEB. Own exams on 8 January.', 'English, 45 minutes: about 10 to read, then multiple choice and continuing the story. Pen, not pencil.', 'Maths, 30 minutes, no calculator. The last questions are harder extension ones.', 'Reasoning, 45 minutes: verbal, non-verbal and spatial, multiple choice on an answer sheet.'] }
+};
+
+/* ================= SUBJECT CONTENT ================= */
+const SUBJECTS = {
+  vr: {
+    name: 'Verbal reasoning', short: 'Verbal', colour: 'var(--vr)', test: ['vr2', 'vr'],
+    blurb: 'Puzzles made of words, letters and numbers. Every type has a method, and once you know it these become quick marks.',
+    where: [['ISEB Pre-Test', 'A verbal reasoning section, multiple choice on screen. Counts towards Sevenoaks.'], ["Alleyn's", 'Part of the 45-minute reasoning paper, mixed in with non-verbal and spatial questions.'], ['Latymer Upper', 'No reasoning paper. Vocabulary still helps you in English.'], ['Sevenoaks', 'Through the ISEB score. Check the January letter in case reasoning is added on the day.']],
+    methods: [
+      ['Synonyms and antonyms', 'Say the word in a sentence first. Then test each option in that sentence. Watch for the trap: an antonym hiding in a synonym question.'],
+      ['Odd ones out', 'Find what three words share (all trees? all verbs?). The two that do not fit are your answer.'],
+      ['Hidden words', 'Run your finger across each gap between two words, reading the last letters of one and the first letters of the next. Whole words do not count.'],
+      ['Missing letters and compound words', 'Read the whole sentence so you know the word you need. For compounds, try every word from group one with every word from group two.'],
+      ['Letter series and codes', 'Write A to Z with numbers 1 to 26 at the top of your rough paper. Count the jumps between letters. Remember: after Z, go back to A.'],
+      ['Number series and letter sums', 'Look at the gaps between numbers. If the gaps do not make sense, try multiplying. For letter sums, swap letters for numbers first.'],
+      ['Analogies', 'Turn the first pair into a sentence: "a bird lives in a nest". Then use the same sentence for the second pair.'],
+      ['Logic', 'Draw it. A line from oldest to youngest or a quick table beats holding it in your head.']
+    ],
+    samples: [['ISEB Pre-Tests walkthrough (try the real test screen)', 'https://iseb.eva.tech/walkthrough/'], ["Alleyn's syllabus and reasoning samples (PDF)", 'https://www.alleyns.org.uk/userfiles/alleynsschoolmvc/documents/11-Entrance-Exam-Syllabus.pdf'], ['GL Assessment free familiarisation papers', 'https://11plus.gl-assessment.co.uk/pages/free-materials']]
+  },
+  nvr: {
+    name: 'Non-verbal reasoning', short: 'Non-verbal', colour: 'var(--nvr)', test: ['nvr2', 'nvr'],
+    blurb: 'Patterns in shapes. You are a detective: check one feature at a time until the rule gives itself away.',
+    where: [['ISEB Pre-Test', 'A non-verbal section on screen, including "how many cubes" questions.'], ["Alleyn's", 'In the 45-minute reasoning paper, with spatial questions like nets, rotations and 3D shapes.'], ['Latymer Upper', 'No reasoning paper.'], ['Sevenoaks', 'Through the ISEB score.']],
+    methods: [
+      ['The feature checklist', 'Go through one at a time: shape, size, shading, number of things, position, and which way things point. Most questions use one or two of these.'],
+      ['Odd one out', 'Find the rule that four figures share. Turning a shape is usually a distraction, not a difference.'],
+      ['Series', 'Look at what changes from box to box. Often two things change at once: count the sides AND check the shading.'],
+      ['Analogies', 'Say what happened to the first shape ("the inside and outside swapped") then do exactly that to the second.'],
+      ['Reflection and rotation', 'Reflections flip; rotations turn. Pick one corner or dot and follow it. A flipped shape can never be turned back to the original.'],
+      ['Codes', 'Each letter stands for one feature. Find two figures that share a letter and ask what else they share.'],
+      ['Cubes and nets', 'Count stacks layer by layer and remember hidden cubes holding others up. Five squares in a line can never make a cube.'],
+      ['Fold and punch', 'Every fold doubles the holes, mirrored across the fold line.']
+    ],
+    samples: [['ISEB Pre-Tests walkthrough', 'https://iseb.eva.tech/walkthrough/'], ["Alleyn's syllabus and reasoning samples (PDF)", 'https://www.alleyns.org.uk/userfiles/alleynsschoolmvc/documents/11-Entrance-Exam-Syllabus.pdf'], ['GL Assessment free familiarisation papers', 'https://11plus.gl-assessment.co.uk/pages/free-materials']]
+  },
+  en: {
+    name: 'English', short: 'English', colour: 'var(--en)', test: ['en2', 'en'], writing: true,
+    blurb: 'Reading closely and writing with control. Every school tests both, in different ways.',
+    where: [['ISEB Pre-Test', 'Short passages with multiple-choice questions, then spelling, punctuation and grammar.'], ["Alleyn's", '45 minutes: multiple-choice comprehension, then continue the story you read. Pen only.'], ['Latymer Upper', 'Comprehension and multiple choice (35 minutes), then a separate descriptive writing paper (45 minutes).'], ['Sevenoaks', 'About an hour plus 5 minutes reading: comprehension (about 35 minutes) then creative writing from two prompts (about 25 minutes).']],
+    methods: [
+      ['Retrieval', 'The answer is in the text. Find the exact line before you choose.'],
+      ['Inference', 'Read between the lines: what do actions and descriptions tell you about feelings? Your answer must be backed by a clue.'],
+      ['Word meaning', 'Put each option into the sentence in place of the word. The one that keeps the meaning wins.'],
+      ['Language devices', 'Simile uses like or as. Metaphor says something IS something else. Personification gives human actions to things.'],
+      ['Spot the mistake', 'Read each section slowly, sounding out tricky words. Check capitals for names, days and months.'],
+      ['Jumbled sentences', 'Write the sentence out in full before you count which word comes where.'],
+      ['Writing: plan first', 'Spend the first few minutes planning: a beginning, a problem, a turning point, an ending. Then write.'],
+      ['Writing: make it vivid', 'Use the senses, vary how sentences start, show feelings through actions, and save three minutes to check.']
+    ],
+    samples: [["Alleyn's English sample paper (PDF)", 'https://www.alleyns.org.uk/userfiles/alleynsschoolmvc/documents/11-English-Sample-Paper.pdf'], ['Latymer Upper sample 11+ papers', 'https://www.latymer-upper.org/admissions/sample-11-papers/'], ['Sevenoaks: assessment and preparation', 'https://www.sevenoaksschool.org/admissions/entry-at-11/assessment-and-preparation/'], ['ISEB Pre-Tests walkthrough', 'https://iseb.eva.tech/walkthrough/']]
+  },
+  ma: {
+    name: 'Maths', short: 'Maths', colour: 'var(--ma)', test: ['ma2', 'maw2', 'ma', 'maw'],
+    blurb: 'Two kinds of paper: quick multiple choice for the ISEB, and written answers with working for the school papers.',
+    where: [['ISEB Pre-Test', 'Multiple choice on screen, based on maths up to the end of Year 5. Rough paper allowed.'], ["Alleyn's", '30 minutes, no calculator. A few multiple-choice questions, then written answers. The final questions are harder extension ones.'], ['Latymer Upper', 'One 60-minute paper set by the school.'], ['Sevenoaks', 'About an hour, written answers. Show working, because method earns marks even if the answer slips.']],
+    methods: [
+      ['Four operations', 'Line up columns carefully. For division, use short division and write the remainders small.'],
+      ['Fractions, decimals, percentages', 'Find 10% first and build from it. To compare decimals, give them all the same number of places.'],
+      ['Ratio', 'Add the parts, find one part, then multiply.'],
+      ['Angles and shape', 'Triangle 180°, straight line 180°, around a point 360°. Isosceles means two angles match.'],
+      ['Measures and time', 'Convert to the same unit before you calculate. For time, count up to the next hour.'],
+      ['Algebra and sequences', 'Do the same thing to both sides. For sequences, look at the gaps.'],
+      ['Working backwards', '"I think of a number" questions: undo each step with the inverse, starting from the end.'],
+      ['Check it', 'Is the answer sensible? Use the inverse to check, and look at units.']
+    ],
+    samples: [["Alleyn's maths sample paper 1 (PDF)", 'https://www.alleyns.org.uk/userfiles/alleynsschoolmvc/documents/11-maths-sample-paper-1.pdf'], ["Alleyn's maths sample paper 2 (PDF)", 'https://www.alleyns.org.uk/userfiles/alleynsschoolmvc/documents/11-maths-sample-paper-2.pdf'], ['Latymer Upper sample 11+ papers', 'https://www.latymer-upper.org/admissions/sample-11-papers/'], ['ISEB Pre-Tests walkthrough', 'https://iseb.eva.tech/walkthrough/']]
+  }
+};
+
+/* ================= ILLUSTRATIONS (native SVG) ================= */
+const ART = {
+  vr: `<svg viewBox="0 0 220 140" class="art" aria-hidden="true"><g font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="44" text-anchor="middle"><rect x="14" y="58" width="58" height="58" rx="8" fill="#fff" stroke="#142A3E" stroke-width="4" transform="rotate(-8 43 87)"/><text x="43" y="103" fill="#E8551C" transform="rotate(-8 43 87)">A</text><rect x="82" y="40" width="58" height="58" rx="8" fill="#E8551C" stroke="#142A3E" stroke-width="4"/><text x="111" y="85" fill="#fff">B</text><rect x="150" y="62" width="58" height="58" rx="8" fill="#fff" stroke="#142A3E" stroke-width="4" transform="rotate(7 179 91)"/><text x="179" y="107" fill="#142A3E" transform="rotate(7 179 91)">C</text></g><path d="M60 30 q50 -26 100 0" fill="none" stroke="#142A3E" stroke-width="3" stroke-dasharray="6 6"/></svg>`,
+  nvr: `<svg viewBox="0 0 220 140" class="art" aria-hidden="true"><circle cx="58" cy="78" r="40" fill="#0E8A9A" stroke="#142A3E" stroke-width="4"/><rect x="100" y="34" width="62" height="62" fill="#fff" stroke="#142A3E" stroke-width="4" transform="rotate(18 131 65)"/><polygon points="170,118 205,118 187,84" fill="#142A3E"/><circle cx="131" cy="65" r="8" fill="#E8551C"/></svg>`,
+  en: `<svg viewBox="0 0 220 140" class="art" aria-hidden="true"><path d="M110 40 C80 26 44 26 20 36 V120 C44 110 80 110 110 124 Z" fill="#fff" stroke="#142A3E" stroke-width="4" stroke-linejoin="round"/><path d="M110 40 C140 26 176 26 200 36 V120 C176 110 140 110 110 124 Z" fill="#fff" stroke="#142A3E" stroke-width="4" stroke-linejoin="round"/><g stroke="#A3305E" stroke-width="4" stroke-linecap="round"><line x1="36" y1="56" x2="94" y2="60"/><line x1="36" y1="74" x2="94" y2="78"/><line x1="36" y1="92" x2="78" y2="95"/><line x1="126" y1="60" x2="184" y2="56"/><line x1="126" y1="78" x2="184" y2="74"/></g><path d="M170 10 l18 18 l-52 52 l-22 4 l4 -22 z" fill="#F4B400" stroke="#142A3E" stroke-width="4" stroke-linejoin="round"/></svg>`,
+  ma: `<svg viewBox="0 0 220 140" class="art" aria-hidden="true"><path d="M20 120 H200 A90 90 0 0 0 20 120 Z" fill="#fff" stroke="#142A3E" stroke-width="4"/><g stroke="#142A3E" stroke-width="3">${Array.from({ length: 9 }, (_, i) => { const a = Math.PI * (i + 1) / 10; return `<line x1="${110 - 90 * Math.cos(a)}" y1="${120 - 90 * Math.sin(a)}" x2="${110 - 76 * Math.cos(a)}" y2="${120 - 76 * Math.sin(a)}"/>`; }).join('')}</g><line x1="110" y1="120" x2="168" y2="62" stroke="#23634A" stroke-width="5" stroke-linecap="round"/><path d="M146 120 A36 36 0 0 0 136 94" fill="none" stroke="#E8551C" stroke-width="4"/><circle cx="110" cy="120" r="6" fill="#142A3E"/></svg>`,
+  vocab: `<svg viewBox="0 0 220 140" class="art" aria-hidden="true"><rect x="30" y="34" width="120" height="84" rx="10" fill="#fff" stroke="#142A3E" stroke-width="4" transform="rotate(-6 90 76)"/><rect x="66" y="24" width="120" height="84" rx="10" fill="#F4B400" stroke="#142A3E" stroke-width="4" transform="rotate(5 126 66)"/><text x="126" y="76" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="26" fill="#142A3E" transform="rotate(5 126 66)">zenith</text></svg>`
+};
+
+/* ================= HERO ================= */
+function heroSVG() {
+  return `<svg id="mtn" viewBox="0 0 1000 400" preserveAspectRatio="xMidYMax meet" role="img" aria-label="A mountain path from today to the January exams">
+  <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1B3A55"/><stop offset="1" stop-color="#3D6A8C"/></linearGradient></defs>
+  <rect width="1000" height="400" fill="url(#sky)"/>
+  <g fill="#fff" opacity=".7"><circle cx="90" cy="60" r="1.6"/><circle cx="210" cy="34" r="1.2"/><circle cx="340" cy="80" r="1.4"/><circle cx="470" cy="40" r="1.1"/><circle cx="610" cy="70" r="1.5"/><circle cx="880" cy="46" r="1.2"/></g>
+  <path d="M0 400 L0 300 L120 230 L210 280 L330 180 L420 250 L520 160 L600 230 L700 120 L780 190 L860 70 L940 160 L1000 130 L1000 400Z" fill="#2B5675"/>
+  <path d="M0 400 L0 340 L150 280 L260 320 L380 240 L470 300 L560 220 L650 280 L760 170 L840 120 L860 105 L900 150 L1000 210 L1000 400Z" fill="#CFE3EE"/>
+  <path d="M760 170 L840 120 L860 105 L900 150 L870 150 L850 132 L820 160 Z" fill="#fff"/>
+  <path id="trail" d="M40 372 C150 360 180 330 260 330 S380 300 420 290 S520 270 560 248 S650 228 690 200 S770 160 800 150 S845 118 858 108" fill="none" stroke="#E8551C" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 12"/>
+  <g id="camps"></g>
+  <g id="climber"><circle r="13" fill="#F4B400" stroke="#142A3E" stroke-width="4"/><circle r="4" fill="#142A3E"/></g>
+  </svg>`;
+}
+function placeHero() {
+  const trail = $('#trail'); if (!trail) return;
+  const L = trail.getTotalLength(), ev = events().filter(e => !e.small);
+  const short = { iseb: 'Pre-Test', lat: 'Latymer', sev: 'Sevenoaks', all: "Alleyn's" };
+  const stops = ev.map((e, i) => ({ e, f: 0.26 + i * (0.72 / Math.max(1, ev.length - 1)) }));
+  const camps = $('#camps');
+  camps.innerHTML = stops.map(({ e, f }, i) => {
+    const p = trail.getPointAtLength(L * f);
+    const col = e.star ? '#F4B400' : '#fff', up = i % 2 ? -62 : -58;
+    return `<g class="camp" style="animation-delay:${0.9 + i * 0.25}s" transform="translate(${p.x.toFixed(1)},${p.y.toFixed(1)})"><line x1="0" y1="0" x2="0" y2="-46" stroke="#142A3E" stroke-width="3"/><path d="M0 -46 L30 -38 L0 -30 Z" fill="${col}" stroke="#142A3E" stroke-width="2.5"/><text x="0" y="${up}" text-anchor="middle" class="camplabel">${short[e.key] || e.title}</text></g>`;
+  }).join('');
+  /* climber: piecewise between today-start and each camp by date */
+  const pts = [{ d: START, f: 0.03 }, ...stops.map(s => ({ d: s.e.date, f: s.f }))];
+  const now = new Date(); let f = pts[pts.length - 1].f;
+  for (let i = 0; i < pts.length - 1; i++) { if (now < pts[i + 1].d) { const k = Math.max(0, (now - pts[i].d) / (pts[i + 1].d - pts[i].d)); f = pts[i].f + k * (pts[i + 1].f - pts[i].f); break; } }
+  const target = L * f;
+  const climber = $('#climber');
+  if (reduceMotion) { const p = trail.getPointAtLength(target); climber.setAttribute('transform', `translate(${p.x},${p.y})`); return; }
+  trail.style.strokeDasharray = `${L}`;
+  trail.animate([{ strokeDashoffset: L }, { strokeDashoffset: 0 }], { duration: 1400, easing: 'ease-out', fill: 'forwards' }).onfinish = () => { trail.style.strokeDasharray = '2 12'; };
+  const t0 = performance.now(), dur = 1600;
+  (function step(t) {
+    const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+    const p = trail.getPointAtLength(Math.max(1, target * e));
+    climber.setAttribute('transform', `translate(${p.x.toFixed(1)},${p.y.toFixed(1)})`);
+    if (k < 1) requestAnimationFrame(step);
+  })(t0);
+}
+
+/* ================= TABS ================= */
+const TABS = [['base', 'Basecamp'], ['vr', 'Verbal'], ['nvr', 'Non-verbal'], ['en', 'English'], ['ma', 'Maths'], ['vocab', 'Vocabulary']];
+let current = 'base';
+function nav() {
+  $('#tabs').innerHTML = TABS.map(([k, l]) => `<button class="tab tab-${k}" data-k="${k}" aria-current="${k === current}">${l}</button>`).join('');
+  $('#tabs').onclick = e => { const b = e.target.closest('.tab'); if (b) go(b.dataset.k); };
+}
+function go(k) { current = k; nav(); render(); window.scrollTo({ top: 0 }); }
+function render() {
+  const m = $('#main');
+  if (current === 'base') { m.innerHTML = basecamp(); placeHero(); bindBase(); }
+  else if (current === 'vocab') { m.innerHTML = vocabPage(); bindVocab(); }
+  else { m.innerHTML = subjectPage(current); bindSubject(current); }
+}
+
+/* ================= BASECAMP ================= */
+function best(id) { const t = S.tests[id]; return t ? t.best : null; }
+function basecamp() {
+  const ev = events(), next = ev.find(e => e.date > new Date());
+  const mastered = VOCAB.filter(v => (S.vocab[v.w] || 0) >= 2).length;
+  return `<section class="hero">${heroSVG()}
+    <div class="hero-text"><h1>Otto's climb</h1>
+    <p class="lede">${next ? `Next stop: <b>${next.title}</b>${next.tbc ? ', November in school' : `, in ${daysTo(next.date)} days`}.` : 'Every exam done. Well climbed.'}</p></div></section>
+  <section class="wrap">
+    <h2>The route</h2>
+    <ol class="route">${ev.map(e => `<li class="${e.small ? 'small' : ''} ${e.date < new Date() ? 'done' : ''}">
+      <div class="when"><b>${e.tbc ? 'November in school' : fmt(e.date)}</b>${e.tbc ? '' : `<span>${daysTo(e.date) > 0 ? daysTo(e.date) + ' days' : 'done'}</span>`}</div>
+      <div class="what"><h3>${e.title}${e.star ? ' <span class="star" title="Otto\'s first choice">first choice</span>' : ''}</h3><p>${e.note}</p></div></li>`).join('')}</ol>
+    <label class="pretest">ISEB Pre-Test date at school <input type="date" id="pt" value="${S.preTest}"></label>
+
+    <h2>Your progress</h2>
+    <div class="prog">${['vr', 'nvr', 'en', 'ma'].map(k => { const b = SUBJECTS[k].test.map(best).filter(x => x !== null); const v = b.length ? Math.max(...b) : null; return `<button class="pcard p-${k}" data-go="${k}"><span>${SUBJECTS[k].short}</span><b class="${v === null ? 'none' : ''}">${v === null ? 'Not yet' : v + '%'}</b><small>best score</small></button>`; }).join('')}
+      <button class="pcard p-vocab" data-go="vocab"><span>Vocabulary</span><b>${VOCAB.length - mastered}</b><small>words left to master</small></button></div>
+
+    <h2>Know your exams</h2>
+    <div class="schools">${['iseb', 'sevenoaks', 'latymer', 'alleyns'].map(k => { const s = SCHOOLS[k]; return `<article class="school s-${k}"><img src="${s.img}" alt="" onerror="this.remove()"><h3>${s.name}</h3><ul>${s.lines.map(l => `<li>${l}</li>`).join('')}</ul></article>`; }).join('')}</div>
+
+    <div class="rules"><h2>Five rules for the ISEB</h2><ol>
+      <li><b>Accuracy beats speed.</b> Harder questions are worth more, so a careful right answer is better than a quick guess.</li>
+      <li><b>You cannot go back.</b> Check before you press Next.</li>
+      <li><b>Use your rough paper.</b> Alphabet strips, tallies, sketches: all allowed.</li>
+      <li><b>Stuck? Cross out the wrong ones.</b> Remove options you know are wrong, then choose.</li>
+      <li><b>Questions getting harder is good news.</b> It means you are doing well.</li></ol></div>
+
+    <details class="tutor"><summary>Tutor notes</summary>
+      <p><b>Which test matters where.</b> The ISEB Pre-Test only feeds Sevenoaks on this list. Alleyn's states the Pre-Test is not part of its process, and Latymer Upper sets its own English and maths papers. Prioritise ISEB familiarity until late November, then switch to written-answer maths and timed writing for December and January.</p>
+      <p><b>ISEB timings.</b> Atom's 2026 guide gives maths 40, English 40, NVR 30 and VR 25 minutes; older guides give 50, 25, 32 and 36. Confirm with the school. Scores are age-standardised (100 is average) and the most selective schools look for around 120 or more.</p>
+      <p><b>First week of January.</b> Sevenoaks on Tue 5, Latymer Upper interview on Wed 6 (if invited) and Alleyn's on Fri 8. Plan rest days around them.</p>
+      <p><b>Saving.</b> Progress is saved in this browser only. Use the backup code below to move it to another device.</p>
+      <div class="backup"><button id="bk-make" class="btn ghost">Make backup code</button><button id="bk-load" class="btn ghost">Restore from code</button><textarea id="bk" rows="3" placeholder="Backup code appears here, or paste one in to restore"></textarea></div>
+    </details>
+  </section>`;
+}
+function bindBase() {
+  $('#pt').onchange = e => { S.preTest = e.target.value; save(); render(); };
+  document.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go));
+  $('#bk-make').onclick = () => { $('#bk').value = btoa(unescape(encodeURIComponent(JSON.stringify(S)))); $('#bk').select(); };
+  $('#bk-load').onclick = () => { try { S = Object.assign(load(), JSON.parse(decodeURIComponent(escape(atob($('#bk').value.trim()))))); save(); render(); toast('Progress restored'); } catch (e) { toast('That code did not work. Copy the whole code and try again.'); } };
+}
+
+/* ================= SUBJECT PAGES ================= */
+function testCard(id) {
+  const t = TESTS[id], b = S.tests[id];
+  return `<div class="testcard ${id.endsWith('2') ? 'summit' : ''}"><div><h3>${t.title}</h3><p>${t.qs.length} questions, about ${t.mins} minutes${t.written ? ', written answers' : ''}.${b ? ` Best: <b>${b.best}%</b> (${b.attempts} ${b.attempts === 1 ? 'try' : 'tries'})` : ''}</p></div><button class="btn" data-test="${id}">Start</button></div>`;
+}
+function subjectPage(k) {
+  const s = SUBJECTS[k];
+  return `<section class="band band-${k}"><div class="wrap bandin">${ART[k]}<div><h1>${s.name}</h1><p class="lede">${s.blurb}</p></div></div></section>
+  <section class="wrap">
+    <h2>Practise</h2><p class="hint">Start with Foothills if a type is new. Summit sets are at the level of the real exams.</p>${s.test.map(testCard).join('')}
+    ${s.writing ? `<h2>Timed writing</h2><div class="writes">${WRITING.map(w => `<button class="wcard" data-w="${w.id}"><b>${w.school}</b><span>${w.prompt}</span><small>${w.mins} minutes</small></button>`).join('')}</div>` : ''}
+    <h2>How each exam tests it</h2>
+    <div class="where">${s.where.map(([n, d]) => `<div><h3>${n}</h3><p>${d}</p></div>`).join('')}</div>
+    <h2>Methods</h2>
+    <div class="methods">${s.methods.map(([n, d]) => `<div class="method"><h3>${n}</h3><p>${d}</p></div>`).join('')}</div>
+    <h2>Official samples</h2>
+    <ul class="links">${s.samples.map(([n, u]) => `<li><a href="${u}" target="_blank" rel="noopener">${n}</a></li>`).join('')}</ul>
+  </section>`;
+}
+function bindSubject() {
+  document.querySelectorAll('[data-test]').forEach(b => b.onclick = () => startTest(b.dataset.test));
+  document.querySelectorAll('[data-w]').forEach(b => b.onclick = () => openWriting(b.dataset.w));
+}
+
+/* ================= QUIZ RUNNER ================= */
+let R = null, timerId = null;
+function overlay(html) { const o = $('#overlay'); o.innerHTML = `<div class="sheet">${html}</div>`; o.hidden = false; document.body.classList.add('locked'); o.scrollTop = 0; }
+function closeOverlay() { clearInterval(timerId); $('#overlay').hidden = true; document.body.classList.remove('locked'); R = null; render(); }
+function startTest(id) {
+  const t = TESTS[id];
+  if (t.written) return begin(id, 'learn');
+  overlay(`<button class="x" onclick="closeOverlay()" aria-label="Close">×</button><h2>${t.title}</h2><p class="lede">How do you want to do it?</p>
+  <div class="modes"><button class="mode" onclick="begin('${id}','exam')"><b>Exam conditions</b><span>Timer running, no going back, answers at the end. Just like the ISEB.</span></button>
+  <button class="mode" onclick="begin('${id}','learn')"><b>Learn as you go</b><span>No timer. See the answer and the method after every question.</span></button></div>`);
+}
+function begin(id, mode) {
+  const t = TESTS[id];
+  R = { id, mode, i: 0, answers: [], left: t.mins * 60, hideTimer: false, t };
+  if (mode === 'exam') { clearInterval(timerId); timerId = setInterval(() => { R.left--; const el = $('#clock'); if (el) el.textContent = clock(R.left); if (R.left <= 0) finish(); }, 1000); }
+  showQ();
+}
+const clock = s => `${Math.floor(Math.max(0, s) / 60)}:${String(Math.max(0, s) % 60).padStart(2, '0')}`;
+function showQ() {
+  const q = R.t.qs[R.i], n = R.t.qs.length;
+  const letters = 'ABCDE';
+  overlay(`<div class="qtop"><button class="x" onclick="if(confirm('Leave this test? Your answers so far will not be saved.'))closeOverlay()" aria-label="Close">×</button>
+    <div class="bar"><i style="width:${100 * R.i / n}%"></i></div><span class="qn">${R.i + 1} of ${n}</span>
+    ${R.mode === 'exam' ? `<button class="clockbtn" onclick="R.hideTimer=!R.hideTimer;this.querySelector('span').hidden=R.hideTimer">⏱ <span id="clock" ${R.hideTimer ? 'hidden' : ''}>${clock(R.left)}</span></button>` : ''}</div>
+    <div class="qtype">${q.t}</div>
+    ${q.passage ? `<details class="passage" ${R.i === 0 || !R.t.qs[R.i - 1] || R.t.qs[R.i - 1].passage !== q.passage ? 'open' : ''}><summary>${q.passage === 'windy' ? 'Read the poem' : 'Read the passage'}</summary>${(R.t.passages && R.t.passages[q.passage]) || R.t.passage}</details>` : ''}
+    <div class="qtext">${q.q}</div>
+    ${q.ans ? `<div class="written"><input id="wa" inputmode="text" autocomplete="off" placeholder="Your answer"><button class="btn" id="check">Check</button></div><p class="hint">Do your working on paper, then type the answer.</p>`
+      : `<div class="opts ${q.o[0].startsWith('<svg') ? 'figs' : ''}">${q.o.map((o, k) => `<button class="opt" data-k="${k}"><span class="let">${letters[k]}</span><span class="otext">${o}</span></button>`).join('')}</div>`}
+    <div id="fb"></div><div class="next"><button class="btn" id="next" hidden>${R.i === n - 1 ? 'Finish' : 'Next'}</button></div>`);
+  if (q.ans) {
+    const check = () => { const v = $('#wa').value.replace(/\s|,/g, '').toLowerCase(); if (!v) return; const ok = q.ans.includes(v); R.answers[R.i] = ok ? 'ok' : v; feedback(ok, q); $('#check').disabled = true; $('#wa').disabled = true; $('#next').hidden = false; };
+    $('#check').onclick = check; $('#wa').onkeydown = e => { if (e.key === 'Enter') check(); }; $('#wa').focus();
+  } else {
+    document.querySelectorAll('.opt').forEach(b => b.onclick = () => {
+      if (R.mode === 'learn' && R.answers[R.i] !== undefined) return;
+      document.querySelectorAll('.opt').forEach(x => x.classList.remove('picked'));
+      b.classList.add('picked'); R.answers[R.i] = +b.dataset.k; $('#next').hidden = false;
+      if (R.mode === 'learn') {
+        const ok = +b.dataset.k === q.a;
+        document.querySelectorAll('.opt').forEach(x => { x.disabled = true; if (+x.dataset.k === q.a) x.classList.add('right'); });
+        if (!ok) b.classList.add('wrong');
+        feedback(ok, q, b);
+      }
+    });
+  }
+  $('#next').onclick = () => { if (R.i < n - 1) { R.i++; showQ(); } else finish(); };
+}
+function feedback(ok, q, el) {
+  $('#fb').innerHTML = `<div class="fb ${ok ? 'ok' : 'no'}"><b>${ok ? 'Correct.' : 'Not this time.'}</b> ${q.x}</div>`;
+  if (ok) burst(el || $('#fb'));
+}
+function isRight(q, a) { return q.ans ? a === 'ok' : a === q.a; }
+function finish() {
+  clearInterval(timerId);
+  const qs = R.t.qs, score = qs.filter((q, i) => isRight(q, R.answers[i])).length, pct = Math.round(100 * score / qs.length);
+  const rec = S.tests[R.id] || { best: 0, attempts: 0 };
+  rec.attempts++; rec.best = Math.max(rec.best, pct); rec.last = pct; S.tests[R.id] = rec; save();
+  const missed = {}; qs.forEach((q, i) => { if (!isRight(q, R.answers[i])) missed[q.t] = (missed[q.t] || 0) + 1; });
+  const letters = 'ABCDE';
+  overlay(`<button class="x" onclick="closeOverlay()" aria-label="Close">×</button>
+  <div class="result"><div class="ring" style="--p:${pct}"><b>${pct}%</b></div><div><h2>${score} out of ${qs.length}</h2><p class="lede">${pct >= 85 ? 'Summit form. Try it again in exam conditions.' : pct >= 60 ? 'Solid climbing. Look at the types below and go again.' : 'Every mistake here is one you will not make in the exam. Read the methods, then try again.'}</p></div></div>
+  ${Object.keys(missed).length ? `<h3>Practise these next</h3><p class="chips">${Object.entries(missed).map(([t, n]) => `<span>${t}${n > 1 ? ' ×' + n : ''}</span>`).join('')}</p>` : ''}
+  <h3>Every question</h3><ol class="review">${qs.map((q, i) => { const a = R.answers[i], ok = isRight(q, a); return `<li class="${ok ? 'ok' : 'no'}"><div class="rq">${q.q.replace(/<div class="stem">[\s\S]*<\/div>$/, '')}</div><p>${q.ans ? `Your answer: <b>${a === undefined ? 'none' : ok ? q.ans[0] : esc(a)}</b>. Correct: <b>${q.ans[0]}</b>.` : `Your answer: <b>${a === undefined ? 'none' : letters[a]}</b>. Correct: <b>${letters[q.a]}</b>.`}</p><p class="ex">${q.x}</p></li>`; }).join('')}</ol>
+  <div class="next"><button class="btn" onclick="closeOverlay()">Back to ${SUBJECTS[current] ? SUBJECTS[current].short : 'subject'}</button></div>`);
+  if (pct >= 85) confetti();
+}
+
+/* ================= WRITING ================= */
+let wTimer = null;
+function openWriting(id) {
+  const w = WRITING.find(x => x.id === id), saved = S.writing[id] || '';
+  let left = w.mins * 60, running = false;
+  overlay(`<button class="x" onclick="clearInterval(wTimer);closeOverlay()" aria-label="Close">×</button><div class="qtype">${w.school}, ${w.mins} minutes</div><h2 class="wprompt">${w.prompt}</h2><p class="hint">${w.tip}</p>
+  <div class="wtools"><button class="btn" id="wgo">Start timer</button><span class="wclock" id="wclock">${clock(left)}</span><span id="wc">0 words</span></div>
+  <textarea id="wtext" placeholder="Plan first (a few lines), then write here.">${esc(saved)}</textarea>
+  <details class="check"><summary>Before you stop: check list</summary><ul><li>Does it start with something that grabs the reader?</li><li>Have you used at least three senses?</li><li>Do your sentences start in different ways?</li><li>Have you used two words from the vocabulary list?</li><li>Capital letters, full stops, speech marks checked?</li></ul></details>`);
+  const ta = $('#wtext'), wc = () => $('#wc').textContent = (ta.value.trim().match(/\S+/g) || []).length + ' words';
+  wc(); ta.oninput = () => { S.writing[id] = ta.value; save(); wc(); };
+  $('#wgo').onclick = () => {
+    if (running) { clearInterval(wTimer); running = false; $('#wgo').textContent = 'Carry on'; return; }
+    running = true; $('#wgo').textContent = 'Pause'; ta.focus();
+    wTimer = setInterval(() => { left--; $('#wclock').textContent = clock(left); if (left <= 0) { clearInterval(wTimer); $('#wclock').textContent = 'Time!'; toast('Time is up. Spend one minute checking.'); } }, 1000);
+  };
+}
+
+/* ================= VOCABULARY ================= */
+let vFilter = 'all', vSearch = '', vLetter = '';
+function stage(w) { return S.vocab[w] || 0; }
+function vocabStats() { const m = VOCAB.filter(v => stage(v.w) >= 2).length, l = VOCAB.filter(v => stage(v.w) === 1).length; return { m, l, left: VOCAB.length - m }; }
+function vocabPage() {
+  const st = vocabStats();
+  return `<section class="band band-vocab"><div class="wrap bandin">${ART.vocab}<div><h1>Vocabulary</h1><p class="lede">${VOCAB.length} words that turn up again and again in 11+ reading, synonyms and antonyms. Get a word right twice, on different days, and it is mastered.</p></div></div></section>
+  <section class="wrap">
+    <div class="vscore"><div><b>${st.left}</b><span>words left to master</span></div><div><b>${st.m}</b><span>mastered</span></div><div><b>${st.l}</b><span>halfway there</span></div></div>
+    <div class="bar big"><i style="width:${100 * st.m / VOCAB.length}%"></i></div>
+    <h2>Flashcards</h2>
+    <div class="decks"><button class="btn" data-deck="new">20 new words</button><button class="btn ghost" data-deck="half">Halfway words (${st.l})</button><button class="btn ghost" data-deck="mix">Mixed 20</button></div>
+    <h2>The list</h2>
+    <div class="vtools"><input id="vs" type="search" placeholder="Search a word or meaning" value="${esc(vSearch)}">
+      <select id="vf"><option value="all">All words</option><option value="todo">Still to learn</option><option value="half">Halfway there</option><option value="done">Mastered</option></select></div>
+    <div class="alpha">${'ABCDEFGHIJKLMNOPQRSTUVWYZ'.split('').map(c => `<button data-l="${c}" class="${vLetter === c ? 'on' : ''}">${c}</button>`).join('')}<button data-l="" class="${vLetter ? '' : 'on'}">All</button></div>
+    <div id="vlist"></div>
+  </section>`;
+}
+function listHTML() {
+  const q = vSearch.toLowerCase();
+  const items = VOCAB.filter(v => (!vLetter || v.w[0].toUpperCase() === vLetter) && (!q || v.w.includes(q) || v.d.includes(q) || v.s.includes(q)) &&
+    (vFilter === 'all' || (vFilter === 'todo' && stage(v.w) === 0) || (vFilter === 'half' && stage(v.w) === 1) || (vFilter === 'done' && stage(v.w) >= 2)));
+  if (!items.length) return `<p class="empty">No words match. Clear the search or pick another letter.</p>`;
+  return `<ul class="vlist">${items.map(v => { const s = stage(v.w); return `<li class="st${Math.min(s, 2)}"><div><b>${v.w}</b> <i>${v.p}</i><p>${v.d}. <span>Similar: ${v.s}</span></p></div>${s >= 2 ? '<span class="pill done">Mastered</span>' : `<button class="pill" data-know="${v.w}">I know it</button>`}</li>`; }).join('')}</ul>`;
+}
+function bindVocab() {
+  $('#vf').value = vFilter;
+  const draw = () => { $('#vlist').innerHTML = listHTML(); };
+  draw();
+  $('#vs').oninput = e => { vSearch = e.target.value; draw(); };
+  $('#vf').onchange = e => { vFilter = e.target.value; draw(); };
+  document.querySelector('.alpha').onclick = e => { const b = e.target.closest('button'); if (!b) return; vLetter = b.dataset.l; document.querySelectorAll('.alpha button').forEach(x => x.classList.toggle('on', x === b)); draw(); };
+  $('#vlist').onclick = e => { const b = e.target.closest('[data-know]'); if (!b) return; S.vocab[b.dataset.know] = 2; save(); burst(b); setTimeout(() => render(), 350); };
+  document.querySelectorAll('[data-deck]').forEach(b => b.onclick = () => deck(b.dataset.deck));
+}
+function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+let F = null;
+function deck(kind) {
+  let pool = VOCAB.filter(v => stage(v.w) < 2);
+  if (kind === 'new') pool = pool.filter(v => stage(v.w) === 0).slice(0, 20);
+  else if (kind === 'half') pool = pool.filter(v => stage(v.w) === 1);
+  else pool = shuffle(pool).slice(0, 20);
+  if (!pool.length) return toast(kind === 'half' ? 'No halfway words yet. Start with new words.' : 'Every word is mastered. Incredible.');
+  F = { cards: shuffle([...pool]), i: 0, got: 0, flip: false, reverse: false };
+  card();
+}
+function card() {
+  const v = F.cards[F.i], st = vocabStats();
+  overlay(`<button class="x" onclick="closeOverlay()" aria-label="Close">×</button>
+  <div class="fhead"><span>Card ${F.i + 1} of ${F.cards.length}</span><span><b>${st.left}</b> left to master</span><label class="rev"><input type="checkbox" id="rev" ${F.reverse ? 'checked' : ''}> Show meaning first</label></div>
+  <button class="flash ${F.flip ? 'flipped' : ''}" id="flash" aria-label="Flip card"><div class="face front">${F.reverse ? `<p class="def">${v.d}</p><small>What is the word?</small>` : `<span class="fw">${v.w}</span><small>${v.p}. Say what it means, then tap.</small>`}</div>
+  <div class="face back"><span class="fw">${v.w}</span><p class="def">${v.d}</p><p class="syn">Similar: <b>${v.s}</b></p></div></button>
+  <div class="stagedots" aria-label="progress on this word">${[0, 1].map(k => `<i class="${stage(v.w) > k ? 'on' : ''}"></i>`).join('')}</div>
+  <div class="fbtns" ${F.flip ? '' : 'hidden'} id="fbtns"><button class="btn ghost" id="no">Not yet</button><button class="btn" id="yes">Got it</button></div>`);
+  $('#flash').onclick = () => { F.flip = true; $('#flash').classList.add('flipped'); $('#fbtns').hidden = false; };
+  $('#rev').onchange = e => { F.reverse = e.target.checked; F.flip = false; card(); };
+  $('#yes') && ($('#yes').onclick = () => {
+    const today = new Date().toDateString(); S.vday = S.vday || {};
+    F.got++;
+    if (stage(v.w) === 1 && S.vday[v.w] === today) { toast('Nice. Get it right again on another day to master it.'); }
+    else { const s = stage(v.w) + 1; S.vocab[v.w] = s; S.vday[v.w] = today; if (s >= 2) { burst($('#yes')); toast(`Mastered: ${v.w}`); } }
+    save(); nextCard(); });
+  $('#no') && ($('#no').onclick = () => { S.vocab[v.w] = 0; save(); nextCard(); });
+}
+function nextCard() {
+  F.flip = false;
+  if (F.i < F.cards.length - 1) { F.i++; setTimeout(card, 180); return; }
+  const st = vocabStats();
+  overlay(`<button class="x" onclick="closeOverlay()" aria-label="Close">×</button><div class="result"><div class="ring" style="--p:${Math.round(100 * F.got / F.cards.length)}"><b>${F.got}/${F.cards.length}</b></div><div><h2>Deck done</h2><p class="lede">${st.left} words left to master. Words you got right today come back on another day to lock them in.</p></div></div><div class="next"><button class="btn" onclick="closeOverlay()">Back to the list</button></div>`);
+  if (F.got === F.cards.length) confetti();
+}
+
+/* ================= DELIGHT ================= */
+function burst(el) {
+  if (reduceMotion || !el) return;
+  const r = el.getBoundingClientRect();
+  for (let i = 0; i < 7; i++) {
+    const s = document.createElement('span'); s.className = 'spark';
+    s.style.left = r.left + r.width / 2 + 'px'; s.style.top = r.top + r.height / 2 + 'px';
+    const a = Math.PI * 2 * i / 7; s.style.setProperty('--dx', Math.cos(a) * 70 + 'px'); s.style.setProperty('--dy', Math.sin(a) * 70 - 20 + 'px');
+    s.style.background = ['#E8551C', '#F4B400', '#0E8A9A', '#A3305E', '#23634A'][i % 5];
+    document.body.appendChild(s); setTimeout(() => s.remove(), 800);
+  }
+}
+function confetti() {
+  if (reduceMotion) return;
+  for (let i = 0; i < 60; i++) {
+    const s = document.createElement('span'); s.className = 'conf';
+    s.style.left = Math.random() * 100 + 'vw'; s.style.animationDelay = Math.random() * .6 + 's';
+    s.style.background = ['#E8551C', '#F4B400', '#0E8A9A', '#A3305E', '#23634A', '#fff'][i % 6];
+    s.style.transform = `rotate(${Math.random() * 360}deg)`;
+    document.body.appendChild(s); setTimeout(() => s.remove(), 2600);
+  }
+}
+function toast(m) { const t = $('#toast'); t.textContent = m; t.hidden = false; clearTimeout(t._t); t._t = setTimeout(() => t.hidden = true, 2600); }
+
+nav(); render();
+
+</script>
+</body>
+</html>
