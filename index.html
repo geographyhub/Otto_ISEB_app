@@ -201,7 +201,7 @@ details summary{cursor:pointer;font:600 22px var(--disp)}
   .testcard{flex-direction:column;align-items:flex-start}
   .vscore b{font-size:40px}
   .sheet{padding:22px 16px 26px}
-  .hero{min-height:0;display:flex;flex-direction:column}#mtn{position:static;display:block;height:auto;margin-top:8px;order:2}.hero-text{padding-top:28px}.camplabel{font-size:46px;stroke-width:8px}
+  .hero{min-height:0;display:flex;flex-direction:column}#mtn{position:static;display:block;height:auto;margin-top:8px;order:2}.hero-text{padding-top:28px}.camplabel{font-size:42px;stroke-width:8px}
   .figrow .fig,.qbox{width:78px;height:auto}.qbox{height:78px}
   .grid3{grid-template-columns:repeat(3,80px)}.grid3 .fig,.grid3 .qbox{width:80px;height:80px}
   .flash{height:300px}
@@ -784,6 +784,7 @@ const EN_QS = [
   { t: 'Prefixes', q: 'Which prefix makes the opposite of <b>responsible</b>?', o: ['un', 'dis', 'ir', 'im', 'in'], a: 2, x: '<b>Irresponsible</b>. Words starting with r often take ir: irregular, irrelevant.' }
 ];
 const WRITING = [
+  { id: 'w-cls', school: 'City of London style', mins: 30, prompt: 'Write a story that begins: "Nobody had used the back stairs for years."', tip: 'City of London gives 30 minutes for a short story from a prompt. You can write in first or third person. They mark creativity, vocabulary, and accurate spelling and punctuation, so save 3 minutes to check.' },
   { id: 'w-alleyns', school: "Alleyn's style", mins: 20, prompt: 'Continue the story of Mara from the moment the door closes behind her. What is ticking at the top of the lighthouse?', tip: 'Alleyn\'s asks you to continue the reading passage. Keep Mara, the setting and the tense the same as the original.' },
   { id: 'w-latymer', school: 'Latymer Upper style', mins: 45, prompt: 'Describe a busy market as the sun goes down.', tip: 'Latymer Upper sets a descriptive piece. You do not need a plot: zoom in on details, sounds, smells and how the light changes.' },
   { id: 'w-sevenoaks', school: 'Sevenoaks style', mins: 25, prompt: 'Choose one: <b>(a)</b> The Door Nobody Opened <b>(b)</b> Write about a day when the weather changed everything.', tip: 'Sevenoaks gives two prompts and about 25 minutes, including planning. Choose quickly and spend 4 minutes planning.' }
@@ -1002,7 +1003,8 @@ const START = new Date('2026-10-12T00:00');
 function preTestDate() { return S.preTest ? new Date(S.preTest + 'T09:00') : null; }
 function events() {
   const ev = [
-    { key: 'iseb', date: preTestDate() || new Date('2026-11-20T09:00'), tbc: !S.preTest, title: 'ISEB Pre-Test', where: 'At school, online', note: 'Must be done by Fri 27 November for Sevenoaks.', school: 'iseb' },
+    { key: 'iseb', date: new Date('2026-11-10T09:00'), title: 'ISEB Pre-Test', where: 'At school, online', note: 'Two sessions at school, online. This is the score Sevenoaks uses.', school: 'iseb' },
+    { key: 'cls', date: new Date('2026-11-27T09:00'), title: 'City of London School entrance exams', where: 'City of London School, Blackfriars', note: 'Fri 27 November. An online test and a creative writing task on the same day, about two and a half hours at the school.', school: 'cls' },
     { key: 'lat', date: new Date('2026-12-02T09:00'), title: 'Latymer Upper entrance exam', where: 'Latymer Upper, Hammersmith', note: 'Wed 2 December. Morning and afternoon sessions: your session time comes in the confirmation.', school: 'latymer' },
     { key: 'sev', date: new Date('2027-01-05T09:00'), title: 'Sevenoaks assessment day', where: 'Sevenoaks School', note: 'Tue 5 January. English, maths and a group discussion.', school: 'sevenoaks', star: true },
     { key: 'latint', date: new Date('2027-01-06T09:00'), title: 'Latymer Upper interview day', where: 'Latymer Upper', note: 'Wed 6 January, if invited. You hear by 15 December.', school: 'latymer', small: true },
@@ -1018,6 +1020,7 @@ const daysTo = d => Math.ceil((d - new Date()) / 86400000);
 const SCHOOLS = {
   iseb: { name: 'ISEB Pre-Test', img: 'img/iseb.jpg', lines: ['Online, multiple choice, adaptive: questions get harder as you get them right.', 'Four parts: maths, English (comprehension and SPaG), verbal and non-verbal reasoning.', 'No going back. The Next button only appears once you choose an answer.', 'Pencil and paper allowed for working. You can hide the timer.'] },
   sevenoaks: { name: 'Sevenoaks', img: 'img/sevenoaks.jpg', lines: ['Stage 1: the ISEB Pre-Test, done by 27 November.', 'Stage 2, 5 January: English paper (about 1 hour plus 5 minutes reading: comprehension, then creative writing from a choice of two).', 'Maths paper (about 1 hour), written answers. Show working: method earns marks.', '40-minute group discussion. No formal interview. Results 12 February.'] },
+  cls: { name: 'City of London School', img: 'img/cls.jpg', lines: ['Does not use the ISEB. Own exam day on 27 November, about two and a half hours.', 'Part 1, online (Quest Admissions, 105 minutes): maths 20, English 30, non-verbal 10, verbal 10, puzzles and problem-solving 15, creative comprehension 20.', 'Maths, verbal and non-verbal get harder as you get them right. English, puzzles and creative comprehension do not.', 'Part 2: a 30-minute short story from a prompt, any point of view. Marked on creativity, vocabulary, spelling and punctuation. Interviews in January.'] },
   latymer: { name: 'Latymer Upper', img: 'img/latymer.jpg', lines: ['Does not use the ISEB. Sets its own papers on 2 December.', 'Maths: one paper, 60 minutes.', 'English: comprehension and multiple choice (35 minutes) plus descriptive writing (45 minutes).', 'No reasoning paper. Interview day 6 January if invited.'] },
   alleyns: { name: "Alleyn's", img: 'img/alleyns.jpg', lines: ['Does not use the ISEB. Own exams on 8 January.', 'English, 45 minutes: about 10 to read, then multiple choice and continuing the story. Pen, not pencil.', 'Maths, 30 minutes, no calculator. The last questions are harder extension ones.', 'Reasoning, 45 minutes: verbal, non-verbal and spatial, multiple choice on an answer sheet.'] }
 };
@@ -1027,7 +1030,7 @@ const SUBJECTS = {
   vr: {
     name: 'Verbal reasoning', short: 'Verbal', colour: 'var(--vr)', test: ['vr2', 'vr'],
     blurb: 'Puzzles made of words, letters and numbers. Every type has a method, and once you know it these become quick marks.',
-    where: [['ISEB Pre-Test', 'A verbal reasoning section, multiple choice on screen. Counts towards Sevenoaks.'], ["Alleyn's", 'Part of the 45-minute reasoning paper, mixed in with non-verbal and spatial questions.'], ['Latymer Upper', 'No reasoning paper. Vocabulary still helps you in English.'], ['Sevenoaks', 'Through the ISEB score. Check the January letter in case reasoning is added on the day.']],
+    where: [['ISEB Pre-Test', 'A verbal reasoning section, multiple choice on screen. Counts towards Sevenoaks.'], ['City of London', 'A 10-minute verbal section in the online test that gets harder as you go, plus 15 minutes of puzzles and problem-solving.'], ["Alleyn's", 'Part of the 45-minute reasoning paper, mixed in with non-verbal and spatial questions.'], ['Latymer Upper', 'No reasoning paper. Vocabulary still helps you in English.'], ['Sevenoaks', 'Through the ISEB score. Check the January letter in case reasoning is added on the day.']],
     methods: [
       ['Synonyms and antonyms', 'Say the word in a sentence first. Then test each option in that sentence. Watch for the trap: an antonym hiding in a synonym question.'],
       ['Odd ones out', 'Find what three words share (all trees? all verbs?). The two that do not fit are your answer.'],
@@ -1043,7 +1046,7 @@ const SUBJECTS = {
   nvr: {
     name: 'Non-verbal reasoning', short: 'Non-verbal', colour: 'var(--nvr)', test: ['nvr2', 'nvr'],
     blurb: 'Patterns in shapes. You are a detective: check one feature at a time until the rule gives itself away.',
-    where: [['ISEB Pre-Test', 'A non-verbal section on screen, including "how many cubes" questions.'], ["Alleyn's", 'In the 45-minute reasoning paper, with spatial questions like nets, rotations and 3D shapes.'], ['Latymer Upper', 'No reasoning paper.'], ['Sevenoaks', 'Through the ISEB score.']],
+    where: [['ISEB Pre-Test', 'A non-verbal section on screen, including "how many cubes" questions.'], ['City of London', 'A short 10-minute non-verbal section in the online test. Speed matters.'], ["Alleyn's", 'In the 45-minute reasoning paper, with spatial questions like nets, rotations and 3D shapes.'], ['Latymer Upper', 'No reasoning paper.'], ['Sevenoaks', 'Through the ISEB score.']],
     methods: [
       ['The feature checklist', 'Go through one at a time: shape, size, shading, number of things, position, and which way things point. Most questions use one or two of these.'],
       ['Odd one out', 'Find the rule that four figures share. Turning a shape is usually a distraction, not a difference.'],
@@ -1059,7 +1062,7 @@ const SUBJECTS = {
   en: {
     name: 'English', short: 'English', colour: 'var(--en)', test: ['en2', 'en'], writing: true,
     blurb: 'Reading closely and writing with control. Every school tests both, in different ways.',
-    where: [['ISEB Pre-Test', 'Short passages with multiple-choice questions, then spelling, punctuation and grammar.'], ["Alleyn's", '45 minutes: multiple-choice comprehension, then continue the story you read. Pen only.'], ['Latymer Upper', 'Comprehension and multiple choice (35 minutes), then a separate descriptive writing paper (45 minutes).'], ['Sevenoaks', 'About an hour plus 5 minutes reading: comprehension (about 35 minutes) then creative writing from two prompts (about 25 minutes).']],
+    where: [['ISEB Pre-Test', 'Short passages with multiple-choice questions, then spelling, punctuation and grammar.'], ['City of London', 'Online: 30 minutes of English and 20 minutes of creative comprehension. Then a 30-minute short story, written by hand.'], ["Alleyn's", '45 minutes: multiple-choice comprehension, then continue the story you read. Pen only.'], ['Latymer Upper', 'Comprehension and multiple choice (35 minutes), then a separate descriptive writing paper (45 minutes).'], ['Sevenoaks', 'About an hour plus 5 minutes reading: comprehension (about 35 minutes) then creative writing from two prompts (about 25 minutes).']],
     methods: [
       ['Retrieval', 'The answer is in the text. Find the exact line before you choose.'],
       ['Inference', 'Read between the lines: what do actions and descriptions tell you about feelings? Your answer must be backed by a clue.'],
@@ -1075,7 +1078,7 @@ const SUBJECTS = {
   ma: {
     name: 'Maths', short: 'Maths', colour: 'var(--ma)', test: ['ma2', 'maw2', 'ma', 'maw'],
     blurb: 'Two kinds of paper: quick multiple choice for the ISEB, and written answers with working for the school papers.',
-    where: [['ISEB Pre-Test', 'Multiple choice on screen, based on maths up to the end of Year 5. Rough paper allowed.'], ["Alleyn's", '30 minutes, no calculator. A few multiple-choice questions, then written answers. The final questions are harder extension ones.'], ['Latymer Upper', 'One 60-minute paper set by the school.'], ['Sevenoaks', 'About an hour, written answers. Show working, because method earns marks even if the answer slips.']],
+    where: [['ISEB Pre-Test', 'Multiple choice on screen, based on maths up to the end of Year 5. Rough paper allowed.'], ['City of London', 'A 20-minute online maths section that gets harder as you get questions right, plus 15 minutes of puzzles and problem-solving.'], ["Alleyn's", '30 minutes, no calculator. A few multiple-choice questions, then written answers. The final questions are harder extension ones.'], ['Latymer Upper', 'One 60-minute paper set by the school.'], ['Sevenoaks', 'About an hour, written answers. Show working, because method earns marks even if the answer slips.']],
     methods: [
       ['Four operations', 'Line up columns carefully. For division, use short division and write the remainders small.'],
       ['Fractions, decimals, percentages', 'Find 10% first and build from it. To compare decimals, give them all the same number of places.'],
@@ -1115,13 +1118,14 @@ function heroSVG() {
 }
 function placeHero() {
   const trail = $('#trail'); if (!trail) return;
+  $('#mtn').setAttribute('preserveAspectRatio', innerWidth > 700 ? 'xMidYMax slice' : 'xMidYMax meet');
   const L = trail.getTotalLength(), ev = events().filter(e => !e.small);
-  const short = { iseb: 'Pre-Test', lat: 'Latymer', sev: 'Sevenoaks', all: "Alleyn's" };
+  const short = { iseb: 'Pre-Test', cls: 'City', lat: 'Latymer', sev: 'Sevenoaks', all: "Alleyn's" };
   const stops = ev.map((e, i) => ({ e, f: 0.26 + i * (0.72 / Math.max(1, ev.length - 1)) }));
   const camps = $('#camps');
   camps.innerHTML = stops.map(({ e, f }, i) => {
     const p = trail.getPointAtLength(L * f);
-    const col = e.star ? '#F4B400' : '#fff', up = i % 2 ? -62 : -58;
+    const col = e.star ? '#F4B400' : '#fff', up = -58;
     return `<g class="camp" style="animation-delay:${0.9 + i * 0.25}s" transform="translate(${p.x.toFixed(1)},${p.y.toFixed(1)})"><line x1="0" y1="0" x2="0" y2="-46" stroke="#142A3E" stroke-width="3"/><path d="M0 -46 L30 -38 L0 -30 Z" fill="${col}" stroke="#142A3E" stroke-width="2.5"/><text x="0" y="${up}" text-anchor="middle" class="camplabel">${short[e.key] || e.title}</text></g>`;
   }).join('');
   /* climber: piecewise between today-start and each camp by date */
@@ -1164,20 +1168,19 @@ function basecamp() {
   const mastered = VOCAB.filter(v => (S.vocab[v.w] || 0) >= 2).length;
   return `<section class="hero">${heroSVG()}
     <div class="hero-text"><h1>Otto's climb</h1>
-    <p class="lede">${next ? `Next stop: <b>${next.title}</b>${next.tbc ? ', November in school' : `, in ${daysTo(next.date)} days`}.` : 'Every exam done. Well climbed.'}</p></div></section>
+    <p class="lede">${next ? `Next stop: <b>${next.title}</b>${`, in ${daysTo(next.date)} days`}.` : 'Every exam done. Well climbed.'}</p></div></section>
   <section class="wrap">
     <h2>The route</h2>
     <ol class="route">${ev.map(e => `<li class="${e.small ? 'small' : ''} ${e.date < new Date() ? 'done' : ''}">
-      <div class="when"><b>${e.tbc ? 'November in school' : fmt(e.date)}</b>${e.tbc ? '' : `<span>${daysTo(e.date) > 0 ? daysTo(e.date) + ' days' : 'done'}</span>`}</div>
+      <div class="when"><b>${e.key === 'iseb' ? 'Tue 10 and Thu 12 Nov' : fmt(e.date)}</b><span>${daysTo(e.date) > 0 ? daysTo(e.date) + ' days' : 'done'}</span></div>
       <div class="what"><h3>${e.title}${e.star ? ' <span class="star" title="Otto\'s first choice">first choice</span>' : ''}</h3><p>${e.note}</p></div></li>`).join('')}</ol>
-    <label class="pretest">ISEB Pre-Test date at school <input type="date" id="pt" value="${S.preTest}"></label>
 
     <h2>Your progress</h2>
     <div class="prog">${['vr', 'nvr', 'en', 'ma'].map(k => { const b = SUBJECTS[k].test.map(best).filter(x => x !== null); const v = b.length ? Math.max(...b) : null; return `<button class="pcard p-${k}" data-go="${k}"><span>${SUBJECTS[k].short}</span><b class="${v === null ? 'none' : ''}">${v === null ? 'Not yet' : v + '%'}</b><small>best score</small></button>`; }).join('')}
       <button class="pcard p-vocab" data-go="vocab"><span>Vocabulary</span><b>${VOCAB.length - mastered}</b><small>words left to master</small></button></div>
 
     <h2>Know your exams</h2>
-    <div class="schools">${['iseb', 'sevenoaks', 'latymer', 'alleyns'].map(k => { const s = SCHOOLS[k]; return `<article class="school s-${k}"><img src="${s.img}" alt="" onerror="this.remove()"><h3>${s.name}</h3><ul>${s.lines.map(l => `<li>${l}</li>`).join('')}</ul></article>`; }).join('')}</div>
+    <div class="schools">${['iseb', 'cls', 'latymer', 'sevenoaks', 'alleyns'].map(k => { const s = SCHOOLS[k]; return `<article class="school s-${k}"><img src="${s.img}" alt="" onerror="this.remove()"><h3>${s.name}</h3><ul>${s.lines.map(l => `<li>${l}</li>`).join('')}</ul></article>`; }).join('')}</div>
 
     <div class="rules"><h2>Five rules for the ISEB</h2><ol>
       <li><b>Accuracy beats speed.</b> Harder questions are worth more, so a careful right answer is better than a quick guess.</li>
@@ -1187,7 +1190,8 @@ function basecamp() {
       <li><b>Questions getting harder is good news.</b> It means you are doing well.</li></ol></div>
 
     <details class="tutor"><summary>Tutor notes</summary>
-      <p><b>Which test matters where.</b> The ISEB Pre-Test only feeds Sevenoaks on this list. Alleyn's states the Pre-Test is not part of its process, and Latymer Upper sets its own English and maths papers. Prioritise ISEB familiarity until late November, then switch to written-answer maths and timed writing for December and January.</p>
+      <p><b>Which test matters where.</b> The ISEB Pre-Test only feeds Sevenoaks on this list. City of London uses a different online test (Quest Admissions) plus its own writing task. Alleyn's states the Pre-Test is not part of its process, and Latymer Upper sets its own English and maths papers. Prioritise ISEB familiarity until 12 November, then Quest-style puzzles and timed story writing for City on 27 November, then written-answer maths and timed writing for December and January.</p>
+      <p><b>City of London registration closes Mon 2 November.</b> Quest's maths, verbal and non-verbal sections are adaptive; English, puzzles and creative comprehension are not.</p>
       <p><b>ISEB timings.</b> Atom's 2026 guide gives maths 40, English 40, NVR 30 and VR 25 minutes; older guides give 50, 25, 32 and 36. Confirm with the school. Scores are age-standardised (100 is average) and the most selective schools look for around 120 or more.</p>
       <p><b>First week of January.</b> Sevenoaks on Tue 5, Latymer Upper interview on Wed 6 (if invited) and Alleyn's on Fri 8. Plan rest days around them.</p>
       <p><b>Saving.</b> Progress is saved in this browser only. Use the backup code below to move it to another device.</p>
@@ -1196,7 +1200,6 @@ function basecamp() {
   </section>`;
 }
 function bindBase() {
-  $('#pt').onchange = e => { S.preTest = e.target.value; save(); render(); };
   document.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go));
   $('#bk-make').onclick = () => { $('#bk').value = btoa(unescape(encodeURIComponent(JSON.stringify(S)))); $('#bk').select(); };
   $('#bk-load').onclick = () => { try { S = Object.assign(load(), JSON.parse(decodeURIComponent(escape(atob($('#bk').value.trim()))))); save(); render(); toast('Progress restored'); } catch (e) { toast('That code did not work. Copy the whole code and try again.'); } };
