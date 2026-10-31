@@ -79,6 +79,17 @@ details summary{cursor:pointer;font:600 22px var(--disp)}
 .bandin{display:flex;align-items:center;gap:26px;padding-bottom:0}
 .band .lede{color:inherit}
 .art{width:200px;flex:none;background:#fff;border-radius:22px;padding:10px}
+.band-prep{background:var(--night)}.tab-prep[aria-current=true]{box-shadow:inset 0 -4px 0 var(--rope)}
+.ptarget{background:rgba(255,255,255,.1);border-radius:20px;padding:18px 20px 8px;margin-top:20px;max-width:720px}
+.ptlab{display:flex;justify-content:space-between;align-items:baseline}.ptlab b{font:800 46px var(--disp)}
+.ptbar,.pmini{position:relative;height:22px;background:rgba(255,255,255,.2);border-radius:99px;margin:10px 0 8px}
+.ptbar i,.pmini i{display:block;height:100%;border-radius:99px;background:var(--flag);transition:width .8s}
+.ptarget.hit .ptbar i{background:#4ADE80}
+.ptbar em,.pmini em{position:absolute;top:-6px;bottom:-6px;width:4px;background:#fff;border-radius:2px}
+.ptbar em span{position:absolute;top:30px;left:50%;transform:translateX(-50%);font:700 16px var(--body);font-style:normal;white-space:nowrap}
+.ptarget p{margin:30px 0 8px}
+.prepcard>div{flex:1}.pmini{background:var(--glacier);height:14px;max-width:420px}.pmini i{background:var(--ma)}.pmini em{background:var(--night);top:-4px;bottom:-4px}
+.prepmethod ol{margin:8px 0 0;padding-left:24px}.prepmethod li{margin:6px 0}.prepmethod p{margin:6px 0}
 .testcard{display:flex;align-items:center;justify-content:space-between;gap:18px;background:#fff;border:2px solid var(--line);border-radius:18px;padding:18px 22px;margin-bottom:12px}
 .testcard p{margin:4px 0 0}
 .testcard.summit{border:3px solid var(--night);box-shadow:0 6px 0 var(--night)}
@@ -986,6 +997,153 @@ TESTS.en2 = { id: 'en2', title: 'Summit: English at exam standard (prose and poe
 TESTS.ma2 = { id: 'ma2', title: 'Summit: maths at exam standard', mins: 40, qs: MA_HARD };
 TESTS.maw2 = { id: 'maw2', title: 'Summit: written maths, extension questions', mins: 30, qs: MA_HARD_WRITTEN, written: true };
 
+/* ================= ALLEYN'S PREP ================= */
+/* ================= OTTO ================= */
+const OTTO = { id: 'otto', name: 'Otto', who: 'Year 6', colour: '#5B4BB0',
+  title: 'Otto: Alleyn’s practice', blurb: 'Verbal reasoning, longer worded maths problems and some non-verbal reasoning, at the level of the 11+ reasoning paper.',
+  sections: [
+{ id: 'vr', name: 'Verbal reasoning', colour: '#E8551C', mins: 20, angle: 72,
+  intro: 'Mixed question types, just like a reasoning paper. Two tricky types are taught first.',
+  teach: [
+    { h: 'Letter codes', b: '<p>If <b>FROG</b> is written <b>HTQI</b>, what is <b>TOAD</b>?</p>', steps: [
+      'Write the alphabet across the top of your paper, with numbers 1 to 26 underneath.',
+      'Compare each pair: F to H is +2, R to T is +2, O to Q is +2, G to I is +2.',
+      'Apply the same rule to TOAD: T+2 = V, O+2 = Q, A+2 = C, D+2 = F. Answer: <b>VQCF</b>.',
+      '<b>The trap:</b> the jump is not always the same for every letter. Check all four pairs before you decide.'] },
+    { h: 'Find the calculation', b: '<p>The same rule links each set. Find the missing number.</p><span class="words">(8 [27] 3) &nbsp; (10 [43] 4) &nbsp; (6 [?] 5)</span>', steps: [
+      'Try the obvious first: 8 + 3 = 11. Not 27. 8 × 3 = 24. Close: 3 short.',
+      'Test "multiply, then add 3" on the second set: 10 × 4 = 40, + 3 = 43. It works.',
+      'So the third set: 6 × 5 = 30, + 3 = <b>33</b>.',
+      '<b>Golden rule:</b> a rule only counts if it works on BOTH examples.'] }
+  ],
+  qs: [
+    { t: 'Synonyms', q: 'Which word is closest in meaning to <b>diligent</b>?', o: ['industrious', 'intelligent', 'delightful', 'difficult', 'delicate'], a: 0, x: 'Diligent means hard-working and careful: <b>industrious</b>. Intelligent is the trap: clever is not the same as hard-working.' },
+    { t: 'Antonyms', q: 'Which word is most opposite in meaning to <b>abundant</b>?', o: ['scarce', 'plentiful', 'ample', 'abandoned', 'abrupt'], a: 0, x: 'Abundant means more than enough. The opposite is <b>scarce</b>. Plentiful and ample mean the same as abundant.' },
+    { t: 'Stolen words', q: 'Three letters making a word have been taken out of the word in capitals. Which word?<span class="words">She wrapped a warm S___F round her neck.</span>', o: ['CAR', 'CAT', 'CUR', 'COW', 'CAP'], a: 0, x: 'S + <b>CAR</b> + F = SCARF.' },
+    { t: 'Morph the word', q: 'Change one letter at a time, making a real word at every step. Which pair fills the gaps?<span class="words">MILK &nbsp; ? &nbsp; ? &nbsp; SALT</span>', o: ['SILK and SILT', 'SILK and SALK', 'MILE and SALE', 'MILK and SILT', 'SILL and SALL'], a: 0, x: 'MILK → SILK (M to S) → SILT (K to T) → SALT (I to A). MILE to SALE changes two letters at once.' },
+    { t: 'Letter codes', q: 'If <b>FROG</b> is written <b>HTQI</b>, how is <b>TOAD</b> written?', o: ['VQCF', 'VQCE', 'URBE', 'VPCF', 'WRDG'], a: 0, x: 'Every letter moves forward 2: <b>VQCF</b>.' },
+    { t: 'Decoding', q: 'Using the same code (every letter moves forward 2), what word does <b>ECV</b> stand for?', o: ['CAT', 'GEX', 'DOG', 'COT', 'CUT'], a: 0, x: 'To decode, go <b>back</b> 2: E to C, C to A, V to T. <b>CAT</b>. GEX is the trap: going forward again.' },
+    { t: 'Letter series', q: 'Find the next letter.<span class="words">C &nbsp; F &nbsp; J &nbsp; O &nbsp; ?</span>', o: ['T', 'U', 'V', 'S', 'W'], a: 1, x: 'The jumps grow: +3, +4, +5, so next is +6. O + 6 = <b>U</b>.' },
+    { t: 'Number series', q: 'Find the next number.<span class="words">2 &nbsp; 6 &nbsp; 12 &nbsp; 20 &nbsp; 30 &nbsp; ?</span>', o: ['40', '42', '44', '36', '48'], a: 1, x: 'The gaps are 4, 6, 8, 10, so the next gap is 12: 30 + 12 = <b>42</b>.' },
+    { t: 'Find the calculation', q: 'Find the missing number.<span class="words">(8 [27] 3) &nbsp; (10 [43] 4) &nbsp; (6 [?] 5)</span>', o: ['33', '30', '35', '14', '38'], a: 0, x: 'Multiply, then add 3: 6 × 5 + 3 = <b>33</b>.' },
+    { t: 'Letters for numbers', fixed: true, q: 'A = 4, B = 6, C = 12, D = 24, E = 2.<br>What is <b>D ÷ C × B</b>? Answer as a letter.', o: ['A', 'B', 'C', 'D', 'E'], a: 2, x: '24 ÷ 12 = 2, then 2 × 6 = 12. The letter worth 12 is <b>C</b>.' },
+    { t: 'Analogies', q: '<b>Author</b> is to <b>book</b> as <b>composer</b> is to ?', o: ['symphony', 'orchestra', 'piano', 'conductor', 'notes'], a: 0, x: 'An author writes a book; a composer writes a <b>symphony</b>. Say the link as a sentence first.' },
+    { t: 'Odd two out', q: 'Three words go together. Which <b>two</b> do not?<span class="words">oak &nbsp; ash &nbsp; rose &nbsp; birch &nbsp; tulip</span>', o: ['rose and tulip', 'oak and ash', 'ash and birch', 'oak and rose', 'birch and tulip'], a: 0, x: 'Oak, ash and birch are trees. <b>Rose and tulip</b> are flowers.' },
+    { t: 'Hidden words', q: 'An animal of four letters is hidden across two words. Find it.<span class="words">Fill the tub early, before school.</span>', o: ['bear', 'hare', 'tube', 'fill', 'rely'], a: 0, x: 'tu<b>b</b> + <b>ear</b>ly hides <b>bear</b>. Tube is hidden too, but it is not an animal: always reread the question.' },
+    { t: 'Logic', q: 'Five children finish a race. Ana finishes before Ben but after Cal. Eli finishes between Cal and Ana. Dee finishes last. Who came second?', o: ['Ana', 'Ben', 'Cal', 'Dee', 'Eli'], a: 4, x: 'Write the order: Cal, Eli, Ana, Ben, Dee. <b>Eli</b> is second.' },
+    { t: 'Double meanings', q: 'Which word goes equally well with both pairs?<span class="words">(line, rank) &nbsp;&nbsp; (argue, quarrel)</span>', o: ['row', 'queue', 'fight', 'file', 'spat'], a: 0, x: 'A <b>row</b> is a line, and a row (rhymes with cow) is a quarrel. Same spelling, different sound.' }
+  ],
+  spare: [
+    { t: 'Word codes', q: 'Three of these words have codes, but the codes are jumbled.<span class="words">SALT &nbsp; LAST &nbsp; SLOT<br>2759 &nbsp; 5239 &nbsp; 5729</span>What is the code for <b>TOAST</b>?', o: ['93759', '93579', '39759', '93752', '95739'], a: 0, x: 'LAST is the only word starting with L, and only 2759 starts differently: L = 2, A = 7, S = 5, T = 9. SLOT is 5239, so O = 3. TOAST = <b>93759</b>.' },
+    { t: 'Number rules', q: 'Each number becomes another by the same rule.<span class="words">3 → 10 &nbsp;&nbsp; 5 → 26 &nbsp;&nbsp; 7 → ?</span>', o: ['50', '49', '36', '42', '64'], a: 0, x: 'Square it and add 1: 3² + 1 = 10, 5² + 1 = 26, 7² + 1 = <b>50</b>.' }
+  ]
+},
+{ id: 'wp', name: 'Worded maths', colour: '#23634A', mins: 25, angle: 144,
+  intro: 'Longer problems with several steps. Read twice, write down what you know, then plan before you calculate.',
+  teach: [
+    { h: 'Two unknowns: the swap method', b: '<p>Adult tickets cost <b>£7</b> and child tickets <b>£4</b>. Ten tickets cost <b>£52</b>. How many adult tickets?</p>', steps: [
+      'Pretend they are <b>all child tickets</b>: 10 × £4 = £40.',
+      'That is £12 short of £52.',
+      'Each time you swap a child ticket for an adult one, the total goes up by £7 − £4 = <b>£3</b>.',
+      '£12 ÷ £3 = 4 swaps, so there are <b>4 adult tickets</b>. Check: 4 × 7 + 6 × 4 = 28 + 24 = 52.'] },
+    { h: 'Working backwards', b: '<p>Mia spends half her money, then £3 more. Then she spends half of what is left, then £2 more. She has <b>£1</b> left. How much did she start with?</p>', steps: [
+      'Start at the end and <b>undo each step</b>, in reverse order.',
+      'Undo "£2 more": £1 + £2 = £3. Undo "half": £3 × 2 = £6.',
+      'Undo "£3 more": £6 + £3 = £9. Undo "half": £9 × 2 = <b>£18</b>.',
+      '<b>Check forwards:</b> half of 18 is 9, minus 3 is 6, half is 3, minus 2 is 1. Correct.'] }
+  ],
+  qs: [
+    { t: 'Swap method', q: 'Cinema tickets cost £9 for an adult and £6 for a child. A group buys 12 tickets for £87. How many adult tickets did they buy?', o: ['5', '4', '6', '7', '3'], a: 0, x: 'All child: 12 × £6 = £72, which is £15 short. Each swap adds £3. £15 ÷ £3 = <b>5</b> adults. Check: 45 + 42 = 87.' },
+    { t: 'Working backwards', q: 'Leo gave away half his stickers, then 4 more. Then he gave away half of what was left, and had 7 stickers. How many did he start with?', o: ['36', '22', '30', '40', '18'], a: 0, x: 'Undo: 7 × 2 = 14, 14 + 4 = 18, 18 × 2 = <b>36</b>.' },
+    { t: 'Money', q: 'Pencils cost 35p and rubbers cost 48p. Sam buys 4 pencils and 3 rubbers and pays with a £5 note. How much change does he get?', o: ['£2.16', '£2.26', '£1.16', '£2.84', '£3.16'], a: 0, x: 'Pencils: 4 × 35p = £1.40. Rubbers: 3 × 48p = £1.44. Total £2.84. Change: £5 − £2.84 = <b>£2.16</b>.' },
+    { t: 'Time', q: 'Adverts start at 6:30 pm and last 18 minutes. The film then lasts 1 hour 54 minutes. When does the film finish?', o: ['8:42 pm', '8:32 pm', '8:52 pm', '9:42 pm', '8:12 pm'], a: 0, x: 'Film starts 6:48. Add 2 hours (8:48) then take off 6 minutes: <b>8:42 pm</b>.' },
+    { t: 'Fractions', q: 'A school has 420 pupils. <sup>3</sup>&frasl;<sub>7</sub> walk to school. ¼ of the rest come by bus. The others come by car. How many come by car?', o: ['180', '240', '60', '120', '105'], a: 0, x: 'Walk: 420 ÷ 7 × 3 = 180. Rest: 240. Bus: ¼ of 240 = 60. Car: 240 − 60 = <b>180</b>. The "rest" is the trap.' },
+    { t: 'Ages', q: 'Mum is 4 times as old as Kit. In 10 years\' time she will be twice as old as Kit. How old is Kit now?', o: ['5', '10', '8', '6', '4'], a: 0, x: 'Try Kit = 5: Mum is 20. In 10 years: 30 and 15. 30 is twice 15. Kit is <b>5</b>.' },
+    { t: 'Speed', q: 'A cyclist rides 12 km at 16 km/h, then 9 km at 12 km/h. How long does the whole ride take?', o: ['1 h 30 min', '1 h 15 min', '1 h 45 min', '2 h', '1 h'], a: 0, x: 'Time = distance ÷ speed. 12 ÷ 16 = ¾ h (45 min). 9 ÷ 12 = ¾ h (45 min). Total <b>1 h 30 min</b>.' },
+    { t: 'Area', q: 'A rectangular garden is 3 times as long as it is wide. The fence around it is 48 m long. What is its area?', o: ['108 m²', '144 m²', '96 m²', '72 m²', '120 m²'], a: 0, x: 'Width w, length 3w: perimeter = 8w = 48, so w = 6 m and length 18 m. Area = 6 × 18 = <b>108 m²</b>.' },
+    { t: 'Number puzzle', q: 'I am a 2-digit number. My digits add up to 11. If you swap my digits, the new number is 27 more than me. What am I?', o: ['47', '74', '38', '56', '29'], a: 0, x: 'Swapped is bigger, so the second digit is bigger. Try pairs adding to 11: 47 and 74, and 74 − 47 = 27. <b>47</b>.' },
+    { t: 'Ratio', q: 'Jo and Raj share sweets in the ratio 3 : 5. Raj gives Jo 6 sweets, and now they have the same number. How many sweets are there altogether?', o: ['48', '40', '64', '24', '36'], a: 0, x: '8 parts in total. Equal means 4 parts each, so Raj gives away 1 part = 6 sweets. Total 8 × 6 = <b>48</b>.' },
+    { t: 'Percentages', q: 'A £60 game is reduced by 15%, then a further £5 is taken off. What is the final price?', o: ['£46', '£45', '£41', '£51', '£47'], a: 0, x: '15% of £60 = £9, so £51. Then £51 − £5 = <b>£46</b>.' }
+  ],
+  spare: [
+    { t: 'Rounding up', q: 'A coach holds 52 people. 300 pupils and 24 adults go on a trip. How many coaches are needed, and how many seats are empty?', o: ['7 coaches, 40 empty seats', '6 coaches, 12 empty seats', '7 coaches, 12 empty seats', '6 coaches, none empty', '8 coaches, 92 empty seats'], a: 0, x: '324 people ÷ 52 = 6.2…, so <b>7 coaches</b>. 7 × 52 = 364 seats, 364 − 324 = <b>40 empty</b>.' },
+    { t: 'Consecutive numbers', q: 'Three consecutive numbers add up to 168. What is the largest?', o: ['57', '56', '55', '58', '84'], a: 0, x: '168 ÷ 3 = 56 is the middle one. So 55, 56, <b>57</b>.' },
+    { t: 'Best buy', q: 'Chocolate bars cost 3 for £1.20 or 5 for £1.85. What is the cheapest way to buy exactly 15 bars?', o: ['£5.55', '£6.00', '£5.65', '£5.85', '£6.15'], a: 0, x: 'Five packs of 3: £6.00. Three packs of 5: <b>£5.55</b>. Any mix of both packs costs more than £5.55.' }
+  ]
+},
+{ id: 'nvr', name: 'Non-verbal reasoning', colour: '#0E8A9A', mins: 12, angle: 216,
+  intro: 'Check one feature at a time: shape, size, shading, number, position and direction.',
+  qs: [
+    { t: 'Series', figs: true, q: 'Which figure comes next?<div class="stem">' + row([rayFig(90), rayFig(135), rayFig(180), rayFig(225), QMARK]) + '</div>', o: [rayFig(270), rayFig(315), rayFig(0), rayFig(225), rayFig(90)], a: 0, x: 'The line turns an eighth of a turn (45°) clockwise each time. After pointing down-left it points straight left.' },
+    { t: 'Odd one out', figs: true, q: 'Which figure is the odd one out?', o: [['triangle', 2, 0], ['square', 3, 0], ['pentagon', 4, 0], ['hexagon', 6, 0], ['triangle', 2, 180]].map(([k, n, r]) => svgWrap(shape(k, 55, 55, 42, 'white', r) + dots(55, 57, n, 14))), a: 3, x: 'In every figure the dots are one fewer than the sides, except the hexagon: 6 sides and 6 dots. The upside-down triangle is a distraction.' },
+    { t: 'Analogies', figs: true, q: 'Which figure completes the second pair in the same way?<div class="stem">' + row([nest('circle', 'triangle', 'black'), '<div class="arrow">to</div>', nest('triangle', 'circle', 'black'), '<div class="arrow">as</div>', nest('square', 'pentagon', 'black'), '<div class="arrow">to</div>', QMARK]) + '</div>', o: [nest('pentagon', 'square', 'white'), nest('square', 'pentagon', 'black'), nest('pentagon', 'square', 'black'), nest('pentagon', 'triangle', 'black'), nest('hexagon', 'square', 'black')], a: 2, x: 'The outside and inside shapes swap, and the small one stays black. So a big pentagon with a small black square.' },
+    { t: 'Reflection', figs: true, q: 'Which figure shows the shape reflected in a mirror line <b>underneath</b> it?<div class="stem">' + row([flagFig(T.id)]) + '</div>', o: [flagFig(T.mx), flagFig(T.my), flagFig(T.r180), flagFig(T.id), flagFig(T.r90)], a: 1, x: 'A mirror underneath flips top and bottom but keeps left and right. The flag still points right; the dot moves to the top.' },
+    { t: 'How many cubes', q: 'How many cubes are in this solid? Count the hidden ones that hold the others up.<div class="stem">' + isoCubes([[0,0,0],[1,0,0],[2,0,0],[0,1,0],[0,0,1],[1,0,1],[0,1,1],[0,0,2]]) + '</div>', o: ['6', '7', '8', '9', '10'], a: 2, x: 'Layer by layer from the top: 1, then 3, then 4 on the bottom. Total <b>8</b>.' },
+    { t: 'Fold and punch', figs: true, q: 'A square is folded in half from bottom to top. A hole is punched through both layers. What does it look like unfolded?<div class="stem"><div class="figrow">' + svgWrap(`<rect x="10" y="10" width="90" height="90" fill="#fff" stroke="${INK}" stroke-width="3"/><line x1="6" y1="55" x2="104" y2="55" stroke="${INK}" stroke-width="2" stroke-dasharray="5 4"/><path d="M78 85 Q100 55 78 28" fill="none" stroke="#E8551C" stroke-width="3"/><path d="M78 28 l1 9 l7 -5" fill="#E8551C"/>`) + svgWrap(`<rect x="10" y="10" width="90" height="45" fill="#fff" stroke="${INK}" stroke-width="3"/><circle cx="37" cy="32.5" r="6" fill="${INK}"/>`) + '</div></div>', o: [holeSheet([[30, 25]]), holeSheet([[30, 25], [30, 75]]), holeSheet([[30, 25], [70, 25]]), holeSheet([[30, 25], [70, 75]]), holeSheet([[30, 10], [30, 90]])], a: 1, x: 'Two layers, so two holes, mirrored across the fold line: one above it and one the same distance below.' }
+  ],
+  spare: [
+    { t: 'Codes', q: 'Each figure has a code. Find the code for the last figure.<div class="stem"><div class="figrow">' + codeTile('circle', 'white', 'JR') + codeTile('square', 'black', 'KS') + codeTile('triangle', 'stripe', 'LT') + codeTile('square', 'white', 'KR') + `<div class="codetile">${svgWrap(shape('triangle', 55, 55, 34, 'black'))}<b>?</b></div></div></div>`, o: ['LS', 'SL', 'LR', 'KS', 'JS'], a: 0, x: 'First letter = shape (J circle, K square, L triangle). Second = shading (R white, S black, T striped). A black triangle is <b>LS</b>.' },
+    { t: 'Rotation', figs: true, q: 'Which figure is the shape <b>turned</b>, not flipped?<div class="stem">' + row([fFig(T.id)]) + '</div>', o: [fFig(T.mx), fFig(T.my), fFig(T.r270), fFig(T.mxr90), fFig(T.mxr270)], a: 2, x: 'Only one is a turn (a quarter turn anticlockwise). The rest are mirror images: no amount of turning makes a reflection.' }
+  ]
+}
+]};
+
+
+const VR_NEW = [
+  { t: 'Synonyms', q: 'Which word is closest in meaning to <b>obstinate</b>?', o: ['stubborn', 'obvious', 'absent', 'careful', 'generous'], a: 0, x: 'Obstinate means refusing to change your mind: <b>stubborn</b>.' },
+  { t: 'Antonyms', q: 'Which word is most opposite in meaning to <b>candid</b>?', o: ['evasive', 'honest', 'sweet', 'frank', 'careful'], a: 0, x: 'Candid means open and honest. The opposite is <b>evasive</b> (avoiding giving a straight answer). Frank and honest mean the same as candid.' },
+  { t: 'Stolen words', q: 'Three letters making a word have been taken out of the word in capitals. Which word?<span class="words">The children played in the GAR___.</span>', o: ['DEN', 'DIN', 'DAN', 'TEN', 'DUN'], a: 0, x: 'GAR + <b>DEN</b> = GARDEN.' },
+  { t: 'Morph the word', q: 'Change one letter at a time, making a real word at every step. Which pair fills the gaps?<span class="words">CAKE &nbsp; ? &nbsp; ? &nbsp; BITE</span>', o: ['BAKE and BIKE', 'LAKE and LIKE', 'COKE and BIKE', 'BAKE and BITS', 'CAKE and BIKE'], a: 0, x: 'CAKE → BAKE → BIKE → BITE. LAKE and LIKE is the trap: LIKE to BITE changes two letters.' },
+  { t: 'Codes that wrap round', q: 'In a code, <b>WINTER</b> is written <b>VGKPZL</b>. How is <b>SPRING</b> written?', o: ['RNOEIA', 'RNPEIA', 'TRUMSM', 'ROOEIA', 'RNOFIA'], a: 0, x: 'The letters move back 1, 2, 3, 4, 5, 6. E back 5 goes past A and wraps round to Z. So S−1 = R, P−2 = N, R−3 = O, I−4 = E, N−5 = I, G−6 = A: <b>RNOEIA</b>.' },
+  { t: 'Mirror codes', q: 'Each letter is swapped with its mirror in the alphabet (A with Z, B with Y and so on). What is the code for <b>GOLD</b>?', o: ['TLOW', 'TLOV', 'SLOW', 'TMOW', 'ULOW'], a: 0, x: 'A letter and its mirror add to 27. G (7) → 20 = T. O (15) → 12 = L. L (12) → 15 = O. D (4) → 23 = W. <b>TLOW</b>.' },
+  { t: 'Number sequences', q: 'Find the next number.<span class="words">3 &nbsp; 4 &nbsp; 7 &nbsp; 11 &nbsp; 18 &nbsp; 29 &nbsp; ?</span>', o: ['47', '40', '58', '46', '36'], a: 0, x: 'Each number is the sum of the two before it: 18 + 29 = <b>47</b>. When the gaps make no pattern, try adding neighbours.' },
+  { t: 'Letter pairs', q: 'Find the next pair.<span class="words">BY &nbsp; DW &nbsp; GT &nbsp; KP &nbsp; ?</span>', o: ['PL', 'OK', 'QK', 'PJ', 'PK'], a: 4, x: 'First letters jump +2, +3, +4, so +5: K to P. Second letters jump −2, −3, −4, so −5: P to K. <b>PK</b>.' },
+  { t: 'Find the calculation', q: 'Find the missing number.<span class="words">(4 [14] 6) &nbsp; (7 [17] 4) &nbsp; (9 [?] 5)</span>', o: ['31', '45', '36', '28', '32'], a: 0, x: 'Multiply, then subtract both numbers: 4 × 6 − 4 − 6 = 14, and 7 × 4 − 7 − 4 = 17. So 45 − 9 − 5 = <b>31</b>.' },
+  { t: 'Balance', q: 'Find the number that makes both sides equal.<span class="words">6 × 7 − 12 = 5 × ?</span>', o: ['6', '5', '7', '30', '8'], a: 0, x: 'Left side: 42 − 12 = 30. 5 × <b>6</b> = 30.' },
+  { t: 'Letters for numbers', fixed: true, q: 'A = 3, B = 4, C = 7, D = 12, E = 21.<br>What is <b>(E − D) × B ÷ (A × B)</b>? Answer as a letter.', o: ['A', 'B', 'C', 'D', 'E'], a: 0, x: 'E − D = 9. 9 × 4 = 36. A × B = 12. 36 ÷ 12 = 3, which is <b>A</b>.' },
+  { t: 'Word codes', q: 'Three words have codes, but the codes are jumbled.<span class="words">LANE &nbsp; LEAN &nbsp; NAIL<br>2671 &nbsp; 1792 &nbsp; 2716</span>What is the code for <b>ALIEN</b>?', o: ['72961', '72691', '27961', '79261', '72916'], a: 0, x: 'Two words start with L and two codes start with 2, so L = 2 and NAIL = 1792: N = 1, A = 7, I = 9. LANE has N third, so it is 2716 and E = 6. ALIEN = <b>72961</b>.' },
+  { t: 'Hidden words', q: 'A body part of four letters is hidden across two words. Find it.<span class="words">The fire alarm sounded twice.</span>', o: ['arms', 'real', 'hand', 'chin', 'ears'], a: 0, x: 'ala<b>rm</b> + <b>s</b>ounded hides <b>arms</b>. "Real" is hidden too (fi<b>re al</b>arm) but it is not a body part.' },
+  { t: 'Analogies', q: '<b>Chisel</b> is to <b>sculptor</b> as <b>scalpel</b> is to ?', o: ['surgeon', 'hospital', 'nurse', 'blade', 'operation'], a: 0, x: 'A sculptor works with a chisel; a <b>surgeon</b> works with a scalpel. The link is "tool and the person who uses it".' },
+  { t: 'Odd two out', q: 'Three words go together. Which <b>two</b> do not?<span class="words">dwindle &nbsp; diminish &nbsp; flourish &nbsp; shrink &nbsp; thrive</span>', o: ['flourish and thrive', 'dwindle and shrink', 'diminish and flourish', 'shrink and thrive', 'dwindle and diminish'], a: 0, x: 'Dwindle, diminish and shrink all mean get smaller. <b>Flourish and thrive</b> mean grow strongly.' },
+  { t: 'Double meanings', q: 'Which word goes equally well with both pairs?<span class="words">(tolerate, endure) &nbsp;&nbsp; (grizzly, polar)</span>', o: ['bear', 'stand', 'suffer', 'panda', 'carry'], a: 0, x: 'To <b>bear</b> something is to endure it, and grizzly and polar are kinds of bear. Stand fits only the first pair.' },
+  { t: 'Statement logic', q: 'Some Blibs are Glurs. All Glurs are green. Which <b>must</b> be true?', o: ['Some Blibs are green.', 'All Blibs are green.', 'All green things are Glurs.', 'No Blibs are green.', 'Some Glurs are not green.'], a: 0, x: 'The Blibs that are Glurs must be green, so <b>some Blibs are green</b>. Nothing says ALL Blibs are Glurs, and green things could be anything.' },
+  { t: 'Order logic', q: 'Four houses stand in a row: red, blue, green and yellow. Green is at one end. Yellow is next to green but not next to blue. Red is somewhere to the left of blue. Which house is second from the right?', o: ['blue', 'green', 'red', 'yellow', 'cannot tell'], a: 2, x: 'If green were on the right, yellow would be third and blue would have to be first, with nothing to its left for red. So the order is green, yellow, red, blue. Second from the right: <b>red</b>.' },
+  { t: 'Letter pairs', q: 'AZ, BY, CX … What is the 6th pair in this sequence?', o: ['FV', 'GU', 'EV', 'FU', 'FT'], a: 3, x: 'First letters go A, B, C, D, E, F. Second letters go Z, Y, X, W, V, U. The 6th pair is <b>FU</b>.' },
+  { t: 'Best word', q: 'Choose the word that best completes the sentence.<span class="words">Despite his ____ efforts, the stuck door would not budge.</span>', o: ['strenuous', 'tenuous', 'sinuous', 'stupendous', 'strenuously'], a: 0, x: '<b>Strenuous</b> means needing great effort. Tenuous means weak or thin; "strenuously" is an adverb and cannot describe "efforts".' }
+];
+const VR_NEW_SPARE = [
+  { t: 'Move a letter', q: 'Move one letter from the first word to the second to make two new words. Which letter?<span class="words">STRIPE &nbsp;&nbsp; HOE</span>', o: ['S', 'T', 'R', 'P', 'E'], a: 0, x: 'Take S from STRIPE to leave TRIPE, and add it to HOE to make SHOE (or HOSE). E would leave STRIP, but HOE cannot take another E.' },
+  { t: 'Number rules', q: 'Each number becomes another by the same rule.<span class="words">6 → 35 &nbsp;&nbsp; 9 → 80 &nbsp;&nbsp; 4 → ?</span>', o: ['15', '16', '12', '17', '8'], a: 0, x: 'Square it and take away 1: 36 − 1 = 35, 81 − 1 = 80, 16 − 1 = <b>15</b>.' }
+];
+const NVR_NEW = [
+  { t: 'Cube nets', figs: true, q: 'Which cube can be made from this net?<div class="stem">' + netSym() + '</div>', o: [cube3('stripe', 'ring', 'dot'), cube3('black', 'ring', 'square'), cube3('dot', 'square', 'black'), cube3('black', 'plus', 'stripe'), cube3('square', 'dot', 'ring')], a: 1, x: 'Find opposite faces first: two faces with one square between them in a line are opposite. Black is opposite plus, stripes opposite ring, dot opposite square. Every other cube shows a pair of opposites together, which is impossible.' },
+  { t: 'Series: two rules', figs: true, q: 'Which figure comes next?<div class="stem">' + row([dotArrow(0, 0), dotArrow(3, 90), dotArrow(2, 180), dotArrow(1, 270), QMARK]) + '</div>', o: [dotArrow(0, 0), dotArrow(1, 0), dotArrow(0, 180), dotArrow(3, 90), dotArrow(0, 90)], a: 0, x: 'The dot moves one corner anticlockwise each time, so it returns to the top left. The arrow turns a quarter turn clockwise each time, so after four turns it points up again.' },
+  { t: 'Analogies: three changes', figs: true, q: 'Which figure completes the second pair in the same way?<div class="stem">' + row([rotDots('pentagon', 0, 'white', 2), '<div class="arrow">to</div>', rotDots('pentagon', 180, 'black', 3), '<div class="arrow">as</div>', rotDots('triangle', 0, 'white', 4), '<div class="arrow">to</div>', QMARK]) + '</div>', o: [rotDots('triangle', 180, 'white', 5), rotDots('triangle', 0, 'black', 5), rotDots('triangle', 180, 'black', 4), rotDots('triangle', 180, 'black', 5), rotDots('triangle', 90, 'black', 5)], a: 3, x: 'Three changes: the shape turns upside down, it becomes black, and it gains one dot. Each wrong answer misses exactly one of these.' },
+  { t: 'Codes: three letters', q: 'Each figure has a three-letter code. Find the code for the last figure.<div class="stem"><div class="figrow">' + codeTile3('square', 'white', true, 'YDP') + codeTile3('circle', 'black', false, 'XEQ') + codeTile3('triangle', 'stripe', true, 'ZFP') + codeTile3('square', 'black', false, 'YEQ') + `<div class="codetile">${mark3('circle', 'stripe', true)}<b>?</b></div></div></div>`, o: ['XFP', 'XFQ', 'ZFP', 'XEP', 'YFP'], a: 0, x: 'First letter = shape (X circle, Y square, Z triangle). Second = shading (D white, E black, F striped). Third = the small ring (P ring, Q none). A striped circle with a ring: <b>XFP</b>.' },
+  { t: 'Odd one out', figs: true, q: 'Which figure is the odd one out?', o: [inner('pentagon', 'pentagon', 'black'), inner('square', 'square', 'stripe'), inner('hexagon', 'hexagon', 'white'), inner('square', 'pentagon', 'black'), inner('triangle', 'triangle', 'black')], a: 3, x: 'In every other figure, the small shape matches the big one. The odd one has a pentagon inside a square. Shading is a distraction.' },
+  { t: 'How many cubes', q: 'How many cubes are in this solid? Count the hidden ones that hold the others up.<div class="stem">' + isoCubes([[0,0,0],[1,0,0],[2,0,0],[0,1,0],[1,1,0],[0,2,0],[0,0,1],[1,0,1],[0,1,1],[1,1,1],[0,0,2]]) + '</div>', o: ['9', '10', '11', '12', '13'], a: 2, x: 'Count layer by layer. Top: 1. Middle: 4 (one is hidden behind the tower). Bottom: 6, a staircase of 3, 2 and 1. Total <b>11</b>.' }
+];
+
+const PREP_TARGET = 90;
+const PREP_WP = OTTO.sections[1], PREP_NV = OTTO.sections[2];
+TESTS.prep_wp = { id: 'prep_wp', title: 'Worded maths: finishing the lesson', mins: 20, qs: [...PREP_WP.qs.slice(5), ...PREP_WP.spare] };
+TESTS.prep_nvr = { id: 'prep_nvr', title: 'Non-verbal reasoning: the full section, plus harder ones', mins: 15, qs: [...PREP_NV.qs, ...PREP_NV.spare, ...NVR_NEW] };
+TESTS.prep_vr = { id: 'prep_vr', title: 'Verbal reasoning: new and harder', mins: 25, qs: [...VR_NEW, ...VR_NEW_SPARE] };
+const PREP_IDS = ['prep_wp', 'prep_nvr', 'prep_vr'];
+/* spread correct answers across A to E in every multiple-choice set */
+(function () {
+  const PAT = [2, 0, 3, 1, 4, 1, 3, 0, 4, 2, 0, 4, 1, 3, 2]; let k = 0;
+  Object.values(TESTS).forEach(t => t.qs.forEach(q => {
+    if (!q.o || q.ans || q.fixed) return;
+    if (q.o.some(o => /No mistake/.test(o))) return;
+    if (q.o.every(o => /^[A-Ea-e]$/.test(o))) return;
+    if (/\b(second|third|fourth|fifth)\b/i.test(q.x)) return;
+    const n = q.o.length, tg = n === 5 ? PAT[k++ % PAT.length] : k++ % n;
+    if (tg === q.a) return;
+    const x = q.o[tg]; q.o[tg] = q.o[q.a]; q.o[q.a] = x; q.a = tg;
+  }));
+})();
+
 /* ================= STATE ================= */
 const KEY = 'ottoClimb_v1';
 let S = load();
@@ -1147,7 +1305,7 @@ function placeHero() {
 }
 
 /* ================= TABS ================= */
-const TABS = [['base', 'Basecamp'], ['vr', 'Verbal'], ['nvr', 'Non-verbal'], ['en', 'English'], ['ma', 'Maths'], ['vocab', 'Vocabulary']];
+const TABS = [['base', 'Basecamp'], ['prep', 'Alleyn’s prep'], ['vr', 'Verbal'], ['nvr', 'Non-verbal'], ['en', 'English'], ['ma', 'Maths'], ['vocab', 'Vocabulary']];
 let current = 'base';
 function nav() {
   $('#tabs').innerHTML = TABS.map(([k, l]) => `<button class="tab tab-${k}" data-k="${k}" aria-current="${k === current}">${l}</button>`).join('');
@@ -1158,7 +1316,26 @@ function render() {
   const m = $('#main');
   if (current === 'base') { m.innerHTML = basecamp(); placeHero(); bindBase(); }
   else if (current === 'vocab') { m.innerHTML = vocabPage(); bindVocab(); }
+  else if (current === 'prep') { m.innerHTML = prepPage(); bindSubject(current); }
   else { m.innerHTML = subjectPage(current); bindSubject(current); }
+}
+
+/* ================= ALLEYN'S PREP PAGE ================= */
+function prepPage() {
+  const tot = PREP_IDS.reduce((n, id) => n + TESTS[id].qs.length, 0);
+  const got = PREP_IDS.reduce((n, id) => n + (best(id) || 0) * TESTS[id].qs.length / 100, 0);
+  const o = Math.round(100 * got / tot), hit = o >= PREP_TARGET;
+  return `<section class="band band-prep"><div class="wrap"><h1>Alleyn’s prep</h1><p class="lede">Homework: finish by <b>Saturday 7 November</b>.</p>
+  <div class="ptarget ${hit ? 'hit' : ''}"><div class="ptlab"><span>Your score</span><b>${o}%</b></div><div class="ptbar"><i style="width:${o}%"></i><em style="left:${PREP_TARGET}%"><span>Target ${PREP_TARGET}%</span></em></div>
+  <p>${o === 100 ? 'Perfect score. Every question right.' : hit ? 'Target reached. Brilliant work: now go for 100%.' : `Get ${PREP_TARGET}% of all ${tot} questions right. Your best try in each section counts, so you can have another go.`}</p></div></div></section>
+  <section class="wrap">
+    <h2>Your three sections</h2>
+    ${PREP_IDS.map(id => { const t = TESTS[id], b = best(id); return `<div class="testcard prepcard"><div><h3>${t.title}</h3><p>${t.qs.length} questions.${b !== null ? ` Best: <b>${b}%</b>` : ' Not started yet.'}</p><div class="pmini"><i style="width:${b || 0}%"></i><em style="left:${PREP_TARGET}%"></em></div></div><button class="btn" data-test="${id}">${b === null ? 'Start' : b >= PREP_TARGET ? 'Try again' : 'Improve'}</button></div>`; }).join('')}
+    <h2>Two methods for the worded maths</h2>
+    <div class="methods">${PREP_WP.teach.map(m => `<div class="method prepmethod"><h3>${m.h}</h3>${m.b}<ol>${m.steps.map(s => `<li>${s}</li>`).join('')}</ol></div>`).join('')}</div>
+    <h2>How to hit 90%</h2>
+    <div class="where"><div><h3>Paper and pencil</h3><p>For every question, just like the real exam.</p></div><div><h3>Learn as you go</h3><p>Choose this mode to see the explanation after each answer.</p></div><div><h3>Have another go</h3><p>Not at 90% yet? Try a section again the next day: your best score counts.</p></div></div>
+  </section>`;
 }
 
 /* ================= BASECAMP ================= */
@@ -1293,7 +1470,7 @@ function finish() {
   <div class="result"><div class="ring" style="--p:${pct}"><b>${pct}%</b></div><div><h2>${score} out of ${qs.length}</h2><p class="lede">${pct >= 85 ? 'Summit form. Try it again in exam conditions.' : pct >= 60 ? 'Solid climbing. Look at the types below and go again.' : 'Every mistake here is one you will not make in the exam. Read the methods, then try again.'}</p></div></div>
   ${Object.keys(missed).length ? `<h3>Practise these next</h3><p class="chips">${Object.entries(missed).map(([t, n]) => `<span>${t}${n > 1 ? ' ×' + n : ''}</span>`).join('')}</p>` : ''}
   <h3>Every question</h3><ol class="review">${qs.map((q, i) => { const a = R.answers[i], ok = isRight(q, a); return `<li class="${ok ? 'ok' : 'no'}"><div class="rq">${q.q.replace(/<div class="stem">[\s\S]*<\/div>$/, '')}</div><p>${q.ans ? `Your answer: <b>${a === undefined ? 'none' : ok ? q.ans[0] : esc(a)}</b>. Correct: <b>${q.ans[0]}</b>.` : `Your answer: <b>${a === undefined ? 'none' : letters[a]}</b>. Correct: <b>${letters[q.a]}</b>.`}</p><p class="ex">${q.x}</p></li>`; }).join('')}</ol>
-  <div class="next"><button class="btn" onclick="closeOverlay()">Back to ${SUBJECTS[current] ? SUBJECTS[current].short : 'subject'}</button></div>`);
+  <div class="next"><button class="btn" onclick="closeOverlay()">Back to ${SUBJECTS[current] ? SUBJECTS[current].short : current === 'prep' ? 'Alleyn’s prep' : 'subject'}</button></div>`);
   if (pct >= 85) confetti();
 }
 
